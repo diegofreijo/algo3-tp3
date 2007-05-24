@@ -1,4 +1,4 @@
-package grafo;
+package utilidades;
 
 public class Eje {
 
