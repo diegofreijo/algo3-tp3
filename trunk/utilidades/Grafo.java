@@ -8,18 +8,20 @@ public class Grafo
 	private int nodos;
 	private List<Eje> ejes;
 	private List<List<Integer>> adyacencias;
+	private List<Integer> aislados;
 
 	public Grafo(int nodos, List<Eje> ejes)
 	{
 		this.nodos = nodos;
 		this.ejes = ejes;
 
+		List<Integer> aislados = new ArrayList<Integer>();
 		List<List<Integer>> ady = new ArrayList<List<Integer>>();
 		ady.add(0, null);
 
 		List<Integer> temp = new ArrayList<Integer>();
 		int i = 1;
-
+	
 		while (i <= nodos)
 		{
 			int k = 0;
@@ -30,18 +32,21 @@ public class Grafo
 				if (ejes.get(k).x == i)
 				{
 					temp.add(ejes.get(k).y);
-				}
-				if (ejes.get(k).y == i)
+				} else if (ejes.get(k).y == i)
 				{
 					temp.add(ejes.get(k).x);
 				}
 				k++;
+			}
+			if(temp.size() == 0){
+				aislados.add(i);
 			}
 			ady.add(i, temp);
 			i++;
 		}
 
 		this.adyacencias = ady;
+		this.aislados = aislados;
 	}
 
 
@@ -58,6 +63,11 @@ public class Grafo
 	public List<Integer> DameVecinos(int nodo)
 	{
 		return this.adyacencias.get(nodo);
+	}
+	
+	public List<Integer> DameAislados()
+	{
+		return this.aislados;
 	}
 
 }

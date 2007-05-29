@@ -38,6 +38,9 @@ public class Main
 		{
 			System.out.println(g.DameVecinos(i));
 		}	
+		
+		System.out.println(g.DameAislados());
+		
 	}
 
 }
