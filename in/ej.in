@@ -1,3 +1,7 @@
-p edge 10 2
+p edge 6 6
 e 1 2
 e 2 3
+e 2 4
+e 4 5
+e 5 3
+e 6 2
