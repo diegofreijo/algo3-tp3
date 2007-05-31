@@ -69,5 +69,9 @@ public class Grafo
 	{
 		return this.aislados;
 	}
-
+	
+	public String toString()
+	{
+		return "Grafo de " + nodos + " nodos: " + adyacencias;
+	}
 }
