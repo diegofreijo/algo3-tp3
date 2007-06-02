@@ -17,7 +17,6 @@ public class Grafo
 
 		List<Integer> aislados = new ArrayList<Integer>();
 		List<List<Integer>> ady = new ArrayList<List<Integer>>();
-		ady.add(0, null);
 
 		List<Integer> temp = new ArrayList<Integer>();
 		int i = 1;
@@ -41,7 +40,7 @@ public class Grafo
 			if(temp.size() == 0){
 				aislados.add(i);
 			}
-			ady.add(i, temp);
+			ady.add(temp);
 			i++;
 		}
 
@@ -62,7 +61,7 @@ public class Grafo
 
 	public List<Integer> DameVecinos(int nodo)
 	{
-		return this.adyacencias.get(nodo);
+		return this.adyacencias.get(nodo-1);
 	}
 	
 	public List<Integer> DameAislados()

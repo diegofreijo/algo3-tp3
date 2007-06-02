@@ -14,9 +14,12 @@ public abstract class Goloso {
 		
 		List<Integer> solucion = new ArrayList<Integer>();
 		
+		System.out.println("Ejes: " + g.DameEjes());		
+		
 		while(!EsRecubrimiento(solucion, g)){
 			Integer nodoMayor = NodoMayorGrado(nodos,g);
 			solucion.add(nodoMayor);
+			System.out.println("Ejes Cubiertos: " + g.DameVecinos(nodoMayor).toString());		
 			nodos.remove(nodoMayor);
 		}
 		
