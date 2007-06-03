@@ -2,7 +2,6 @@ package tp3;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,18 +13,43 @@ import utilidades.Grafo;
 
 public abstract class Parser
 {
-	static String fs = System.getProperty("file.separator");
-	static String ruta_proyecto = System.getProperty("java.class.path");
+	private static String fs = System.getProperty("file.separator");
+	private static String ruta_proyecto = System.getProperty("java.class.path");
 	
-	static String ruta_instancias = ruta_proyecto + fs + "in" + fs + "Tp2Ej1.in";
-	static String ruta_consultas = ruta_proyecto + fs + "in" + fs + "Tp2Ej4.in";
-	static String ruta_resultados = ruta_proyecto + fs + "out" + fs + "Tp2Ej4.out";
-	static String ruta_diferencias = ruta_proyecto + fs + "dat" + fs + "diferencias.txt";
-	static String ruta_armado = ruta_proyecto + fs + "dat" + fs + "Tp2(armado).dat";
-	static String ruta_consulta = ruta_proyecto + fs + "dat" + fs + "Tp2(consulta).dat";
-	static String ruta_fusion = ruta_proyecto + fs + "dat" + fs + "Tp2(fusion).dat";
-	static String ruta_consulta_mas_fusion = ruta_proyecto + fs + "dat" + fs + "Tp2(consulta_mas_fusion).dat";
-	static String ruta_fb = ruta_proyecto + fs + "dat" + fs + "Tp2(fb).dat";
+	private static String ruta_in = ruta_proyecto + fs + "in";
+	private static String ruta_dat = ruta_proyecto + fs + "dat";
+	private static String ruta_out = ruta_proyecto + fs + "out";
+	private static String nombre_dat = "Tp3";
+	private static String nombre_out = "Tp3";
+	
+	
+	/*
+	private static String ruta_instancias = ruta_proyecto + fs + "in" + fs + "Tp2Ej1.in";
+	private static String ruta_consultas = ruta_proyecto + fs + "in" + fs + "Tp2Ej4.in";
+	private static String ruta_resultados = ruta_proyecto + fs + "out" + fs + "Tp2Ej4.out";
+	private static String ruta_diferencias = ruta_proyecto + fs + "dat" + fs + "diferencias.txt";
+	private static String ruta_armado = ruta_proyecto + fs + "dat" + fs + "Tp2(armado).dat";
+	private static String ruta_consulta = ruta_proyecto + fs + "dat" + fs + "Tp2(consulta).dat";
+	private static String ruta_fusion = ruta_proyecto + fs + "dat" + fs + "Tp2(fusion).dat";
+	private static String ruta_consulta_mas_fusion = ruta_proyecto + fs + "dat" + fs + "Tp2(consulta_mas_fusion).dat";
+	private static String ruta_fb = ruta_proyecto + fs + "dat" + fs + "Tp2(fb).dat";
+	*/
+	
+	
+	// Lee @instancias grafos del tipo @tipo, por lo que ya tienen que haber sido generados con el script
+	public static List<Grafo> LeerGrafos(String tipo, int instancias)
+	{
+		List<Grafo> grafos = new ArrayList<Grafo>(instancias);
+		String archivo_actual = "";
+		
+		for(Integer i = 1; i <= instancias; ++i)
+		{
+			archivo_actual = ruta_in + fs + tipo + fs + tipo + i.toString() + ".in";
+			grafos.add(LeerGrafo(archivo_actual));
+		}
+		
+		return grafos;
+	}
 	
 	// Levanta un grafo del archivo de entrada
 	public static Grafo LeerGrafo(String ruta)
@@ -115,7 +139,7 @@ public abstract class Parser
     }
 	
 	// Escribe el resultado de una instancia.
-	public static void EscribirResultados(List<ResultadoConsulta> resultados)
+	/*public static void EscribirResultados(List<ResultadoConsulta> resultados)
 	{
 		try
 		{
@@ -140,10 +164,10 @@ public abstract class Parser
 	    	System.out.println("Error escribiendo los resultados: ");
 	    	e.printStackTrace();
 		}
-	}
+	}*/
 	
 	// Escribe las diferencias encontradas entre el algo eficiente y el de FB.
-	public static void EscribirDiferencias(Diferencias diferencias)
+	/*public static void EscribirDiferencias(Diferencias diferencias)
 	{
 		try
 		{
@@ -156,67 +180,47 @@ public abstract class Parser
 	    	System.out.println("Error escribiendo las diferencias: ");
 	    	e.printStackTrace();
 		}
-	}
+	}*/
 	
-	// Escribe la cantidad de instrucciones ejecutadas para una instancia
-	public static void EscribirEstadisticas(Estadisticas es)
+	// Escribe la cantidad de instrucciones ejecutadas para una instancia y los tamaños de los recubrimientos
+	public static void Escribir(Estadisticas est)
     {
 		try
 		{
-			// Cantidad de operaciones de armado en funcion de la cantidad de imagenes
-			BufferedWriter out = new BufferedWriter(new FileWriter(ruta_armado, true));
-	        out.write(es.cant_img + " " + es.armado + "\n");
-	        out.close();
+			// Genero el nombre del archivo dat en funcion del nombre del algoritmo
+			String arhivo = nombre_dat + "(" + est.NombreAlgoritmo() + ").dat";
+			
+			// Guardo los valores en las estadisticas
+			BufferedWriter salida = new BufferedWriter(new FileWriter(ruta_dat + fs + arhivo, false));
+	        salida.write(est.Puntos());
+	        salida.close();
 	        
-	        // Cantidad de operaciones de consulta en funcion de la cantidad de imagenes
-	        out = new BufferedWriter(new FileWriter(ruta_consulta, true));
-	        for(Long op: es.consultas)
-	        {
-	        	out.write(es.cant_img + " " + op + "\n");
-	        }
-	        out.close();
 	        
-	        // Cantidad de operaciones de fusion en funcion del producto de la cantidad de intervalos de ambos ejes 
-	        out = new BufferedWriter(new FileWriter(ruta_fusion, true));
-	        for(Long op: es.fusiones)
-	        {
-	        	out.write(es.cant_img + " " + op + "\n");
-	        }
-	        out.close();
-	        
-	        // Suma de las 2 anteriores en funcion de la cantidad de imagenes
-	        out = new BufferedWriter(new FileWriter(ruta_consulta_mas_fusion, true));
-	        for(int i = 0; i < es.consultas.size(); ++i)
-	        {
-	        	out.write(es.cant_img + " " + (es.consultas.get(i) + es.fusiones.get(i)) + "\n");
-	        }
-	        out.close();
-	        
-	        // Cantidad de operaciones del algoritmo de fuerza bruta en funcion de la cantidad de imagenes
-	        out = new BufferedWriter(new FileWriter(ruta_fb, true));
-	        for(Long op: es.fbs)
-	        {
-	        	out.write(es.cant_img + " " + op + "\n");
-	        }
-	        out.close();
-	        
+	        // Genero el nombre del archivo out en funcion del nombre del algoritmo
+			arhivo = nombre_out + "(" + est.NombreAlgoritmo() + ").out";
+			
+			// Guardo los valores en las estadisticas
+			salida = new BufferedWriter(new FileWriter(ruta_out + fs + arhivo, false));
+	        salida.write(est.Recubrimientos());
+	        salida.close();
 		}
 		catch (IOException e)
 		{
-	    	System.out.println("Error escribiendo las estadisticas: ");
+	    	System.out.println("Error escribiendo estadisticas/recubrimientos: ");
 	    	e.printStackTrace();
 		}
     }
 	
 	// Borra todos los archivos de salida de datos
-	public static void LimpiarArchivos()
+	/*public static void LimpiarArchivos(List<String> tipos)
 	{
-		File f = new File(ruta_resultados); f.delete();
-		f = new File(ruta_diferencias);	f.delete();
-		f = new File(ruta_armado); f.delete();
-		f = new File(ruta_consulta); f.delete();
-		f = new File(ruta_fusion); f.delete();
-		f = new File(ruta_consulta_mas_fusion); f.delete();
-		f = new File(ruta_fb); f.delete();
-	}
+		File f;
+		
+		for(String tipo : tipos)
+		{
+			// Borro el dat
+			f = new File(ruta_dat + "/" + nombre_dat + "(" + tipo + ").dat");
+			f.delete();
+		}
+	}*/
 }
