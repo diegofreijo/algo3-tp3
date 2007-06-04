@@ -19,12 +19,12 @@ def randomSinCero(a):
 		ret = random.randrange(a+1)
 	return ret
 
-nodos = 100
+nodos = 50
 densidad = 1
 cantidad = 1
 while densidad <= 100:
 	j = 0
-	while j < 10: 
+	while j < 5: 
 		arch = open("../../in/Aleatorio/Aleatorio"+str(cantidad)+".in", 'w')
 		cantidad = cantidad + 1
 		totalEjesPosibles = (nodos)*(nodos-1)/2
