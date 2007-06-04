@@ -19,7 +19,7 @@ def randomSinCero(a):
 		ret = random.randrange(a)
 	return ret
 
-#Grafo Completo
+#Grafo Completo: parametros 1) cant de nodos 2) cant de instancias
 
 nodos = sys.argv[1]
 nodos = int(nodos)
