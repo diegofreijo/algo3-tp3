@@ -1,8 +1,8 @@
 package algoritmos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
 import tp3.Estadisticas;
 import utilidades.Eje;
 import utilidades.Grafo;
@@ -12,18 +12,23 @@ public abstract class BusquedaLocal
 {
 	private static Estadisticas e;
 	
-	public static Recubrimiento Ejecutar(Grafo g, Estadisticas est)
+	public static Recubrimiento Ejecutar(Grafo g, int porcentaje_cuantos_saco, int porcentaje_cuantos_agrego, Estadisticas est)
 	{
 		e = est;
 		Recubrimiento solucion = ConstruirSolucionInicial(g); ++e.i;
+		System.out.println("Sol inicial: " + solucion);
 		Recubrimiento mejor_vecino;
 		
-		while((mejor_vecino = VecinoMejor(solucion, g)) != null)
+		System.out.println("==== Comienzo a buscar mejores vecinos ==== ");
+		
+		while((mejor_vecino = VecinoMejor(solucion, porcentaje_cuantos_saco, porcentaje_cuantos_agrego, g)) != null)
 		{
 			++e.i;
+			System.out.println(" *** Mejor que esta solucion " + solucion + " es " + mejor_vecino);
 			solucion = mejor_vecino; ++e.i;
 		}
 		
+		System.out.println(" *** Solucion final: " + solucion);
 		return solucion;
 	}
 	
@@ -41,10 +46,13 @@ public abstract class BusquedaLocal
 	    	}
 	    }
 	    
+	    ++e.i;
 	    return solucion;
     }
 
-	private static Recubrimiento VecinoMejor(Recubrimiento solucion, Grafo g)
+	// Precondicion(o tambien llamado "sentido comun"): cuantos_saco > cuantos_agrego
+	// IGUALDAD OBSERVACIONAL
+	private static Recubrimiento VecinoMejor(Recubrimiento solucion, int porcentaje_cuantos_saco, int porcentaje_cuantos_agrego, Grafo g)
     {
 		// Armo la lista de nodos que no estan en la solucion
 		List<Integer> demas_nodos = new ArrayList<Integer>(g.DameNodos()); e.i+=g.DameNodos();
@@ -53,57 +61,92 @@ public abstract class BusquedaLocal
 			++e.i;
 			if(!solucion.nodos.contains(i))
 			{
-				++e.i;
+				e.i+=solucion.nodos.size();
 				demas_nodos.add(i); ++e.i;
 			}
 		}
+	
+		// Calculo el porcentaje de los que saco y pongo
+		int cuantos_saco = porcentaje_cuantos_saco * solucion.nodos.size() / 100 + 1; ++e.i;
+		int cuantos_agrego = porcentaje_cuantos_agrego * solucion.nodos.size() / 100 + 1; ++e.i;
+		// Verifico que no queden iguales las cantidades que saco y agrego por redondear
+		if(cuantos_agrego == cuantos_saco)
+		{
+			--cuantos_agrego;
+		}
+		// Verifico no tratar de sacar mas de los que tiene la solucion o agregar mas de los que tengo para agregar
+		if(cuantos_agrego > demas_nodos.size())
+		{
+			cuantos_agrego = demas_nodos.size();
+		}
+		if(cuantos_saco > solucion.nodos.size())
+		{
+			cuantos_saco = solucion.nodos.size();
+		}
 		
-		// Voy armando vecinos hasta encontrar uno que tenga menor objetivo. Voy agregando de a UN nodo. Verifico
-		// tambien si no es mejor sacando uno y sin poner nada
-		Recubrimiento vecino = null; ++e.i;		
-		for(int sacar = 0; sacar < solucion.nodos.size(); ++sacar)
+		System.out.println("cuantos_saco: " + cuantos_saco);
+		System.out.println("cuantos_agrego: " + cuantos_agrego);
+		
+		/*
+		 *  Voy armando vecinos hasta encontrar uno que tenga menor objetivo.
+		 *  Los genero sacando @cuantos_saco nodos y verificando si es un recubrimiento. 
+		 *  	Si lo es, kapanga, lo devuelvo.
+		 *  	Si no, agrego @cuantos_agrego y verifico si es recubrimiento. Si lo es, kapanga.
+		 */ 
+		Recubrimiento vecino_sacando = null; ++e.i;				// Vecino al que le saque nodos
+		Recubrimiento vecino_agregando = null; ++e.i;			// Vecino al que le saque y luego agregue nodos
+		Collections.shuffle(solucion.nodos);
+		for(int sacar = 0; sacar < solucion.nodos.size() - cuantos_saco + 1; ++sacar)
 		{
 			++e.i;
-			vecino = new Recubrimiento(solucion); ++e.i;
-			vecino.nodos.remove(sacar); ++e.i;
-			if(vecino.EsRecubrimiento(g))
-			{
-				++e.i;
-				if(Objetivo(vecino) < Objetivo(solucion))
-				{
-					++e.i;
-					return vecino;
-				}
-			}
+			vecino_sacando = new Recubrimiento(solucion); ++e.i;
 			
-			for(int poner = 0; poner < demas_nodos.size(); ++poner)
+			// Voy sacando uno por uno los que me toca sacar
+			List<Integer> a_sacar = new ArrayList<Integer>(cuantos_saco);
+			for(int i = sacar; i < sacar + cuantos_saco; ++i)
+			{
+				a_sacar.add(vecino_sacando.nodos.get(i));
+				//System.out.println("sacar: " + sacar + " y i: " + i + " y vecino_sacando.size()" + vecino_sacando.nodos.size());
+				
+			}
+			vecino_sacando.nodos.removeAll(a_sacar);
+			
+			// Si lo que me quedo es recubrimiento, gane. Por optmizacion, asumo que SIEMPRE este
+			// vecino tendra mejor objetivo (menor cantidad de nodos)
+			if(vecino_sacando.EsRecubrimiento(g))
+			{
+				System.out.println("Solamente sacando consegui un recubrimiento!: " + vecino_sacando);
+				++e.i;
+				return vecino_sacando;
+			}
+			System.out.println("Sacando no consegui un recubrimiento");
+			
+			// Voy agregando nuevos nodos
+			for(int poner = 0; poner < demas_nodos.size() - cuantos_agrego + 1; ++poner)
 			{
 				++e.i;
-				vecino.nodos.add(demas_nodos.get(poner)); ++e.i;
-				if(vecino.EsRecubrimiento(g))
+				vecino_agregando = new Recubrimiento(vecino_sacando);
+				
+				// Voy agregando los nuevos nodos
+				for(int i = poner; i < poner + cuantos_agrego; ++i)
 				{
-					++e.i;
-					if(Objetivo(vecino) < Objetivo(solucion))
-					{
-						++e.i;
-						return vecino;
-					}
+					vecino_agregando.nodos.add(demas_nodos.get(i)); ++e.i;
 				}
-				else
+				
+				// Si es un recubrimiento, gane
+				if(vecino_agregando.EsRecubrimiento(g))
 				{
+					System.out.println("Agrege y era recubrimiento: " + vecino_agregando);
 					++e.i;
-					vecino.nodos.remove(demas_nodos.get(poner));
+					return vecino_agregando;
 				}
+				//System.out.println("Agrege pero no era recubrimiento: " + vecino_agregando);
 			}
 		}
 		
+		// Si llegue hasta aca es porque no hay mejor vecino
+		System.out.println("No habia mejor");
 		++e.i;
 	    return null;
-    }
-
-	private static int Objetivo(Recubrimiento solucion)
-    {
-		++e.i;
-	    return solucion.nodos.size();
     }
 }
