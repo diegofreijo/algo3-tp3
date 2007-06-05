@@ -14,7 +14,7 @@ string = 'Elija el algoritmo a correr: '
 a = raw_input(string)
 algo = int(a)
 
-string = 'Ingrese el nombre del archivo a probar'
+string = 'Ingrese el nombre del archivo a probar: '
 caso = raw_input(string)
 
 if algo < 1:
@@ -28,11 +28,11 @@ if(error == "false"):
     if algo == 1:
         print "Corriendo Algoritmo Exacto"
         tiempoInicial = time.time()
-        #Aca va la parte del subprocess del algoritmo
-        time.sleep(1)
+        proc = subprocess.Popen("java -jar goloso.jar", shell=True)
+        proc.wait()
         tiempoFinal = time.time()
         print "El algoritmo tardo(en ms):" + str(tiempoFinal - tiempoInicial)
-        dat = open("../../dat/Tp3(busqueda_local).dat","w")
+        dat = open("dat/Tp3(busqueda_local).dat","w")
         time.sleep(2)
     if algo == 2:
         print "Corriendo Goloso"
