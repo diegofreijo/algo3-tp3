@@ -1,4 +1,4 @@
-package tp3;
+package utilidades;
 
 public class Punto
 {

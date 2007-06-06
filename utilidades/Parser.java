@@ -1,4 +1,4 @@
-package tp3;
+package utilidades;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import utilidades.Eje;
-import utilidades.Grafo;
 
 public abstract class Parser
 {

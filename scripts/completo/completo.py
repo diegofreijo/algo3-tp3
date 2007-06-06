@@ -34,7 +34,7 @@ while j < instancias:
 	i=1
 	a = []
 	nodos = nodos + 1
-	arch=open("../../in/Completo/Completo"+str(j+1)+".in", 'w')
+	arch=open("../../in/completo/completo"+str(j+1)+".in", 'w')
 	while i <= nodos:
 		k = i+1
 		while k <= nodos:

@@ -2,8 +2,8 @@ package algoritmos;
 
 import java.util.List;
 
-import tp3.Parser;
 import utilidades.Grafo;
+import utilidades.Parser;
 
 public class Main_GolosoMain {
 
