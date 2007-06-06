@@ -3,7 +3,6 @@ package utilidades;
 import java.util.ArrayList;
 import java.util.List;
 
-import tp3.Estadisticas;
 
 public class Recubrimiento
 {

@@ -1,9 +1,8 @@
-package tp3;
+package utilidades;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import utilidades.Recubrimiento;
 
 public class Estadisticas
 {
