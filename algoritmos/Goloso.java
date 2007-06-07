@@ -43,7 +43,7 @@ public abstract class Goloso {
 		return ret;
 	}
 
-	private static List<Integer> SacarAislados(int n, List<Integer> aislados) {
+	public static List<Integer> SacarAislados(int n, List<Integer> aislados) {
 		
 		List<Integer> ret = new ArrayList<Integer>();
 		int i = 1;
