@@ -16,11 +16,13 @@ public class Exacto {
 		
 		List<Integer> nodos = SacarAislados(g.DameNodos(),g.DameAislados());
 		
+		List<Integer> min = SacarAislados(g.DameNodos(),g.DameAislados());
+		
 		List<Integer> sol = new ArrayList<Integer>();
 		
-		ret =  AlgoExacto(nodos,g,sol,nodos);
+		ret =  AlgoExacto(nodos,g,sol,min);
 		
-		return null;
+		return ret;
 	}
 
 	private static List<Integer> AlgoExacto(List<Integer> nodos, Grafo g, List<Integer> sol, List<Integer> min) {
@@ -32,7 +34,7 @@ public class Exacto {
 			return min;
 		} else {
 			if(!nodos.isEmpty()){
-				int nodo = nodos.get(0);
+				Integer nodo = nodos.get(0);
 				nodos.remove(nodo);
 				List<Integer> temp = sol;
 				temp.add(nodo);
