@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utilidades.Eje;
+import utilidades.Estadisticas;
 import utilidades.Grafo;
 
 import utilidades.Recubrimiento;
 
 public class Exacto {
 
-	public static List<Integer> Ejecutar(Grafo g){
+	public static Recubrimiento Ejecutar(Grafo g){
 		
 		List<Integer> ret = new ArrayList<Integer>();
 		
@@ -22,7 +23,11 @@ public class Exacto {
 		
 		ret =  AlgoExacto(nodos,g,sol,min);
 		
-		return ret;
+		Estadisticas est = new Estadisticas("exacto");
+		
+		Recubrimiento rec = new Recubrimiento(ret.size(),est);
+		
+		return rec;
 	}
 
 	private static List<Integer> AlgoExacto(List<Integer> nodos, Grafo g, List<Integer> sol, List<Integer> min) {

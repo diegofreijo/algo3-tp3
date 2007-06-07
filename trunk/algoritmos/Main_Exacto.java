@@ -12,7 +12,7 @@ public class Main_Exacto {
 	 */
 	public static void main(String[] args) {
 		
-		Grafo g = Parser.LeerGrafo("in/ej.in");
+		Grafo g = Parser.LeerGrafo("in/ej2.in");
 		
 		System.out.println("Leido:\n" + g);
 		
