@@ -12,13 +12,18 @@ public class Recubrimiento
 	public Recubrimiento(Integer cant_nodos, Estadisticas est)
 	{
 		e = est;
-		nodos = new ArrayList<Integer>(cant_nodos); e.i+=cant_nodos;
+		nodos = new ArrayList<Integer>(cant_nodos); 
 	}
 	
 	public Recubrimiento(Recubrimiento original)
 	{
 		e = original.e;
 		nodos = new ArrayList<Integer>(original.nodos); e.i+=original.nodos.size();
+	}
+	
+	public Recubrimiento(List<Integer> listanodos, Estadisticas est){		
+		e = est;
+		nodos = listanodos;
 	}
 	
 	public boolean EsRecubrimiento(Grafo g)
