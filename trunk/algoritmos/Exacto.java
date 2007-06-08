@@ -1,9 +1,7 @@
 package algoritmos;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import utilidades.Eje;
 import utilidades.Estadisticas;
 import utilidades.Grafo;
 
@@ -11,41 +9,43 @@ import utilidades.Recubrimiento;
 
 public class Exacto {
 
+	private static Estadisticas e;
+	
 	public static Recubrimiento Ejecutar(Grafo g){
 		
-		List<Integer> ret = new ArrayList<Integer>();
+		e = new Estadisticas("exacto");
 		
-		List<Integer> nodos = SacarAislados(g.DameNodos(),g.DameAislados());
+		Recubrimiento ret = new Recubrimiento(g.DameNodos(),e);
 		
-		List<Integer> min = SacarAislados(g.DameNodos(),g.DameAislados());
+		List<Integer> nodos = SacarAislados(g.DameNodos(),g.DameAislados()).nodos;
 		
-		List<Integer> sol = new ArrayList<Integer>();
+		Recubrimiento min = SacarAislados(g.DameNodos(),g.DameAislados());
+		
+		Recubrimiento sol = new Recubrimiento(g.DameNodos(),e);
 		
 		ret =  AlgoExacto(nodos,g,sol,min);
 		
-		Estadisticas est = new Estadisticas("exacto");
+		System.out.println("Exacto: " + ret.toString());	
 		
-		Recubrimiento rec = new Recubrimiento(ret.size(),est);
-		
-		return rec;
+		return ret;
 	}
 
-	private static List<Integer> AlgoExacto(List<Integer> nodos, Grafo g, List<Integer> sol, List<Integer> min) {
+	private static Recubrimiento AlgoExacto(List<Integer> nodos, Grafo g, Recubrimiento sol, Recubrimiento min) {
 		
-		if(EsRecubrimiento(sol,g)){
-			if(sol.size() < min.size()){
+		if(sol.EsRecubrimiento(g)){
+			if(sol.nodos.size() < min.nodos.size()){
 				min = sol;
 			}
 			return min;
 		} else {
 			if(!nodos.isEmpty()){
+				Recubrimiento temp = new Recubrimiento(sol);
 				Integer nodo = nodos.get(0);
 				nodos.remove(nodo);
-				List<Integer> temp = sol;
-				temp.add(nodo);
-				List<Integer> sin = AlgoExacto(nodos,g,sol,min);
-				List<Integer> con = AlgoExacto(nodos,g,temp,min);
-				if (sin.size() < con.size()){
+				Recubrimiento sin = AlgoExacto(nodos,g,temp,min);
+				temp.nodos.add(nodo);
+				Recubrimiento con = AlgoExacto(nodos,g,temp,min);
+				if (sin.nodos.size() < con.nodos.size()){
 					return sin;
 				} else {
 					return con;
@@ -57,32 +57,19 @@ public class Exacto {
 		}
 	}
 	
-	public static List<Integer> SacarAislados(int n, List<Integer> aislados) {
+	public static Recubrimiento SacarAislados(int n, List<Integer> aislados) {
 		
-		List<Integer> ret = new ArrayList<Integer>();
+		Recubrimiento ret = new Recubrimiento(n-aislados.size()+1,e);
 		int i = 1;
 		
 		while(i <= n){
 			if(!aislados.contains(i)){
-				ret.add(i);
+				ret.nodos.add(i);
 			}
 			i++;
 		}
 		
 		return ret;
 	}
-	
-	private static boolean EsRecubrimiento(List<Integer> solucion, Grafo g)
-    {
-		for(Eje e : g.DameEjes())
-		{
-			if(!solucion.contains(Integer.valueOf(e.x)) && !solucion.contains(Integer.valueOf(e.y)))
-			{
-				return false;
-			}
-		}
-		
-	    return true;
-    }
 
 }
