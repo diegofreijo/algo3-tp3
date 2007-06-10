@@ -1,10 +1,8 @@
 package algoritmos;
 
 import java.util.List;
-
 import utilidades.Estadisticas;
 import utilidades.Grafo;
-
 import utilidades.Recubrimiento;
 
 public class Exacto {
@@ -25,7 +23,7 @@ public class Exacto {
 		
 		ret =  AlgoExacto(nodos,g,sol,min);
 		
-		System.out.println("Exacto: " + ret.toString());	
+		//System.out.println("Exacto: " + ret.toString());	
 		
 		return ret;
 	}

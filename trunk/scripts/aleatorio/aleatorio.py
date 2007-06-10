@@ -19,7 +19,7 @@ def randomSinCero(a):
 		ret = random.randrange(a+1)
 	return ret
 
-nodos = 5
+nodos = 4
 densidad = 20
 cantidad = 1
 while densidad <= 100:
