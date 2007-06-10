@@ -15,17 +15,18 @@ public abstract class Goloso {
 		
 		e = est;
 		
-		List<Integer> nodos = SacarAislados(g.DameNodos(),g.DameAislados());
+		List<Integer> nodos = SacarAislados(g.DameNodos(),g.DameAislados());++e.i;
 		
-		Recubrimiento solucion = new Recubrimiento(g.DameNodos(),e);
+		Recubrimiento solucion = new Recubrimiento(g.DameNodos(),e);++e.i;
 		
 		System.out.println("Ejes: " + g.DameEjes());		
 		
 		while(solucion.EsRecubrimiento(g)){
-			Integer nodoMayor = NodoMayorGrado(nodos,g);
-			solucion.nodos.add(nodoMayor);
+			++e.i;
+			Integer nodoMayor = NodoMayorGrado(nodos,g);++e.i;
+			solucion.nodos.add(nodoMayor);++e.i;
 			System.out.println("Ejes Cubiertos: " + g.DameVecinos(nodoMayor).toString());		
-			nodos.remove(nodoMayor);
+			nodos.remove(nodoMayor);++e.i;
 		}
 		
 		return solucion;
@@ -36,13 +37,15 @@ public abstract class Goloso {
 		
 		int i = 0;
 		
-		int ret = nodos.get(1);
+		int ret = nodos.get(0);++e.i;
 		
 		while(i < nodos.size()){
+			++e.i;
 			if(g.DameVecinos(ret).size() < g.DameVecinos(nodos.get(i)).size()){
-				ret = nodos.get(i);
+				++e.i;
+				ret = nodos.get(i);++e.i;
 			}
-			i++;
+			i++;++e.i;
 		}
 		
 		return ret;
@@ -51,13 +54,15 @@ public abstract class Goloso {
 	public static List<Integer> SacarAislados(int n, List<Integer> aislados) {
 		
 		List<Integer> ret = new ArrayList<Integer>();
-		int i = 1;
+		int i = 1;++e.i;
 		
 		while(i <= n){
+			++e.i;
 			if(!aislados.contains(i)){
-				ret.add(i);
+				++e.i;
+				ret.add(i);++e.i;
 			}
-			i++;
+			i++;++e.i;
 		}
 		
 		return ret;
