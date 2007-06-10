@@ -1,5 +1,6 @@
 package algoritmos;
 
+import java.util.ArrayList;
 import java.util.List;
 import utilidades.Estadisticas;
 import utilidades.Grafo;
@@ -36,20 +37,20 @@ public class Exacto {
 			}
 			return min;
 		} else {
-			if(!nodos.isEmpty()){
+			List<Integer> nodostemp = new ArrayList<Integer>(nodos);
+			if(!nodostemp.isEmpty()){
 				Recubrimiento temp = new Recubrimiento(sol);
-				Integer nodo = nodos.get(0);
-				nodos.remove(nodo);
-				Recubrimiento sin = AlgoExacto(nodos,g,temp,min);
+				Integer nodo = nodostemp.get(0);
+				nodostemp.remove(nodo);
+				Recubrimiento sin = AlgoExacto(nodostemp,g,temp,min);
 				temp.nodos.add(nodo);
-				Recubrimiento con = AlgoExacto(nodos,g,temp,min);
+				Recubrimiento con = AlgoExacto(nodostemp,g,temp,min);
 				if (sin.nodos.size() < con.nodos.size()){
 					return sin;
 				} else {
 					return con;
 				}
-			} else {
-				
+			} else {			
 				return min;
 			}
 		}

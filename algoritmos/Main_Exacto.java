@@ -17,9 +17,10 @@ public class Main_Exacto {
 		System.out.println("Ejecutando: Exacto");
 		Estadisticas est_exacto = new Estadisticas("exacto");
 		Recubrimiento recubrimiento;
-		int cant_grafos_aleatorios = 10;
+		int cant_grafos_aleatorios = 11;
 		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", cant_grafos_aleatorios);
-
+		//Grafo g = Parser.LeerGrafo("aleatorio1");
+		
 		for(Grafo g : aleatorios)
 		{
 			System.out.println("Grafo: " + g.toString());
