@@ -1,23 +1,7 @@
 import random
 import sys
 import math
-def pertenece (a,b):
-	ret = False
-	if a.count(b):
-		ret = True
-	return ret
 
-def noreverso(a,b):
-	ret = False
-	c = b[1], b[0]
-	ret = pertenece(a,c)
-	return ret
-	
-def randomSinCero(a):
-	ret = 0
-	while ret == 0:
-		ret = random.randrange(a)
-	return ret
 
 #Grafo Completo: parametros 1) cant de nodos 2) cant de instancias
 
