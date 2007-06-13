@@ -72,22 +72,26 @@ public abstract class GRASP
 		private static int NodoAgregar(List<Integer> nodos, int porcentaje_goloso, Grafo g)
 		{
 			List<Integer> nodosTemp = new ArrayList<Integer>();
+			List<Integer> nodosFin = new ArrayList<Integer>();
 
 			nodosTemp = Ordenar(nodos,g);
 			int i = 0;
 			
-			int cuantosSaco = (nodosTemp.size()*porcentaje_goloso)/100;
+			int vecinosPermitidos = (g.DameVecinos(nodosTemp.get(nodosTemp.size())-1).size()*porcentaje_goloso);
 			
-			while(i < cuantosSaco - 1){
-				nodosTemp.remove(i);
+			while(i < nodosTemp.size()){
+				if(g.DameVecinos(nodosTemp.get(i)).size() >= vecinosPermitidos){
+					nodosFin.add(nodosTemp.get(i));
+				}
+				i++;
 			}
 			
-			Random rnd = new Random(nodosTemp.size() + 1235689 / 10 * 8);
+			Random rnd = new Random(nodosFin.size() + 1235689 / 10 * 8);
 
-			int ret = rnd.nextInt(nodosTemp.size());
+			int ret = rnd.nextInt(nodosFin.size());
 			++e.i;
 
-			return nodosTemp.get(ret);
+			return nodosFin.get(ret);
 		}
 		
 		public static List<Integer> Ordenar(List<Integer> nodos, Grafo g){
