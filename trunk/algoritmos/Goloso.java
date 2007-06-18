@@ -17,15 +17,12 @@ public abstract class Goloso {
 		
 		List<Integer> nodos = SacarAislados(g.DameNodos(),g.DameAislados());++e.i;
 		
-		Recubrimiento solucion = new Recubrimiento(g.DameNodos(),e);++e.i;
+		Recubrimiento solucion = new Recubrimiento(g.DameNodos(),e);++e.i;	
 		
-		System.out.println("Ejes: " + g.DameEjes());		
-		
-		while(solucion.EsRecubrimiento(g)){
+		while(!solucion.EsRecubrimiento(g)){
 			++e.i;
 			Integer nodoMayor = NodoMayorGrado(nodos,g);++e.i;
-			solucion.nodos.add(nodoMayor);++e.i;
-			System.out.println("Ejes Cubiertos: " + g.DameVecinos(nodoMayor).toString());		
+			solucion.nodos.add(nodoMayor);++e.i;	
 			nodos.remove(nodoMayor);++e.i;
 		}
 		

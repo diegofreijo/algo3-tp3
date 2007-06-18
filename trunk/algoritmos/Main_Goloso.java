@@ -12,7 +12,7 @@ public class Main_Goloso {
 	public static void main(String[] args) {
 		
 		System.out.println("Leyendo grafos");
-		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", 50);
+		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", 30);
 		//List<Grafo> completos = Parser.LeerGrafos("completo", 50);
 		
 		Recubrimiento recubrimiento;
