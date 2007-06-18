@@ -33,7 +33,7 @@ public class Main
 		Estadisticas est = new Estadisticas("busqueda_local");
 		for(Grafo g : aleatorios)
 		{
-			rec_exacto = Exacto.Ejecutar(g);
+			rec_exacto = Exacto.Ejecutar(g,est);
 			rec_busqueda_local = BusquedaLocal.Ejecutar(g, porcentaje_cuantos_saco, porcentaje_cuantos_agrego, est);
 			
 			if(rec_exacto.nodos.size() != rec_busqueda_local.nodos.size())

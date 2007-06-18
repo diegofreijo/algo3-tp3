@@ -20,7 +20,7 @@ def randomSinCero(a):
 	return ret
 
 nodos = 10
-densidad = 20
+densidad = 50
 cantidad = 1
 while densidad <= 100:
 	j = 0

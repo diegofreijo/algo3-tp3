@@ -10,9 +10,9 @@ public class Exacto {
 
 	private static Estadisticas e;
 	
-	public static Recubrimiento Ejecutar(Grafo g){
+	public static Recubrimiento Ejecutar(Grafo g,Estadisticas est){
 		
-		e = new Estadisticas("exacto");
+		e = est;
 		
 		Recubrimiento ret = new Recubrimiento(g.DameNodos(),e);
 		
@@ -32,25 +32,31 @@ public class Exacto {
 	private static Recubrimiento AlgoExacto(List<Integer> nodos, Grafo g, Recubrimiento sol, Recubrimiento min) {
 		
 		if(sol.EsRecubrimiento(g)){
+			++e.i;
 			if(sol.nodos.size() < min.nodos.size()){
-				min = sol;
+				++e.i;
+				min = sol;++e.i;
 			}
 			return min;
 		} else {
 			List<Integer> nodostemp = new ArrayList<Integer>(nodos);
 			if(!nodostemp.isEmpty()){
+				++e.i;
 				Recubrimiento temp = new Recubrimiento(sol);
-				Integer nodo = nodostemp.get(0);
-				nodostemp.remove(nodo);
+				Integer nodo = nodostemp.get(0);++e.i;
+				nodostemp.remove(nodo);++e.i;
 				Recubrimiento sin = AlgoExacto(nodostemp,g,temp,min);
-				temp.nodos.add(nodo);
+				temp.nodos.add(nodo);++e.i;
 				Recubrimiento con = AlgoExacto(nodostemp,g,temp,min);
 				if (sin.nodos.size() < con.nodos.size()){
+					++e.i;
 					return sin;
 				} else {
+					++e.i;
 					return con;
 				}
-			} else {			
+			} else {
+				++e.i;
 				return min;
 			}
 		}
@@ -62,9 +68,11 @@ public class Exacto {
 		int i = 1;
 		
 		while(i <= n){
+			++e.i;
 			if(!aislados.contains(i)){
-				ret.nodos.add(i);
+				ret.nodos.add(i);++e.i;
 			}
+			++e.i;
 			i++;
 		}
 		
