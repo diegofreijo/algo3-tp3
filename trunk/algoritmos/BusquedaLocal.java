@@ -3,6 +3,8 @@ package algoritmos;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
 import utilidades.Eje;
 import utilidades.Estadisticas;
 import utilidades.Grafo;
@@ -11,19 +13,20 @@ import utilidades.Recubrimiento;
 public abstract class BusquedaLocal
 {
 	private static Estadisticas e;
+	private static ParametrosBL parametros;
 	
-	public static Recubrimiento Ejecutar(Grafo g, 
-			int porcentaje_cuantos_saco, int porcentaje_cuantos_agrego, 
-			Estadisticas est)
+	public static Recubrimiento Ejecutar(Grafo g, ParametrosBL par, Estadisticas est)
 	{
 		e = est;
+		parametros = par;
+		
 		Recubrimiento solucion = ConstruirSolucionInicial(g); ++e.i;
 		// System.out.println("Sol inicial: " + solucion);
 		Recubrimiento mejor_vecino;
 		
 		// System.out.println("==== Comienzo a buscar mejores vecinos ==== ");
 		
-		while((mejor_vecino = VecinoMejor(solucion, porcentaje_cuantos_saco, porcentaje_cuantos_agrego, g)) != null)
+		while((mejor_vecino = VecinoMejor(solucion, parametros.porcentaje_cuantos_saco, parametros.porcentaje_cuantos_agrego, g)) != null)
 		{
 			++e.i;
 			// System.out.println(" *** Mejor que esta solucion " + solucion + " es " + mejor_vecino);
@@ -71,11 +74,6 @@ public abstract class BusquedaLocal
 		// Calculo el porcentaje de los que saco y pongo
 		int cuantos_saco = porcentaje_cuantos_saco * solucion.nodos.size() / 100 + 1; ++e.i;
 		int cuantos_agrego = porcentaje_cuantos_agrego * solucion.nodos.size() / 100 + 1; ++e.i;
-		// Verifico que no queden iguales las cantidades que saco y agrego por redondear
-		if(cuantos_agrego == cuantos_saco)
-		{
-			--cuantos_agrego;
-		}
 		// Verifico no tratar de sacar mas de los que tiene la solucion o agregar mas de los que tengo para agregar
 		if(cuantos_agrego > demas_nodos.size())
 		{
@@ -85,9 +83,12 @@ public abstract class BusquedaLocal
 		{
 			cuantos_saco = solucion.nodos.size();
 		}
+		// Verifico que no me hallan quedado iguales las cantidades que saco y agrego
+		if(cuantos_agrego >= cuantos_saco)
+		{
+			cuantos_agrego = cuantos_saco - 1;
+		}
 		
-		// System.out.println("cuantos_saco: " + cuantos_saco);
-		// System.out.println("cuantos_agrego: " + cuantos_agrego);
 		
 		/*
 		 *  Voy armando vecinos hasta encontrar uno que tenga menor objetivo.
@@ -97,7 +98,10 @@ public abstract class BusquedaLocal
 		 */ 
 		Recubrimiento vecino_sacando = null; ++e.i;				// Vecino al que le saque nodos
 		Recubrimiento vecino_agregando = null; ++e.i;			// Vecino al que le saque y luego agregue nodos
-		Collections.shuffle(solucion.nodos);
+		if(parametros.mezclar_nodos_busqueda_vecino)
+		{
+			Collections.shuffle(solucion.nodos);
+		}
 		for(int sacar = 0; sacar < solucion.nodos.size() - cuantos_saco + 1; ++sacar)
 		{
 			++e.i;
