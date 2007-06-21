@@ -209,6 +209,22 @@ public abstract class Parser
 		}
     }
 	
+	public static void Escribir(Object o, String ruta)
+    {
+		try
+		{
+			// Guardo los valores en las estadisticas
+			BufferedWriter salida = new BufferedWriter(new FileWriter(ruta, false));
+	        salida.write(o.toString());
+	        salida.close();
+		}
+		catch (IOException e)
+		{
+	    	System.out.println("Error escribiendo: ");
+	    	e.printStackTrace();
+		}
+    }
+	
 	// Borra todos los archivos de salida de datos
 	/*public static void LimpiarArchivos(List<String> tipos)
 	{
