@@ -15,7 +15,7 @@ public class Main_Goloso {
 	public static void main(String[] args) {
 		
 		System.out.println("Leyendo grafos");
-		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", 505);
+		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", "", 505);
 		//List<Grafo> completos = Parser.LeerGrafos("completo", 50);
 		
 		Recubrimiento recubrimiento;
@@ -23,8 +23,8 @@ public class Main_Goloso {
 		List<Recubrimiento> Recubrimientos = new ArrayList<Recubrimiento>();
 		List<Recubrimiento> RecubrimientosExactos = new ArrayList<Recubrimiento>();
 		
-		Estadisticas est_goloso = new Estadisticas("Goloso");
-		Estadisticas est_exacto = new Estadisticas("Exacto");
+		Estadisticas est_goloso = new Estadisticas();
+		Estadisticas est_exacto = new Estadisticas();
 		Grafico graficoGoloso = new Grafico("Goloso","iteracionesGoloso");
 		Grafico graficoExacto = new Grafico("Goloso","comparacionesExacto");
 		Grafico graficoGvsE = new Grafico("Goloso","GvsE");
@@ -55,6 +55,8 @@ public class Main_Goloso {
 			//Punto2D puntoGvsE = new Punto2D(densidad,est_exacto.i);
 			//graficoGvsE.Agregar(puntoGvsE);
 		}
+
+		//Parser.Escribir(est_goloso);
 		//Parser.Escribir(est_goloso);
 		//Parser.Escribir(est_exacto);
 		//Parser.EscribirGrafico(graficoGoloso);

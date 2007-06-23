@@ -15,10 +15,10 @@ public class Main_Exacto {
 	public static void main(String[] args) {
 		
 		System.out.println("Ejecutando: Exacto");
-		Estadisticas est_exacto = new Estadisticas("exacto");
+		Estadisticas est_exacto = new Estadisticas();
 		Recubrimiento recubrimiento;
 		int cant_grafos_aleatorios = 30;
-		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", cant_grafos_aleatorios);
+		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", "chicos", cant_grafos_aleatorios);
 		//Grafo g = Parser.LeerGrafo("aleatorio1");
 		
 		for(Grafo g : aleatorios)
