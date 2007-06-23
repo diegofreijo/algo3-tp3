@@ -1,50 +1,33 @@
 package tp3;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
-
 import utilidades.*;
 import algoritmos.*;
 import java.util.Collections;
 
 public class Main
 {
-	public static Map<ParametrosBL, Integer> puntajes = new HashMap<ParametrosBL, Integer>();;
+	public static Map<ParametrosBL, Integer> puntajes = new TreeMap<ParametrosBL, Integer>();
 	
 	public static void main(String[] args)
 	{
-		final int cant_grafos_aleatorios = 10;
+		Cronometro cronometro = new Cronometro();
+		
+		final int cant_grafos_aleatorios = 450;
+		final int cant_mejores_puntajes_a_filtrar = 5;
 		
 		Recubrimiento recubrimiento_actual;
 		ParametrosBL parametros_actuales;
 		Map<Integer, Set<ParametrosBL>> resultados_actuales;
 		
-		Grafico3D grafico = new Grafico3D();
-		
-		// Agrego en el arbol cada parametro con un puntaje inicial de 0  
-		// Ya se que es re cabeza, pero simplifica algunas cosas y aca la complejidad no importa...
-		/*for(int porcentaje_cuantos_saco = 1; porcentaje_cuantos_saco <= 100; ++porcentaje_cuantos_saco)
-		{
-			for(int porcentaje_cuantos_agrego = 0; porcentaje_cuantos_agrego < porcentaje_cuantos_saco; ++porcentaje_cuantos_agrego)
-			{
-				parametros_actuales = new ParametrosBL();
-				parametros_actuales.porcentaje_cuantos_saco = porcentaje_cuantos_saco;
-				parametros_actuales.porcentaje_cuantos_agrego = porcentaje_cuantos_agrego;
-								
-				puntajes.put(parametros_actuales, 0);
-			}
-		}*/
+		Grafico grafico = new Grafico();
+
 		
 		
 		System.out.println("Leyendo grafos");
@@ -80,13 +63,31 @@ public class Main
 			}			
 			ActualizarPuntajes(resultados_actuales);
 		}
+		System.out.println();
 		
-		System.out.println(toString(puntajes));
+		System.out.println("#Puntajes: " + puntajes.size());
+		System.out.println("Puntajes: " + toString(puntajes));
 		
-		//Parser.Escribir(grafico, "./dat/Comparaciones_BL_sin_mezcla.dat");
-		
-		
+		// Me quedo con los mejores
+		List<Integer> mejores = FiltrarMejoresPuntajes(cant_mejores_puntajes_a_filtrar);
+		System.out.println("Mejores puntajes:");
+		for(Integer mejor : mejores)
+		{
+			System.out.println("  " + mejor + ":");
+			Iterator it = puntajes.keySet().iterator();
+			while(it.hasNext())
+			{
+				ParametrosBL pactual = (ParametrosBL)it.next();
+				Integer actual = puntajes.get(pactual);
+				if(actual.equals(mejor))
+				{
+					System.out.println("    " + pactual);
+				}
+			}
+		}
+				
 		System.out.println("Fin de las pruebas");
+		System.out.println("Tiempo de ejecucion: " + cronometro.VerSegundos() + " seg");
 	}
 
 	private static void ActualizarPuntajes(Map<Integer, Set<ParametrosBL>> resultados)
@@ -131,10 +132,50 @@ public class Main
 				{
 					puntaje = 0;
 				}
+				else
+				{
+					puntajes.remove(ganador);
+				}
 				puntajes.put(ganador, puntaje + 5 - 2 * i);
 			}
 		}
     }
+
+	private static List<Integer> FiltrarMejoresPuntajes(int cuantos)
+	{
+		// Busco los mejores puntajes
+		List<Integer> mejores = new ArrayList<Integer>(cuantos);
+		Iterator it = puntajes.keySet().iterator();
+		
+		while(it.hasNext())
+		{
+			Integer actual = puntajes.get((ParametrosBL)it.next());
+			if(mejores.contains(actual))
+			{
+				continue;
+			}
+			else if(mejores.size() < cuantos)
+			{
+				mejores.add(actual);
+			}
+			else
+			{
+				// Veo si el actual es mejor que alguno ya entre los mejores
+				Collections.sort(mejores);
+				for(Integer mejor : mejores)
+				{
+					if(mejor < actual)
+					{
+						mejores.remove(mejor);
+						mejores.add(actual);
+						break;
+					}
+				}
+			}
+		}
+		
+		return mejores;
+	}
 	
 	public static String toString(Map<ParametrosBL, Integer> m)
 	{

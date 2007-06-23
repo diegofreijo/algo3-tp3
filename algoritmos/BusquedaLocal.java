@@ -51,7 +51,7 @@ public abstract class BusquedaLocal
 	    }
 	    
 	    ++e.i;
-	    return solucion;
+	    return solucion;	
     }
 
 	// Precondicion(o tambien llamado "sentido comun"): cuantos_saco > cuantos_agrego

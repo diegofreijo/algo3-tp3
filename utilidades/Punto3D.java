@@ -1,6 +1,6 @@
 package utilidades;
 
-public class Punto3D
+public class Punto3D implements Punto
 {
 	public int x, y, z;
 	

@@ -1,12 +1,6 @@
 package utilidades;
 
-public class Punto
+public interface Punto
 {
-	public Punto(int x, long y)
-    {
-		this.x = x;
-		this.y = y;
-    }
-
-	public long x, y;
+	public String toString();
 }

@@ -7,9 +7,9 @@ import java.util.List;
 public class Estadisticas
 {
 	private String nombre_algoritmo;
-	private List<Punto> resultados = new LinkedList<Punto>();						// Lista de resultados parciales del grafico de este algo
+	private List<Punto2D> resultados = new LinkedList<Punto2D>();						// Lista de resultados parciales del grafico de este algo
 	private List<Recubrimiento> recubrimientos = new LinkedList<Recubrimiento>();	// Lista de recubrimientos generados por este algo
-	public long i;																	// Cantidad de instrucciones por el momento para este grafo (al final se agregan a resultados)
+	public int i;																	// Cantidad de instrucciones por el momento para este grafo (al final se agregan a resultados)
 	
 	public Estadisticas(String nombre_algoritmo)
 	{
@@ -18,7 +18,7 @@ public class Estadisticas
 	}
 	
 	// Guarda un resultado
-	public void Almacenar(Punto r)
+	public void Almacenar(Punto2D r)
     {
 		resultados.add(r);
     }
@@ -33,7 +33,7 @@ public class Estadisticas
 	{
 		String ret = "";
 		
-		for(Punto r : resultados)
+		for(Punto2D r : resultados)
 		{
 			ret += r.x + " " + r.y + "\n";
 		}
@@ -57,7 +57,7 @@ public class Estadisticas
 	// Guarda en this.nodos el resultado actual y resetea el contador
 	public void GuardarResultado(int x)
     {
-	    this.resultados.add(new Punto(x,i));
+	    this.resultados.add(new Punto2D(x,i));
 	    this.i = 0;
     }
 

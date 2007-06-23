@@ -19,7 +19,7 @@ public abstract class GRASP
 		do
 		{
 			solucion = SolucionGolosaAzarosa(g,porcentaje_goloso);
-			BusquedaLocal.Ejecutar(g, porcentaje_cuantos_saco, porcentaje_cuantos_agrego, e);
+			//BusquedaLocal.Ejecutar(g, porcentaje_cuantos_saco, porcentaje_cuantos_agrego, e);
 		}
 		while (!CondicionesDeParada());
 
