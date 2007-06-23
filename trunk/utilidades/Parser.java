@@ -26,7 +26,7 @@ public abstract class Parser
 		
 		for(Integer i = 1; i <= instancias; ++i)
 		{
-			archivo_actual = ruta_in + fs + tipo + fs + (tipo == "aleatorio" ? fs + subtipo : "") + tipo + i.toString() + ".in";
+			archivo_actual = ruta_in + fs + tipo + fs + (tipo == "aleatorio" ? subtipo + fs : "") + tipo + i.toString() + ".in";
 			grafos.add(LeerGrafo(archivo_actual));
 		}
 		
