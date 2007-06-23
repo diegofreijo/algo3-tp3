@@ -20,20 +20,7 @@ public abstract class Parser
 	private static String nombre_dat = "Tp3";
 	private static String nombre_out = "Tp3";
 	
-	
-	/*
-	private static String ruta_instancias = ruta_proyecto + fs + "in" + fs + "Tp2Ej1.in";
-	private static String ruta_consultas = ruta_proyecto + fs + "in" + fs + "Tp2Ej4.in";
-	private static String ruta_resultados = ruta_proyecto + fs + "out" + fs + "Tp2Ej4.out";
-	private static String ruta_diferencias = ruta_proyecto + fs + "dat" + fs + "diferencias.txt";
-	private static String ruta_armado = ruta_proyecto + fs + "dat" + fs + "Tp2(armado).dat";
-	private static String ruta_consulta = ruta_proyecto + fs + "dat" + fs + "Tp2(consulta).dat";
-	private static String ruta_fusion = ruta_proyecto + fs + "dat" + fs + "Tp2(fusion).dat";
-	private static String ruta_consulta_mas_fusion = ruta_proyecto + fs + "dat" + fs + "Tp2(consulta_mas_fusion).dat";
-	private static String ruta_fb = ruta_proyecto + fs + "dat" + fs + "Tp2(fb).dat";
-	*/
-	
-	
+		
 	// Lee @instancias grafos del tipo @tipo, por lo que ya tienen que haber sido generados con el script
 	public static List<Grafo> LeerGrafos(String tipo, int instancias)
 	{
@@ -181,7 +168,7 @@ public abstract class Parser
 	}*/
 	
 	// Escribe la cantidad de instrucciones ejecutadas para una instancia y los tamaños de los recubrimientos
-	public static void Escribir(Estadisticas est)
+	public static void EscribirEstadisticas(Estadisticas est)
     {
 		try
 		{
@@ -209,32 +196,23 @@ public abstract class Parser
 		}
     }
 	
-	public static void Escribir(Object o, String ruta)
+	// Escribe el dat de un grafico
+	public static void EscribirGrafico(Grafico grafico)
     {
 		try
 		{
+			// Genero el nombre del archivo dat en funcion del nombre del algoritmo
+			String arhivo = ruta_dat + "/" + nombre_dat + "(" + grafico.Nombre() + ").dat";
+			
 			// Guardo los valores en las estadisticas
-			BufferedWriter salida = new BufferedWriter(new FileWriter(ruta, false));
-	        salida.write(o.toString());
+			BufferedWriter salida = new BufferedWriter(new FileWriter(arhivo, false));
+	        salida.write(grafico.GenerarDat());
 	        salida.close();
 		}
 		catch (IOException e)
 		{
-	    	System.out.println("Error escribiendo: ");
+	    	System.out.println("Error escribiendo el grafico " + grafico.Nombre() + ": ");
 	    	e.printStackTrace();
 		}
     }
-	
-	// Borra todos los archivos de salida de datos
-	/*public static void LimpiarArchivos(List<String> tipos)
-	{
-		File f;
-		
-		for(String tipo : tipos)
-		{
-			// Borro el dat
-			f = new File(ruta_dat + "/" + nombre_dat + "(" + tipo + ").dat");
-			f.delete();
-		}
-	}*/
 }

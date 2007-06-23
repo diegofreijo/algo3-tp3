@@ -19,13 +19,8 @@ def randomSinCero(a):
 		ret = random.randrange(a+1)
 	return ret
 
-<<<<<<< .mine
 nodos = 15
 densidad = 20
-=======
-nodos = 10
-densidad = 50
->>>>>>> .r42
 cantidad = 1
 while densidad <= 100:
 	j = 0

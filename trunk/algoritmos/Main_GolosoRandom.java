@@ -1,7 +1,5 @@
 package algoritmos;
 
-import java.util.List;
-
 import utilidades.Estadisticas;
 import utilidades.Grafo;
 import utilidades.Parser;
