@@ -13,32 +13,46 @@ import java.util.Collections;
 
 public class Pruebas_BusquedaLocal
 {
+	// Parametros de las pruebas
+	public static final int cant_grafos = 50;
+	public static final int cant_mejores_puntajes_a_filtrar = 5;
+
+	// Diccionario de puntajes para cada parametro
 	public static Map<ParametrosBL, Integer> puntajes = new TreeMap<ParametrosBL, Integer>();
+	
+	// Diccionario de estadisticas para cada parametro
+	public static Map<ParametrosBL, Integer> estadisticas = new TreeMap<ParametrosBL, Integer>();
+	
 	
 	public static void main(String[] args)
 	{
+		// Para contar el tiempo que tarda
 		Cronometro cronometro = new Cronometro();
 		
-		final int cant_grafos_aleatorios = 450;
-		final int cant_mejores_puntajes_a_filtrar = 5;
-		
+		// Variables para las pruebas
 		Recubrimiento recubrimiento_actual;
 		ParametrosBL parametros_actuales;
 		Map<Integer, Set<ParametrosBL>> resultados_actuales;
+		List<Grafo> grafos;
+		Iterator it;
+		Estadisticas estadisticas;
+		Grafico grafico_comparacion_parametros, grafico_comparacion_exacto, grafico_instrucciones;
 		
-		Grafico grafico = new Grafico();
+		
+		
+		
+		//////////////////////////////////////////////////////////////////
+		// Corro comparaciones entre los parametros
+		//////////////////////////////////////////////////////////////////
 
+		// Levanto los grafos aleatorios
+		System.out.println("Leyendo grafos grandes");
+		grafos = Parser.LeerGrafos("aleatorio", "grandes", cant_grafos);
 		
-		
-		System.out.println("Leyendo grafos");
-		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", cant_grafos_aleatorios);
-		
-		System.out.println("Ejecutando Busquedas Locales");
-		Estadisticas est = new Estadisticas("busqueda_local");
-
-		// Ejectuto las pruebas para cada grafo
-		System.out.println("Analizando " + aleatorios.size() + " grafos: ");
-		for(int i = 0; i < aleatorios.size(); ++i)
+		// Corro las pruebas
+		estadisticas = new Estadisticas();
+		System.out.println("Analizando " + grafos.size() + " grafos de " + grafos.get(0).DameNodos() + " nodos entre parametros: ");
+		for(int i = 0; i < grafos.size(); ++i)
 		{
 			System.out.print((i+1) + " ");
 			resultados_actuales = new TreeMap<Integer, Set<ParametrosBL>>();
@@ -50,7 +64,7 @@ public class Pruebas_BusquedaLocal
 					parametros_actuales.porcentaje_cuantos_saco = porcentaje_cuantos_saco;
 					parametros_actuales.porcentaje_cuantos_agrego = porcentaje_cuantos_agrego;
 					
-					recubrimiento_actual = BusquedaLocal.Ejecutar(aleatorios.get(i), parametros_actuales, est);
+					recubrimiento_actual = BusquedaLocal.Ejecutar(grafos.get(i), parametros_actuales, estadisticas);
 					
 					Set<ParametrosBL> anteriores = resultados_actuales.get(recubrimiento_actual.Tamano());
 					if(anteriores == null)
@@ -60,34 +74,110 @@ public class Pruebas_BusquedaLocal
 					anteriores.add(parametros_actuales);
 					resultados_actuales.put(recubrimiento_actual.Tamano(), anteriores);
 				}
-			}			
+			}
 			ActualizarPuntajes(resultados_actuales);
 		}
 		System.out.println();
 		
-		System.out.println("#Puntajes: " + puntajes.size());
-		System.out.println("Puntajes: " + toString(puntajes));
 		
-		// Me quedo con los mejores
-		List<Integer> mejores = FiltrarMejoresPuntajes(cant_mejores_puntajes_a_filtrar);
-		System.out.println("Mejores puntajes:");
-		for(Integer mejor : mejores)
+		// Grafico de comparacion de parametros
+		System.out.println("Generando grafico: comparacion de parametros");
+		grafico_comparacion_parametros = new Grafico("BusquedaLocal", "comparacion_parametros");
+		it = puntajes.keySet().iterator();
+		while(it.hasNext())
 		{
-			System.out.println("  " + mejor + ":");
-			Iterator it = puntajes.keySet().iterator();
+			ParametrosBL pactual = (ParametrosBL)it.next();
+			Punto p = new Punto3D(pactual.porcentaje_cuantos_agrego, pactual.porcentaje_cuantos_saco, puntajes.get(pactual));
+			grafico_comparacion_parametros.Agregar(p);
+		}
+		Parser.EscribirGrafico(grafico_comparacion_parametros);
+		
+		
+		// Selecciono los mejores y genero los resultados
+		System.out.println("Escribiendo mejores parametros");
+		List<Integer> mejores = FiltrarMejoresPuntajes(cant_mejores_puntajes_a_filtrar);
+		String resultados = "Mejores puntajes:\n";
+		for(int i = mejores.size() - 1; i >= 0 ; --i)
+		{
+			resultados += "  " + mejores.get(i) + ":\n";
+			it = puntajes.keySet().iterator();
 			while(it.hasNext())
 			{
 				ParametrosBL pactual = (ParametrosBL)it.next();
 				Integer actual = puntajes.get(pactual);
-				if(actual.equals(mejor))
+				if(actual.equals(mejores.get(i)))
 				{
-					System.out.println("    " + pactual);
+					resultados += "    " + pactual + "\n";
 				}
 			}
 		}
 				
+		// Me quedo con el mejor parametro (
+		System.out.println("Buscando mejor parametro");
+		it = puntajes.keySet().iterator();
+		ParametrosBL mejor = (ParametrosBL)it.next();
+		while(it.hasNext())
+		{
+			ParametrosBL pactual = (ParametrosBL)it.next();
+			Integer actual = puntajes.get(pactual);
+			if(actual.equals(mejores.get(mejores.size() - 1))  &&  mejor.compareTo(pactual) > 0)
+			{
+				mejor = pactual;
+			}
+		}
+		
+		// Escribo los resultados
+		resultados += "Me quede con: " + mejor + "\n";
+		Parser.EscribirPlano("BusquedaLocal", "mejores_parametros", resultados);
+		System.out.println("Mejor parametro elegido: " + mejor);
+		
+		System.out.println("Tiempo de ejecucion de la primer tanda: " + cronometro.VerSegundos() + " seg");
+		cronometro.Resetear();
+		
+		
+		
+		//////////////////////////////////////////////////////////////////
+		// Corro comparaciones entre el mejor parametro y el exacto
+		//////////////////////////////////////////////////////////////////
+
+		// Levanto los grafos aleatorios
+		System.out.println("Leyendo grafos chicos");
+		grafos = Parser.LeerGrafos("aleatorio", "chicos", cant_grafos);
+		
+		// Corro las pruebas
+		estadisticas = new Estadisticas();
+		System.out.println("Analizando " + grafos.size() + " grafos de " + grafos.get(0).DameNodos() + " nodos entre el mejor y el exacto: ");
+		grafico_comparacion_exacto = new Grafico("BusquedaLocal", "comparacion_exacto");
+		grafico_instrucciones = new Grafico("BusquedaLocal", "instrucciones");
+		for(int i = 0; i < grafos.size(); ++i)
+		{
+			System.out.print((i+1) + " ");
+			Integer densidad = grafos.get(i).DameEjes().size() * 100 / (grafos.get(i).DameNodos() * (grafos.get(i).DameNodos() - 1) / 2);
+						
+			// Corro los 2 algoritmos y comparo
+			recubrimiento_actual = BusquedaLocal.Ejecutar(grafos.get(i), mejor, estadisticas);
+			Integer diferencia = recubrimiento_actual.Tamano() - Exacto.Ejecutar(grafos.get(i), estadisticas).Tamano();
+			
+			// Agrego al grafico de comparacion
+			Punto p = new Punto2D(densidad, diferencia);
+			grafico_comparacion_exacto.Agregar(p);
+			
+			// Agrego al grafico de instrucciones
+			p = new Punto2D(densidad, estadisticas.i);
+			grafico_instrucciones.Agregar(p);
+		}
+		System.out.println();
+		
+		// Escribo los gaficos
+		System.out.println("");
+		Parser.EscribirGrafico(grafico_comparacion_exacto);
+		Parser.EscribirGrafico(grafico_instrucciones);
+		
+		
+		
+		System.out.println("Tiempo de ejecucion de la segunda tanda: " + cronometro.VerSegundos() + " seg");
+		System.out.println("\n-------------------------------------");
 		System.out.println("Fin de las pruebas");
-		System.out.println("Tiempo de ejecucion: " + cronometro.VerSegundos() + " seg");
 	}
 
 	private static void ActualizarPuntajes(Map<Integer, Set<ParametrosBL>> resultados)

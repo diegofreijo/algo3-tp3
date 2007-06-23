@@ -44,7 +44,7 @@ public abstract class GRASP
 		public static Recubrimiento Ejecutar(Grafo g, int porcentaje_goloso)
 		{
 
-			Estadisticas est = new Estadisticas("goloso_random");
+			Estadisticas est = new Estadisticas();
 			
 			e = est;
 

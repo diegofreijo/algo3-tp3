@@ -17,18 +17,16 @@ public abstract class Parser
 	private static String ruta_in = ruta_proyecto + fs + "in";
 	private static String ruta_dat = ruta_proyecto + fs + "dat";
 	private static String ruta_out = ruta_proyecto + fs + "out";
-	private static String nombre_dat = "Tp3";
-	private static String nombre_out = "Tp3";
 	
-	// Lee @instancias grafos del tipo @tipo, por lo que ya tienen que haber sido generados con el script
-	public static List<Grafo> LeerGrafos(String tipo, int instancias)
+	// Lee @instancias grafos del tipo @tipo, por lo que ya tienen que haber sido generados con el script. El subtipo solo sirve si el tipo es "aleatorio".
+	public static List<Grafo> LeerGrafos(String tipo, String subtipo, int instancias)
 	{
 		List<Grafo> grafos = new ArrayList<Grafo>(instancias);
 		String archivo_actual = "";
 		
 		for(Integer i = 1; i <= instancias; ++i)
 		{
-			archivo_actual = ruta_in + fs + tipo + fs + tipo + i.toString() + ".in";
+			archivo_actual = ruta_in + fs + tipo + fs + (tipo == "aleatorio" ? fs + subtipo : "") + tipo + i.toString() + ".in";
 			grafos.add(LeerGrafo(archivo_actual));
 		}
 		
@@ -36,7 +34,7 @@ public abstract class Parser
 	}
 	
 	// Levanta un grafo del archivo de entrada
-	public static Grafo LeerGrafo(String ruta)
+	private static Grafo LeerGrafo(String ruta)
 	{
 		//Grafo ret = new Grafo();
 		int n = 0, m = 0;
@@ -108,7 +106,7 @@ public abstract class Parser
 	    
 	    return G;
 	}
-
+	
 	// Lee la siguiente linea de in que no sea un comentario
 	private static String LeerLinea(BufferedReader in) throws IOException
     {
@@ -150,51 +148,6 @@ public abstract class Parser
 		}
 	}*/
 	
-	// Escribe las diferencias encontradas entre el algo eficiente y el de FB.
-	/*public static void EscribirDiferencias(Diferencias diferencias)
-	{
-		try
-		{
-			BufferedWriter out = new BufferedWriter(new FileWriter(ruta_diferencias, true));
-			out.write(diferencias.toString());
-	        out.close();
-		}
-		catch (IOException e)
-		{
-	    	System.out.println("Error escribiendo las diferencias: ");
-	    	e.printStackTrace();
-		}
-	}*/
-	
-	// Escribe la cantidad de instrucciones ejecutadas para una instancia y los tamaños de los recubrimientos
-	public static void EscribirEstadisticas(Estadisticas est)
-    {
-		try
-		{
-			// Genero el nombre del archivo dat en funcion del nombre del algoritmo
-			String arhivo = nombre_dat + "(" + est.NombreAlgoritmo() + ").dat";
-			
-			// Guardo los valores en las estadisticas
-			BufferedWriter salida = new BufferedWriter(new FileWriter(ruta_dat + fs + arhivo, false));
-	        salida.write(est.Puntos());
-	        salida.close();
-	        
-	        
-	        // Genero el nombre del archivo out en funcion del nombre del algoritmo
-			arhivo = nombre_out + "(" + est.NombreAlgoritmo() + ").out";
-			
-			// Guardo los valores en las estadisticas
-			salida = new BufferedWriter(new FileWriter(ruta_out + fs + arhivo, false));
-	        salida.write(est.Recubrimientos());
-	        salida.close();
-		}
-		catch (IOException e)
-		{
-	    	System.out.println("Error escribiendo estadisticas/recubrimientos: ");
-	    	e.printStackTrace();
-		}
-    }
-	
 	// Escribe el dat de un grafico
 	public static void EscribirGrafico(Grafico grafico)
     {
@@ -211,6 +164,26 @@ public abstract class Parser
 		catch (IOException e)
 		{
 	    	System.out.println("Error escribiendo el grafico " + grafico.Nombre() + ": ");
+	    	e.printStackTrace();
+		}
+    }
+	
+	// Escribe los resultados de una prueba que es solamente texto
+	public static void EscribirPlano(String algoritmo, String nombre, String resultados)
+    {
+		try
+		{
+			// Genero el nombre del archivo txt en funcion de lo que me pasaron
+			String arhivo = ruta_dat + fs + algoritmo + fs + algoritmo + "(" + nombre + ").txt";
+			
+			// Guardo los valores en las estadisticas
+			BufferedWriter salida = new BufferedWriter(new FileWriter(arhivo, false));
+	        salida.write(resultados);
+	        salida.close();
+		}
+		catch (IOException e)
+		{
+	    	System.out.println("Error escribiendo los resultados '" + nombre + "': ");
 	    	e.printStackTrace();
 		}
     }
