@@ -20,7 +20,6 @@ public abstract class Parser
 	private static String nombre_dat = "Tp3";
 	private static String nombre_out = "Tp3";
 	
-		
 	// Lee @instancias grafos del tipo @tipo, por lo que ya tienen que haber sido generados con el script
 	public static List<Grafo> LeerGrafos(String tipo, int instancias)
 	{
@@ -202,7 +201,7 @@ public abstract class Parser
 		try
 		{
 			// Genero el nombre del archivo dat en funcion del nombre del algoritmo
-			String arhivo = ruta_dat + "/" + nombre_dat + "(" + grafico.Nombre() + ").dat";
+			String arhivo = ruta_dat + fs + grafico.Algoritmo() + fs + grafico.Algoritmo() + "(" + grafico.Nombre() + ").dat";
 			
 			// Guardo los valores en las estadisticas
 			BufferedWriter salida = new BufferedWriter(new FileWriter(arhivo, false));
