@@ -19,19 +19,19 @@ public abstract class BusquedaLocal
 		parametros = par;
 		
 		Recubrimiento solucion = ConstruirSolucionInicial(g); ++e.i;
-		// System.out.println("Sol inicial: " + solucion);
+		//System.out.println("Sol inicial: " + solucion);
 		Recubrimiento mejor_vecino;
 		
-		// System.out.println("==== Comienzo a buscar mejores vecinos ==== ");
+		//System.out.println("==== Comienzo a buscar mejores vecinos ==== ");
 		
 		while((mejor_vecino = VecinoMejor(solucion, parametros.porcentaje_cuantos_saco, parametros.porcentaje_cuantos_agrego, g)) != null)
 		{
 			++e.i;
-			// System.out.println(" *** Mejor que esta solucion " + solucion + " es " + mejor_vecino);
+			//System.out.println(" *** Mejor que esta solucion " + solucion + " es " + mejor_vecino);
 			solucion = mejor_vecino; ++e.i;
 		}
 		
-		// System.out.println(" *** Solucion final: " + solucion);
+		//System.out.println(" *** Solucion final: " + solucion);
 		return solucion;
 	}
 	
@@ -57,6 +57,12 @@ public abstract class BusquedaLocal
 	// IGUALDAD OBSERVACIONAL
 	private static Recubrimiento VecinoMejor(Recubrimiento solucion, int porcentaje_cuantos_saco, int porcentaje_cuantos_agrego, Grafo g)
     {
+		// Si la solucion actual es vacia, ya fue, no voy a conseguir nada mejor
+		if(solucion.Tamano() == 0)
+		{
+			return null;
+		}
+		
 		// Armo la lista de nodos que no estan en la solucion
 		List<Integer> demas_nodos = new ArrayList<Integer>(g.DameNodos()); e.i+=g.DameNodos();
 		for(int i = 1; i <= g.DameNodos(); ++i)
