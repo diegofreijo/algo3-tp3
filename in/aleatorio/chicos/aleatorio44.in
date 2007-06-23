@@ -1,0 +1,17 @@
+c Grafo Aleatorio Densidad = 15/190
+p edge 20 15
+e 5 3
+e 14 20
+e 16 14
+e 20 15
+e 6 13
+e 12 4
+e 4 6
+e 7 15
+e 7 6
+e 10 19
+e 12 20
+e 10 11
+e 11 15
+e 15 4
+e 4 14

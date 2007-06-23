@@ -29,7 +29,7 @@ public class Main_Exacto {
 			est_exacto.GuardarResultado(g.DameNodos());
 			est_exacto.GuardarRecubrimiento(recubrimiento);
 		}
-		Parser.Escribir(est_exacto);
+		//Parser.Escribir(est_exacto);
 		
 	}
 

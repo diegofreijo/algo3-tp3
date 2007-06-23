@@ -27,7 +27,7 @@ public static void main(String[] args) {
 			est_greedyRandom.GuardarResultado(g.DameNodos());
 			est_greedyRandom.GuardarRecubrimiento(recubrimiento);
 		//}
-		Parser.Escribir(est_greedyRandom);
+		//Parser.Escribir(est_greedyRandom);
 		
 		System.out.println("Fin de las pruebas");		
 
