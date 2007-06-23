@@ -11,7 +11,7 @@ import utilidades.*;
 import algoritmos.*;
 import java.util.Collections;
 
-public class Main
+public class Pruebas_BusquedaLocal
 {
 	public static Map<ParametrosBL, Integer> puntajes = new TreeMap<ParametrosBL, Integer>();
 	

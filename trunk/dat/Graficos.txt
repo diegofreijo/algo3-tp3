@@ -1,0 +1,26 @@
+Graficos:
+=========
+Exacto:
+	#Instrucciones
+	
+Goloso:
+	Comparacion exacto
+	#Instrucciones
+	
+Busqueda Local:
+	Comparacion de parametros (3D)
+	#Instrucciones de los mejores parametros
+	Comparacion con exacto
+	
+GRASP:
+	Comparacion de parametros (no es un grafico a menos que sepas como graficar en 5D)
+	#Instrucciones de los mejores parametros
+	Comparacion con exacto
+	
+Finales:
+	Comparacion de las 3 heuristicas:
+		Aleatorio (en funcion de la densidad)
+		Bipartito (en funcion de la densidad)
+		Rueda (en funcion de la cantidad de nodos)
+		Completo (en funcion de la cantidad de nodos)
+		

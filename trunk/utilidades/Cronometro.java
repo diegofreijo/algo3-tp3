@@ -9,6 +9,11 @@ public class Cronometro
 		inicio = System.currentTimeMillis();
 	}
 	
+	public void Resetear()
+	{
+		inicio = System.currentTimeMillis();
+	}
+	
 	public long VerSegundos()
 	{
 		return (System.currentTimeMillis() - inicio) / 1000;
