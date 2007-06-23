@@ -15,7 +15,7 @@ public class Main_Goloso {
 	public static void main(String[] args) {
 		
 		System.out.println("Leyendo grafos");
-		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", "", 505);
+		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", "" ,505);
 		//List<Grafo> completos = Parser.LeerGrafos("completo", 50);
 		
 		Recubrimiento recubrimiento;
@@ -50,13 +50,11 @@ public class Main_Goloso {
 			System.out.println("Ejecutando: Exacto");
 			recubrimiento = Exacto.Ejecutar(g,est_exacto);
 			RecubrimientosExactos.add(recubrimiento);
-			Punto2D puntoExacto = new Punto2D(densidad,est_exacto.i);
+			Punto2D puntoExacto = new Punto2D(densidad,recubrimiento.nodos.size());
 			graficoExacto.Agregar(puntoExacto);
 			//Punto2D puntoGvsE = new Punto2D(densidad,est_exacto.i);
 			//graficoGvsE.Agregar(puntoGvsE);
 		}
-
-		//Parser.Escribir(est_goloso);
 		//Parser.Escribir(est_goloso);
 		//Parser.Escribir(est_exacto);
 		//Parser.EscribirGrafico(graficoGoloso);
