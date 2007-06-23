@@ -14,16 +14,12 @@ import java.util.Collections;
 public class Pruebas_BusquedaLocal
 {
 	// Parametros de las pruebas
-	public static final int cant_grafos = 50;
+	public static final int cant_grafos = 505;
 	public static final int cant_mejores_puntajes_a_filtrar = 5;
 
 	// Diccionario de puntajes para cada parametro
 	public static Map<ParametrosBL, Integer> puntajes = new TreeMap<ParametrosBL, Integer>();
-	
-	// Diccionario de estadisticas para cada parametro
-	public static Map<ParametrosBL, Integer> estadisticas = new TreeMap<ParametrosBL, Integer>();
-	
-	
+		
 	public static void main(String[] args)
 	{
 		// Para contar el tiempo que tarda
@@ -45,7 +41,7 @@ public class Pruebas_BusquedaLocal
 		// Corro comparaciones entre los parametros
 		//////////////////////////////////////////////////////////////////
 
-		// Levanto los grafos aleatorios
+		// Levanto los grafos grandes
 		System.out.println("Leyendo grafos grandes");
 		grafos = Parser.LeerGrafos("aleatorio", "grandes", cant_grafos);
 		
