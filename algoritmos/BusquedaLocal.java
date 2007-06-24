@@ -19,19 +19,15 @@ public abstract class BusquedaLocal
 		parametros = par;
 		
 		Recubrimiento solucion = ConstruirSolucionInicial(g); ++e.i;
-		//System.out.println("Sol inicial: " + solucion);
 		Recubrimiento mejor_vecino;
-		
-		//System.out.println("==== Comienzo a buscar mejores vecinos ==== ");
 		
 		while((mejor_vecino = VecinoMejor(solucion, parametros.porcentaje_cuantos_saco, parametros.porcentaje_cuantos_agrego, g)) != null)
 		{
 			++e.i;
-			//System.out.println(" *** Mejor que esta solucion " + solucion + " es " + mejor_vecino);
 			solucion = mejor_vecino; ++e.i;
 		}
 		
-		//System.out.println(" *** Solucion final: " + solucion);
+		++e.i;
 		return solucion;
 	}
 	
@@ -42,7 +38,7 @@ public abstract class BusquedaLocal
 	    for(Eje eje : g.DameEjes())
 	    {
 	    	++e.i;
-	    	++e.i;
+	    	e.i+=2*solucion.nodos.size();
 	    	if(!solucion.nodos.contains(eje.x) && !solucion.nodos.contains(eje.y))
 	    	{
 	    		solucion.nodos.add(eje.x); ++e.i;
@@ -58,6 +54,7 @@ public abstract class BusquedaLocal
 	private static Recubrimiento VecinoMejor(Recubrimiento solucion, int porcentaje_cuantos_saco, int porcentaje_cuantos_agrego, Grafo g)
     {
 		// Si la solucion actual es vacia, ya fue, no voy a conseguir nada mejor
+		++e.i;
 		if(solucion.Tamano() == 0)
 		{
 			return null;
@@ -68,9 +65,9 @@ public abstract class BusquedaLocal
 		for(int i = 1; i <= g.DameNodos(); ++i)
 		{
 			++e.i;
+			e.i+=solucion.nodos.size();
 			if(!solucion.nodos.contains(i))
 			{
-				e.i+=solucion.nodos.size();
 				demas_nodos.add(i); ++e.i;
 			}
 		}
@@ -79,6 +76,7 @@ public abstract class BusquedaLocal
 		int cuantos_saco = porcentaje_cuantos_saco * solucion.nodos.size() / 100 + 1; ++e.i;
 		int cuantos_agrego = porcentaje_cuantos_agrego * solucion.nodos.size() / 100 + 1; ++e.i;
 		// Verifico no tratar de sacar mas de los que tiene la solucion o agregar mas de los que tengo para agregar
+		e.i+=3;
 		if(cuantos_agrego > demas_nodos.size())
 		{
 			cuantos_agrego = demas_nodos.size();
@@ -104,6 +102,7 @@ public abstract class BusquedaLocal
 		Recubrimiento vecino_agregando = null; ++e.i;			// Vecino al que le saque y luego agregue nodos
 		if(parametros.mezclar_nodos_busqueda_vecino)
 		{
+			e.i+=solucion.nodos.size();
 			Collections.shuffle(solucion.nodos);
 		}
 		for(int sacar = 0; sacar < solucion.nodos.size() - cuantos_saco + 1; ++sacar)
@@ -112,30 +111,26 @@ public abstract class BusquedaLocal
 			vecino_sacando = new Recubrimiento(solucion); ++e.i;
 			
 			// Voy sacando uno por uno los que me toca sacar
-			List<Integer> a_sacar = new ArrayList<Integer>(cuantos_saco);
+			List<Integer> a_sacar = new ArrayList<Integer>(cuantos_saco); e.i+=cuantos_saco;
 			for(int i = sacar; i < sacar + cuantos_saco; ++i)
 			{
-				a_sacar.add(vecino_sacando.nodos.get(i));
-				//// System.out.println("sacar: " + sacar + " y i: " + i + " y vecino_sacando.size()" + vecino_sacando.nodos.size());
-				
+				a_sacar.add(vecino_sacando.nodos.get(i)); ++e.i;	
 			}
-			vecino_sacando.nodos.removeAll(a_sacar);
+			vecino_sacando.nodos.removeAll(a_sacar); e.i+=a_sacar.size()*vecino_sacando.nodos.size();
 			
 			// Si lo que me quedo es recubrimiento, gane. Por optmizacion, asumo que SIEMPRE este
 			// vecino tendra mejor objetivo (menor cantidad de nodos)
+			++e.i;
 			if(vecino_sacando.EsRecubrimiento(g))
 			{
-				// System.out.println("Solamente sacando consegui un recubrimiento!: " + vecino_sacando);
-				++e.i;
 				return vecino_sacando;
 			}
-			// System.out.println("Sacando no consegui un recubrimiento");
 			
 			// Voy agregando nuevos nodos
 			for(int poner = 0; poner < demas_nodos.size() - cuantos_agrego + 1; ++poner)
 			{
 				++e.i;
-				vecino_agregando = new Recubrimiento(vecino_sacando);
+				vecino_agregando = new Recubrimiento(vecino_sacando); ++e.i;
 				
 				// Voy agregando los nuevos nodos
 				for(int i = poner; i < poner + cuantos_agrego; ++i)
@@ -144,18 +139,15 @@ public abstract class BusquedaLocal
 				}
 				
 				// Si es un recubrimiento, gane
+				++e.i;
 				if(vecino_agregando.EsRecubrimiento(g))
 				{
-					// System.out.println("Agrege y era recubrimiento: " + vecino_agregando);
-					++e.i;
 					return vecino_agregando;
 				}
-				//// System.out.println("Agrege pero no era recubrimiento: " + vecino_agregando);
 			}
 		}
 		
 		// Si llegue hasta aca es porque no hay mejor vecino
-		// System.out.println("No habia mejor");
 		++e.i;
 	    return null;
     }

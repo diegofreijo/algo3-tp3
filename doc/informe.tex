@@ -1,0 +1,168 @@
+\documentclass[spanish, a4paper, 11pt]{article}
+
+\usepackage[a4paper,margin=3.5cm,top=3.0cm,bottom=3.0cm]{geometry}	% Define los margenes
+\usepackage[spanish,activeacute]{babel}								% Idioma castellano
+\usepackage{sty/caratula}													% Caratula de Algo2
+%\usepackage[a4paper=true,pagebackref=true]{hyperref}				% Agrega la TOC al PDF e hipervinculos
+\usepackage[pdftex]{graphicx} 											% Permite insertar graficos
+\usepackage{fancyhdr}														% Permite manejo de cabeceras de pagina
+\usepackage{eufrak}															% Usado en el enunciado del trabajo
+\usepackage{latexsym}
+\usepackage{algorithmic}													% Para escribir los algos
+\usepackage{dsfont}															% Para el simbolo de naturales
+\usepackage[font=small,labelfont=bf]{caption}						% Para editar las captions
+
+
+% Estilo de pagina para tener las cabeceras
+\pagestyle{fancy}
+\lhead{AyED III - TP3}
+\rhead{Matias Blanco - Diego Freijo}
+
+% Numeracion de paginas
+\pagenumbering{arabic}
+\parskip=1.5ex
+
+% Seteo de estilo de los algoritmos
+\algsetup{indent=2em}
+
+\newcommand{\imagen}[3]
+{
+	\begin{figure}[htbp]
+	  \centering
+	    \includegraphics[scale=0.5]{#1}
+	  \caption{#3}
+	\end{figure}
+}
+
+\newcommand{\nat}{\mathds{N}}
+\newcommand{\algoritmo}[3]{\noindent {\bf\underline{#1}:} #2 $\longrightarrow$ #3}
+\newcommand{\superindice}[1]{$^\textrm{{\tiny #1}}$}
+\newcommand{\subsubsubsection}[1]{
+
+{\bf\small #1}
+
+}
+\newcommand{\negrita}[1]{{\bf #1}}
+
+\renewcommand\floatpagefraction{.9}
+\renewcommand\topfraction{.9}
+\renewcommand\bottomfraction{.9}
+\renewcommand\textfraction{.1}   
+\setcounter{totalnumber}{50}
+\setcounter{topnumber}{50}
+\setcounter{bottomnumber}{50}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%   Inicio del documento
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Caratula
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\materia{Algoritmos y Estructuras de Datos III}
+\submateria{Primer Cuatrimestre de 2007}
+\titulo{Trabajo Pr'actico 3}
+\subtitulo{}
+\integrante{Blanco, Matias}{508/05}{matiasblanco18@gmail.com}
+\integrante{Freijo, Diego}{4/05}{giga.freijo@gmail.com}
+\maketitle
+
+\subsection*{Palabras Clave}
+Vertex Cover, Heurísticas, Metaheurísticas, Algoritmo Goloso, Búsqueda Local, GRASP
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Indice
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduccion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\input{informe/1.introduccion.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Planificacion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\input{informe/2.planificacion.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exacto
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\input{informe/3.exacto.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Goloso
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\input{informe/4.goloso.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Busqueda Local
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\input{informe/5.bl.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GRASP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\input{informe/6.grasp.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Resultados
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\input{informe/7.resultados.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Discusion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\input{informe/8.discusion.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Conclusiones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\input{informe/9.conclusiones.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Enunciado
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\section*{Enunciado}
+%----------------------------------------------------------------------------------%
+%??????????????????
+%----------------------------------------------------------------------------------%
+%\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Firmas
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ????????
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Referencias
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Referencias}
+\begin{itemize}
+\item hola
+\end{itemize}
+
+
+\end{document}
+%%%
+% EOF
+%%%%%%%%%%%%%%%%%%%%%

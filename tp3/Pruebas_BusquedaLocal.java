@@ -36,7 +36,7 @@ public class Pruebas_BusquedaLocal
 		
 		
 		
-		
+		/*
 		//////////////////////////////////////////////////////////////////
 		// Corro comparaciones entre los parametros
 		//////////////////////////////////////////////////////////////////
@@ -131,7 +131,11 @@ public class Pruebas_BusquedaLocal
 		System.out.println("-------------------------------------\n");
 		cronometro.Resetear();
 		
+		*/
 		
+		ParametrosBL mejor = new ParametrosBL();
+		mejor.porcentaje_cuantos_agrego = 0;
+		mejor.porcentaje_cuantos_saco = 1;
 		
 		//////////////////////////////////////////////////////////////////
 		// Corro comparaciones entre el mejor parametro y el exacto
@@ -150,7 +154,8 @@ public class Pruebas_BusquedaLocal
 		{
 			System.out.print((i+1) + " ");
 			Integer densidad = grafos.get(i).DameEjes().size() * 100 / (grafos.get(i).DameNodos() * (grafos.get(i).DameNodos() - 1) / 2);
-						
+			estadisticas.Resetar();
+			
 			// Corro los 2 algoritmos y comparo
 			recubrimiento_actual = BusquedaLocal.Ejecutar(grafos.get(i), mejor, estadisticas);
 			Integer diferencia = recubrimiento_actual.Tamano() - Exacto.Ejecutar(grafos.get(i), estadisticas).Tamano();
@@ -166,7 +171,6 @@ public class Pruebas_BusquedaLocal
 		System.out.println();
 		
 		// Escribo los gaficos
-		System.out.println("");
 		Parser.EscribirGrafico(grafico_comparacion_exacto);
 		Parser.EscribirGrafico(grafico_instrucciones);
 		
