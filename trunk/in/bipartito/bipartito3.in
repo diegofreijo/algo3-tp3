@@ -1,5 +1,2 @@
-c Grafo Bipartito = 3
-p edge 4 3
-e 2 4
-e 1 4
-e 2 3
+c Grafo Bipartito = 0
+p edge 1 0

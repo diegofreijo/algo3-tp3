@@ -1,0 +1,7 @@
+c Grafo Bipartito = 5
+p edge 5 5
+e 1 5
+e 2 4
+e 1 4
+e 2 5
+e 1 3
