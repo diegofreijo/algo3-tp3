@@ -15,7 +15,7 @@ public class Main_Goloso {
 	public static void main(String[] args) {
 		
 		System.out.println("Leyendo grafos");
-		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", "" ,150);
+		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", "" ,100);
 		//List<Grafo> completos = Parser.LeerGrafos("completo", 50);
 		
 		Recubrimiento recubrimiento;
@@ -26,8 +26,8 @@ public class Main_Goloso {
 		Estadisticas est_goloso = new Estadisticas();
 		Estadisticas est_exacto = new Estadisticas();
 		Grafico graficoGoloso = new Grafico("Goloso","instruccionesGolosoNodos");
-		Grafico graficoExacto = new Grafico("Goloso","comparacionesExacto");
-		Grafico graficoGvsE = new Grafico("Goloso","GvsE");
+		Grafico graficoExacto = new Grafico("Exacto","InstruccionesExactoxNodo");
+		Grafico graficoGvsE = new Grafico("Goloso","GvsExnodos");
 		Cronometro crono = new Cronometro();
 		int i = 1;
 		for(Grafo g : aleatorios)
@@ -41,26 +41,26 @@ public class Main_Goloso {
 			//Integer densidad = g.DameEjes().size()*100/totalposibles;
 			//System.out.println("Densidad: " + densidad);
 			
-			/*System.out.println("Ejecutando: Goloso");
+			System.out.println("Ejecutando: Goloso");
 			recubrimiento = Goloso.Ejecutar(g, est_goloso);
 			Recubrimientos.add(recubrimiento);
-			Punto2D punto = new Punto2D(g.DameNodos(),est_goloso.i);
-			graficoGoloso.Agregar(punto);*/
-			//int tamañogoloso = recubrimiento.nodos.size();
+			//Punto2D punto = new Punto2D(g.DameNodos(),est_goloso.i);
+			//graficoGoloso.Agregar(punto);
+			int tamañogoloso = recubrimiento.nodos.size();
 					
 			System.out.println("Ejecutando: Exacto");
 			recubrimiento = Exacto.Ejecutar(g,est_exacto);
 			RecubrimientosExactos.add(recubrimiento);
 			Punto2D puntoExacto = new Punto2D(g.DameNodos(),est_exacto.i);
 			graficoExacto.Agregar(puntoExacto);
-			//Punto2D puntoGvsE = new Punto2D(densidad,est_exacto.i);
-			//graficoGvsE.Agregar(puntoGvsE);
+			Punto2D puntoGvsE = new Punto2D(g.DameNodos(),tamañogoloso-recubrimiento.nodos.size());
+			graficoGvsE.Agregar(puntoGvsE);
 		}
 		//Parser.Escribir(est_goloso);
 		//Parser.Escribir(est_exacto);
 		//Parser.EscribirGrafico(graficoGoloso);
 		Parser.EscribirGrafico(graficoExacto);
-		//Parser.EscribirGrafico(graficoGvsE);
+		Parser.EscribirGrafico(graficoGvsE);
 		
 		
 		/*int diferencias = 0;

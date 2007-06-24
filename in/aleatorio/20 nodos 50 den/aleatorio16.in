@@ -1,0 +1,5 @@
+c Grafo Aleatorio Densidad = 3/6
+p edge 4 3
+e 1 3
+e 3 4
+e 1 4

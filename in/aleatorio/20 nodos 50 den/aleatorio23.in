@@ -1,0 +1,7 @@
+c Grafo Aleatorio Densidad = 5/10
+p edge 5 5
+e 1 4
+e 1 5
+e 4 3
+e 5 3
+e 1 3

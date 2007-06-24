@@ -1,7 +1,7 @@
 import sys
 #Grafo Rueda: parametros 1)cant nodos 2) cant instancias
 
-nodos = familia = sys.argv[1]
+nodos = sys.argv[1]
 nodos = int(nodos)
 
 instancias = sys.argv[2]
