@@ -10,26 +10,45 @@ import utilidades.Recubrimiento;
 
 public abstract class GRASP
 {
+	public static int iteracion_SC;
 	private static Estadisticas e;
 
-	public static Recubrimiento Ejecutar(Grafo g, int iteraciones_max, int iteraciones_sin_cambio, int porcentaje_cuantos_saco, int porcentaje_cuantos_agrego, int porcentaje_goloso, Estadisticas est)
+	public static Recubrimiento Ejecutar(Grafo g, ParametrosGRASP p , Estadisticas est)
 	{
 		e = est;
+		iteracion_SC = 0;
 		Recubrimiento solucion = null;
+		Recubrimiento solant = null;
+		int k = 0;
 		do
 		{
-			solucion = SolucionGolosaAzarosa(g,porcentaje_goloso);
-			//BusquedaLocal.Ejecutar(g, porcentaje_cuantos_saco, porcentaje_cuantos_agrego, e);
+			solant = new Recubrimiento(solucion);
+			solucion = SolucionGolosaAzarosa(g,p.porcentaje_goloso);
+			ParametrosBL parametros = new ParametrosBL();
+			parametros.porcentaje_cuantos_agrego = p.porcentaje_cuantos_agrego;
+			parametros.porcentaje_cuantos_saco	 = p.porcentaje_cuantos_saco;
+			solucion = BusquedaLocal.Ejecutar(g, parametros, p, e);
 		}
-		while (!CondicionesDeParada());
+		while (!CondicionesDeParada(solant,solucion,p.iteraciones_max,p.iteraciones_sin_cambio,k));
 
 		return solucion;
 	}
 
-	private static boolean CondicionesDeParada()
+	private static boolean CondicionesDeParada(Recubrimiento solant, Recubrimiento solucion, int i, int j, int k)
 	{
-
-		return false;
+		if(solant == solucion){
+			iteracion_SC++;
+		}
+		
+		if(iteracion_SC == j){
+			return false;
+		}
+		
+		if(k == i){
+			return false;
+		}
+		
+		return true;
 	}
 
 	private static Recubrimiento SolucionGolosaAzarosa(Grafo g, int porcentaje_goloso)

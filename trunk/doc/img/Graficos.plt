@@ -7,9 +7,19 @@ set term png
 
 # Exacto:
 	# Cantidad de instrucciones
+	# Cantidad de instrucciones x nodos
+	set xlabel "Densidad del grafo"
+	set ylabel "Cantidad de instrucciones"
+	set output "Exacto(InstruccionesExactoxNodo).png"
+	plot '..\..\dat\Exacto\Exacto(InstruccionesExactoxNodo).dat' tit 'Cantidad de instrucciones en la práctica'
 	
 # Goloso:
 	# Comparacion exacto
+	# Comparacion exacto por nodos
+	set xlabel "Densidad del grafo"
+	set ylabel "Diferencias con el exacto"
+	set output "Goloso(GvsExnodos).png"
+	plot '..\..\dat\Goloso\Goloso(GvsExnodos).dat' tit 'Diferencias'
 	# Cantidad de instrucciones
 	
 # Busqueda Local:
