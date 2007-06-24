@@ -1,35 +1,39 @@
 \select@language {spanish}
 \contentsline {section}{\numberline {1}Introducci'on}{4}
 \contentsline {section}{\numberline {2}Planificaci'on}{5}
-\contentsline {subsection}{\numberline {2.1}Introducci'on}{6}
-\contentsline {subsection}{\numberline {2.2}Desarrollo}{7}
-\contentsline {subsection}{\numberline {2.3}Pseudoc'odigos}{8}
-\contentsline {subsection}{\numberline {2.4}An'alisis de complejidad}{9}
-\contentsline {subsection}{\numberline {2.5}Resultados}{10}
-\contentsline {subsection}{\numberline {2.6}Discusi'on}{11}
-\contentsline {subsection}{\numberline {2.7}Conclusiones}{12}
-\contentsline {subsection}{\numberline {2.8}Introducci'on}{13}
-\contentsline {subsection}{\numberline {2.9}Desarrollo}{14}
-\contentsline {subsection}{\numberline {2.10}Pseudoc'odigos}{15}
-\contentsline {subsection}{\numberline {2.11}An'alisis de complejidad}{16}
-\contentsline {subsection}{\numberline {2.12}Resultados}{17}
-\contentsline {subsection}{\numberline {2.13}Discusi'on}{18}
-\contentsline {subsection}{\numberline {2.14}Conclusiones}{19}
-\contentsline {subsection}{\numberline {2.15}Introducci'on}{20}
-\contentsline {subsection}{\numberline {2.16}Desarrollo}{21}
-\contentsline {subsection}{\numberline {2.17}Pseudoc'odigos}{22}
-\contentsline {subsection}{\numberline {2.18}An'alisis de complejidad}{23}
-\contentsline {subsection}{\numberline {2.19}Resultados}{24}
-\contentsline {subsection}{\numberline {2.20}Discusi'on}{25}
-\contentsline {subsection}{\numberline {2.21}Conclusiones}{26}
-\contentsline {subsection}{\numberline {2.22}Introducci'on}{27}
-\contentsline {subsection}{\numberline {2.23}Desarrollo}{28}
-\contentsline {subsection}{\numberline {2.24}Pseudoc'odigos}{29}
-\contentsline {subsection}{\numberline {2.25}An'alisis de complejidad}{30}
-\contentsline {subsection}{\numberline {2.26}Resultados}{31}
-\contentsline {subsection}{\numberline {2.27}Discusi'on}{32}
-\contentsline {subsection}{\numberline {2.28}Conclusiones}{33}
-\contentsline {section}{\numberline {3}Resultados}{34}
-\contentsline {section}{\numberline {4}Discusi'on}{35}
-\contentsline {section}{\numberline {5}Conclusiones}{36}
-\contentsline {section}{\numberline {6}Referencias}{37}
+\contentsline {section}{\numberline {3}Exacto}{6}
+\contentsline {subsection}{\numberline {3.1}Introducci'on}{7}
+\contentsline {subsection}{\numberline {3.2}Desarrollo}{8}
+\contentsline {subsection}{\numberline {3.3}Pseudoc'odigos}{9}
+\contentsline {subsection}{\numberline {3.4}An'alisis de complejidad}{10}
+\contentsline {subsection}{\numberline {3.5}Resultados}{11}
+\contentsline {subsection}{\numberline {3.6}Discusi'on}{12}
+\contentsline {subsection}{\numberline {3.7}Conclusiones}{13}
+\contentsline {section}{\numberline {4}Goloso}{14}
+\contentsline {subsection}{\numberline {4.1}Introducci'on}{15}
+\contentsline {subsection}{\numberline {4.2}Desarrollo}{16}
+\contentsline {subsection}{\numberline {4.3}Pseudoc'odigos}{17}
+\contentsline {subsection}{\numberline {4.4}An'alisis de complejidad}{18}
+\contentsline {subsection}{\numberline {4.5}Resultados}{19}
+\contentsline {subsection}{\numberline {4.6}Discusi'on}{20}
+\contentsline {subsection}{\numberline {4.7}Conclusiones}{21}
+\contentsline {section}{\numberline {5}B'usqueda Local}{22}
+\contentsline {subsection}{\numberline {5.1}Introducci'on}{23}
+\contentsline {subsection}{\numberline {5.2}Desarrollo}{24}
+\contentsline {subsection}{\numberline {5.3}Pseudoc'odigos}{25}
+\contentsline {subsection}{\numberline {5.4}An'alisis de complejidad}{26}
+\contentsline {subsection}{\numberline {5.5}Resultados}{27}
+\contentsline {subsection}{\numberline {5.6}Discusi'on}{28}
+\contentsline {subsection}{\numberline {5.7}Conclusiones}{29}
+\contentsline {section}{\numberline {6}GRASP}{30}
+\contentsline {subsection}{\numberline {6.1}Introducci'on}{31}
+\contentsline {subsection}{\numberline {6.2}Desarrollo}{32}
+\contentsline {subsection}{\numberline {6.3}Pseudoc'odigos}{33}
+\contentsline {subsection}{\numberline {6.4}An'alisis de complejidad}{34}
+\contentsline {subsection}{\numberline {6.5}Resultados}{35}
+\contentsline {subsection}{\numberline {6.6}Discusi'on}{36}
+\contentsline {subsection}{\numberline {6.7}Conclusiones}{37}
+\contentsline {section}{\numberline {7}Resultados}{38}
+\contentsline {section}{\numberline {8}Discusi'on}{39}
+\contentsline {section}{\numberline {9}Conclusiones}{40}
+\contentsline {section}{\numberline {10}Referencias}{41}
