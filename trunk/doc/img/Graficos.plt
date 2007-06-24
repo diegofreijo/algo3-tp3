@@ -7,10 +7,27 @@ set term png
 
 # Exacto:
 	# Cantidad de instrucciones
+	set xlabel "Densidad del grafo"
+	set ylabel "Cantidad de instrucciones"
+	set output "Exacto(instrucciones).png"
+	plot '..\..\dat\Exacto\Exacto(instrucciones).dat' tit 'Cantidad de instrucciones en la práctica'
 	
 # Goloso:
 	# Comparacion exacto
+	set xlabel "Densidad del grafo"
+	set ylabel "Diferencias con el exacto"
+	set output "Goloso(comparacion_exacto).png"
+	plot '..\..\dat\Goloso\Goloso(GvsE).dat' tit 'Diferencias'
 	# Cantidad de instrucciones
+	set xlabel "Densidad del grafo"
+	set ylabel "Cantidad de instrucciones"
+	set output "Goloso(instrucciones).dat.png"
+	plot '..\..\dat\Goloso\Goloso(iteracionesGoloso).dat' tit 'Cantidad de instrucciones en la práctica'
+	# Cantidad de instrucciones por nodos
+	set xlabel "Nodos del grafo"
+	set ylabel "Cantidad de instrucciones"
+	set output "Goloso(instruccionesXnodo).dat.png"
+	plot '..\..\dat\Goloso\Goloso(instruccionesGolosoNodos).dat' tit 'Cantidad de instrucciones en la práctica', 8*(x**2+x) tit 'Teorica Ajustada [8(n^2+n)]', x**2+x tit 'Teorica [n^2+n]'
 	
 # Busqueda Local:
 	# Comparacion de parametros (3D)

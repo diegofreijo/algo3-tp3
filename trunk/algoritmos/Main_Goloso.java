@@ -15,7 +15,7 @@ public class Main_Goloso {
 	public static void main(String[] args) {
 		
 		System.out.println("Leyendo grafos");
-		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", "" ,505);
+		List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", "" ,150);
 		//List<Grafo> completos = Parser.LeerGrafos("completo", 50);
 		
 		Recubrimiento recubrimiento;
@@ -25,32 +25,33 @@ public class Main_Goloso {
 		
 		Estadisticas est_goloso = new Estadisticas();
 		Estadisticas est_exacto = new Estadisticas();
-		Grafico graficoGoloso = new Grafico("Goloso","iteracionesGoloso");
+		Grafico graficoGoloso = new Grafico("Goloso","instruccionesGolosoNodos");
 		Grafico graficoExacto = new Grafico("Goloso","comparacionesExacto");
 		Grafico graficoGvsE = new Grafico("Goloso","GvsE");
 		Cronometro crono = new Cronometro();
 		int i = 1;
 		for(Grafo g : aleatorios)
 		{
+			est_goloso.i = 0;
 			est_exacto.i = 0;
 			System.out.println("Grafo: " + i);
 			i++;
 			//Calcular Densidad para grafico
-			int totalposibles = g.DameNodos()*(g.DameNodos()-1)/2;
-			Integer densidad = g.DameEjes().size()*100/totalposibles;
-			System.out.println("Densidad: " + densidad);
+			//int totalposibles = g.DameNodos()*(g.DameNodos()-1)/2;
+			//Integer densidad = g.DameEjes().size()*100/totalposibles;
+			//System.out.println("Densidad: " + densidad);
 			
 			/*System.out.println("Ejecutando: Goloso");
 			recubrimiento = Goloso.Ejecutar(g, est_goloso);
 			Recubrimientos.add(recubrimiento);
-			Punto2D punto = new Punto2D(densidad,est_goloso.i);
-			graficoGoloso.Agregar(punto);
-			//int tamañogoloso = recubrimiento.nodos.size();*/
+			Punto2D punto = new Punto2D(g.DameNodos(),est_goloso.i);
+			graficoGoloso.Agregar(punto);*/
+			//int tamañogoloso = recubrimiento.nodos.size();
 					
 			System.out.println("Ejecutando: Exacto");
 			recubrimiento = Exacto.Ejecutar(g,est_exacto);
 			RecubrimientosExactos.add(recubrimiento);
-			Punto2D puntoExacto = new Punto2D(densidad,recubrimiento.nodos.size());
+			Punto2D puntoExacto = new Punto2D(g.DameNodos(),est_exacto.i);
 			graficoExacto.Agregar(puntoExacto);
 			//Punto2D puntoGvsE = new Punto2D(densidad,est_exacto.i);
 			//graficoGvsE.Agregar(puntoGvsE);
