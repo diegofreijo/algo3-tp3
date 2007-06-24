@@ -37,6 +37,11 @@ if(error == "false"):
         instrucciones = instrucciones.partition(" ")
         instrucciones = instrucciones[2]
         print "La cantidad de instrucciones basicas fueron:" + instrucciones
+        out = open("out/Tp3(exacto).out","r")
+        resultado = out.readline()
+        resultado = resultado.partition(" ")
+        resultado = resultado[2]
+        print "La cantidad de nodos necesarios para realizar el recubrimiento fue:" + instrucciones
     if algo == 2:
         print "Corriendo Goloso"
         tiempoInicial = time.time()
@@ -49,16 +54,21 @@ if(error == "false"):
         instrucciones = instrucciones.partition(" ")
         instrucciones = instrucciones[2]
         print "La cantidad de instrucciones basicas fueron:" + instrucciones
+        out = open("out/Tp3(goloso).out","r")
+        resultado = out.readline()
+        resultado = resultado.partition(" ")
+        resultado = resultado[2]
+        print "La cantidad de nodos necesarios para realizar el recubrimiento fue:" + instrucciones
     if algo == 3:
-        listo = "0"
-        while listo = "0":
+        listo = 0
+        while listo == 0:
             meto = raw_input("Cuantos nodos quiere agregar?" )
             saco = raw_input("Cuantos nodos quiere sacar?" )
             if saco <= meto:
-                listo = "0"
+                listo = 0
                 print "La cantidad que saca tiene que ser mayor a la que ingresa"
             else:
-                listo = "1"
+                listo = 1
         tiempoInicial = time.time()
         proc = subprocess.Popen("java -jar busqueda_local.jar " + caso + " " + saco + " " + meto, shell=True)
         proc.wait()
@@ -69,6 +79,11 @@ if(error == "false"):
         instrucciones = instrucciones.partition(" ")
         instrucciones = instrucciones[2]
         print "La cantidad de instrucciones basicas fueron:" + instrucciones
+        out = open("out/Tp3(busqueda_local).out","r")
+        resultado = out.readline()
+        resultado = resultado.partition(" ")
+        resultado = resultado[2]
+        print "La cantidad de nodos necesarios para realizar el recubrimiento fue:" + instrucciones
     if algo == 4:
         print "Corriendo GRASP"
         tiempo = time()
