@@ -77,7 +77,7 @@ public class Pruebas_BusquedaLocal
 		
 		
 		// Grafico de comparacion de parametros
-		System.out.println("Generando grafico: comparacion de parametros");
+		System.out.println("Generando grafico de comparacion de parametros");
 		grafico_comparacion_parametros = new Grafico("BusquedaLocal", "comparacion_parametros");
 		it = puntajes.keySet().iterator();
 		while(it.hasNext())
@@ -127,7 +127,8 @@ public class Pruebas_BusquedaLocal
 		Parser.EscribirPlano("BusquedaLocal", "mejores_parametros", resultados);
 		System.out.println("Mejor parametro elegido: " + mejor);
 		
-		System.out.println("Tiempo de ejecucion de la primer tanda: " + cronometro.VerSegundos() + " seg");
+		System.out.println("\nTiempo de ejecucion de la primer tanda: " + cronometro.VerSegundos() + " seg");
+		System.out.println("-------------------------------------\n");
 		cronometro.Resetear();
 		
 		
@@ -171,8 +172,8 @@ public class Pruebas_BusquedaLocal
 		
 		
 		
-		System.out.println("Tiempo de ejecucion de la segunda tanda: " + cronometro.VerSegundos() + " seg");
-		System.out.println("\n-------------------------------------");
+		System.out.println("\nTiempo de ejecucion de la segunda tanda: " + cronometro.VerSegundos() + " seg");
+		System.out.println("-------------------------------------\n");
 		System.out.println("Fin de las pruebas");
 	}
 
