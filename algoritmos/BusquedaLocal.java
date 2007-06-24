@@ -13,12 +13,18 @@ public abstract class BusquedaLocal
 	private static Estadisticas e;
 	private static ParametrosBL parametros;
 	
-	public static Recubrimiento Ejecutar(Grafo g, ParametrosBL par, Estadisticas est)
+	public static Recubrimiento Ejecutar(Grafo g, ParametrosBL par, ParametrosGRASP p ,Estadisticas est)
 	{
 		e = est;
 		parametros = par;
 		
-		Recubrimiento solucion = ConstruirSolucionInicial(g); ++e.i;
+		Recubrimiento solucion = new Recubrimiento(g.DameNodos(),e);
+		
+		if(p == null){
+			solucion = ConstruirSolucionInicial(g); ++e.i;
+		} else {
+			solucion = GRASP.GolosoRandom.Ejecutar(g, p.porcentaje_goloso);
+		}
 		Recubrimiento mejor_vecino;
 		
 		while((mejor_vecino = VecinoMejor(solucion, parametros.porcentaje_cuantos_saco, parametros.porcentaje_cuantos_agrego, g)) != null)
