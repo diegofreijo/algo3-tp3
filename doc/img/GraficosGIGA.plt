@@ -44,11 +44,32 @@ set term png
 	# Comparacion de parametros (porcentaje_goloso)
 		set xlabel "Cantidad de nodos"
 		set ylabel "Cantidad de instrucciones"
-		set output "GRASP(comparacion_parametros).dat.png"
-		plot '..\..\dat\GRASP\GRASP(comparacion_parametros).dat' tit 'Diferencias'
+		set output "GRASP(comparacion_parametros).png"
+		plot '..\..\dat\GRASP\GRASP(comparacion_parametros).dat' tit 'Comparacion Parametros'
 		
-	# Cantidad de instrucciones del mejor parametro
-	# Comparacion con exacto
+	# Cantidad de instrucciones del mejor parametro por densidad
+		set xlabel "Densidad"
+		set ylabel "Cantidad de instrucciones"
+		set output "GRASP(instrucciones_ejes).png"
+		plot '..\..\dat\GRASP\GRASP(instrucciones_ejes).dat' tit 'Cantidad de instrucciones'
+		
+	# Cantidad de instrucciones del mejor parametro por nodos
+		set xlabel "Cantidad de nodos"
+		set ylabel "Cantidad de instrucciones"
+		set output "GRASP(instrucciones_nodos).png"
+		plot '..\..\dat\GRASP\GRASP(instrucciones_nodos).dat' tit 'Cantidad de instrucciones'
+		
+	# Comparacion con exacto nodos
+		set xlabel "Cantidad de nodos"
+		set ylabel "Diferencias"
+		set output "GRASP(comparacion_exacto_nodos).png"
+		plot '..\..\dat\GRASP\GRASP(comparacion_exacto_nodos).dat' tit 'Diferencias'
+		
+	# Comparacion con exacto ejes
+		set xlabel "Densidad del grafo
+		set ylabel "Diferencias"
+		set output "GRASP(comparacion_exacto_ejes).png"
+		plot '..\..\dat\GRASP\GRASP(comparacion_exacto_ejes).dat' tit 'Diferencias'
 	
 # Finales:
 	# Comparacion de las 3 heuristicas:

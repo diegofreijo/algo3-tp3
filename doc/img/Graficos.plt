@@ -7,8 +7,12 @@ set term png
 
 # Exacto:
 	# Cantidad de instrucciones
-	# Cantidad de instrucciones x nodos
 	set xlabel "Densidad del grafo"
+	set ylabel "Cantidad de instrucciones"
+	set output "Exacto(InstruccionesExactoxNodo).png"
+	plot '..\..\dat\Exacto\Exacto(Instrucciones).dat' tit 'Cantidad de instrucciones en la práctica'
+	# Cantidad de instrucciones x nodos
+	set xlabel "Nodos del grafo"
 	set ylabel "Cantidad de instrucciones"
 	set output "Exacto(InstruccionesExactoxNodo).png"
 	plot '..\..\dat\Exacto\Exacto(InstruccionesExactoxNodo).dat' tit 'Cantidad de instrucciones en la práctica'
@@ -30,7 +34,7 @@ set term png
 		set xlabel "Densidad del grafo"
 		set ylabel "Cantidad de instrucciones"
 		set output "Goloso(instrucciones).png"
-		plot '..\..\dat\Goloso\Goloso(iteracionesGoloso).dat' tit 'Cantidad de instrucciones en la práctica'
+		plot '..\..\dat\Goloso\Goloso(iteracionesGoloso).dat' tit 'Cantidad de instrucciones en la práctica', 2*(20**2+20*x+x) tit 'Teorica ajustada'
 	
 	# Cantidad de instrucciones por nodos
 		set xlabel "Nodos del grafo"
