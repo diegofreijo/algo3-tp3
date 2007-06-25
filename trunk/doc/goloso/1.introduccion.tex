@@ -1,1 +1,28 @@
 \subsection{Introducci'on}
+Un algoritmo goloso es aquel que soluciona un problema mediante la busqueda del optimo local en cada etapa de ejecucion esperando tener al optimo global del
+problema.
+
+El algoritmo goloso consta de varias partes:
+
+\begin{itemize}
+\item  Un conjunto de candidatos, desde donde se va a formar la solucion
+\item  Una funcion de seleccion, que elige al mejor candidato para agregar a la solucion
+\item  Una funcion de fiabilidad, que dice si el candidato contribuye a la solucion
+\item Una funcion objetivo, que le asigna un valor a la solucion o a la parcial
+\item Una funcion solucion, que dice si se llego a una solucion completa
+
+\end{itemize}
+
+Los problemas para los cuales el algoritmo goloso funciona mejor son aquellos que cumplen con las siguientes propiedades:
+
+\begin{itemize}
+\item Greedy Choice Property
+
+Esto quiere decir que el problema permite que podamos buscar siempre una solucion optima local, por su naturaleza. Este algoritmo iterativamente crea una 
+solucion golosa despues de la otra, haciendo que el problema se reduzca. Un algoritmo goloso nunca reconsidera sus elecciones.
+
+\item  Optimal Substructure 
+
+Una subestructura optima existe si una optima solucion al problema contiene optimas soluciones a sus sub-problemas.
+
+\end{itemize}

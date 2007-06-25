@@ -1,1 +1,12 @@
 \subsection{Pseudoc'odigos}
+
+\algoritmo{Goloso}{Algoritmo Goloso para resolver Vertex Cover}{$O(n^2)$}
+
+\begin{algorithmic}[1]
+\STATE Sacar nodos aislados de g 
+\WHILE{¬EsRecubrimiento($solucion$)}
+\STATE Buscar nodo con mayor cantidad de vecinos 
+\STATE Agregar el nodo a la solucion
+\STATE Sacar el nodo de la lista de nodos
+\ENDWHILE
+\end{algorithmic}
