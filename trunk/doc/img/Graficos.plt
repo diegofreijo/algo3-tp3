@@ -15,11 +15,10 @@ set term png
 	
 # Goloso:
 	# Comparacion exacto
-	# Comparacion exacto por nodos
 	set xlabel "Densidad del grafo"
 	set ylabel "Diferencias con el exacto"
-	set output "Goloso(GvsExnodos).png"
-	plot '..\..\dat\Goloso\Goloso(GvsExnodos).dat' tit 'Diferencias'
+	set output "Goloso(GvsE).png"
+	plot '..\..\dat\Goloso\Goloso(comparacionesGoloso).dat' tit 'Diferencias'
 	# Comparacion exacto por nodos
 	set xlabel "Nodos del grafo"
 	set ylabel "Diferencias con el exacto"
