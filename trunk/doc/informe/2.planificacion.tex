@@ -1,1 +1,36 @@
 \section{Planificaci'on}
+En esta seccion se va a explicar las decisiones tomadas antes de arrancar a realizar el trabajo.
+Primero se decidio hacer las pruebas sobre 4 tipos de grafos:
+
+\begin{itemize}
+\item Completos
+\item Rueda
+\item Bipartito
+\item Aleatorio
+
+\end{itemize}}
+
+Los .in de prueba fueron implementados en python para poder realizar mayor cantidad de los mismos. En los Completos varia la cantidad de nodos, asi como tambien en los Rueda. En los Bipartito varia la densidad del grafo y la cantidad de nodos. En el aleatorio tambien varian la densidad y la cantidad.
+Se consideraron estos a priori, porque se estimo que eran casos diferentes entre si y podrian arrojar algunas conclusiones al finalizar el trabajo.
+El aleatorio fue el mas usado para las pruebas, ya que permite tener una mejor muestra de comportamiento ante diferentes densidades y cantidades de nodos.
+
+Para mejor implementacion, se desarrollaron las siguientes clases:
+
+\begin{itemize}
+\item Recubrimiento
+
+Para poder manejar mejor las listas de nodos, teniendo el metodo EsRecubrimiento y un comparador. Tambien guarda el objeto Estadistica, para ir aumentando el contador de instrucciones.
+
+\item Estadisticas
+
+Simplemente una clase con un entero que funciona como acumulador de instrucciones para cada ejecucion.
+
+\item Grafico
+
+El encargado de sacar al .dat las estadisticas resultantes de la ejecucion
+
+\item Parser
+
+Se encarga de leer los grafos y escribir la respuesta.
+
+\end{itemize}}
