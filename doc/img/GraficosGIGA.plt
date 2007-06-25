@@ -41,23 +41,18 @@ set term png
 		plot '..\..\dat\BusquedaLocal\BusquedaLocal(comparacion_exacto_nodos).dat' tit 'Diferencias'
 
 # GRASP:
-	# Comparacion de parametros (porcentaje_goloso)
-		set xlabel "Cantidad de nodos"
-		set ylabel "Cantidad de instrucciones"
-		set output "GRASP(comparacion_parametros).png"
-		plot '..\..\dat\GRASP\GRASP(comparacion_parametros).dat' tit 'Comparacion Parametros'
-		
+	
 	# Cantidad de instrucciones del mejor parametro por densidad
 		set xlabel "Densidad"
 		set ylabel "Cantidad de instrucciones"
 		set output "GRASP(instrucciones_ejes).png"
-		plot '..\..\dat\GRASP\GRASP(instrucciones_ejes).dat' tit 'Cantidad de instrucciones'
+		plot '..\..\dat\GRASP\GRASP(instrucciones_ejes).dat' tit 'Cantidad de instrucciones', 64000*x/(40*39/2)  tit 'Teórica [40^3 * m / (40*39/2)]', 240*64000*x/(40*39/2)  tit 'Teórica ajustada [240 * Teórica]'
 		
 	# Cantidad de instrucciones del mejor parametro por nodos
 		set xlabel "Cantidad de nodos"
 		set ylabel "Cantidad de instrucciones"
 		set output "GRASP(instrucciones_nodos).png"
-		plot '..\..\dat\GRASP\GRASP(instrucciones_nodos).dat' tit 'Cantidad de instrucciones'
+		plot '..\..\dat\GRASP\GRASP(instrucciones_nodos).dat' tit 'Cantidad de instrucciones', x*x*x*600 tit 'Teórica[n^3 * 600]'
 		
 	# Comparacion con exacto nodos
 		set xlabel "Cantidad de nodos"
