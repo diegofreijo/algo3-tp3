@@ -32,11 +32,11 @@ public class Pruebas_GRASP
 		
 		// Ejecuto prueba por prueba. Cada una genera un grafico.
 		ParametrosGRASP mejor = CorrerComparacionesEntreParametros();
-		/*CorrerInstruccionesEjes(mejor);
+		CorrerInstruccionesEjes(mejor);
 		CorrerInstruccionesNodos(mejor);
 		CorrerComparacionEjes(mejor);
 		CorrerComparacionNodos(mejor);
-		*/
+		
 		System.out.println("\nTiempo de ejecucion - TODAS las pruebas: " + cronometro.VerSegundos() + " seg");
 		System.out.println("-------------------------------------\n");
 		
@@ -171,10 +171,10 @@ public class Pruebas_GRASP
 		{
 			System.out.print((i+1) + " ");
 			Integer densidad = grafos.get(i).DameEjes().size() * 100 / (grafos.get(i).DameNodos() * (grafos.get(i).DameNodos() - 1) / 2);
-			estadisticas.Resetar();
+			estadisticas.Resetar();	
 			
 			// Corro el algoritmo para contar instrucciones
-			GRASP.Ejecutar(grafos.get(i), mejor, null, estadisticas);
+			GRASP.Ejecutar(grafos.get(i), mejor, estadisticas);
 			
 			// Agrego la cantidad de instrucciones al grafico
 			grafico.Agregar(new Punto2D(densidad, estadisticas.i));
@@ -209,9 +209,8 @@ public class Pruebas_GRASP
 			System.out.print((i+1) + " ");
 			Integer cant_nodos = i / 5 + 1;
 			estadisticas.Resetar();
-			
-			// Corro el algoritmo para contar instrucciones
-			GRASP.Ejecutar(grafos.get(i), mejor, null, estadisticas);
+			//Corro el algoritmo para contar instrucciones
+			GRASP.Ejecutar(grafos.get(i), mejor, estadisticas);
 			
 			// Agrego la cantidad de instrucciones al grafico
 			grafico.Agregar(new Punto2D(cant_nodos, estadisticas.i));
@@ -247,7 +246,7 @@ public class Pruebas_GRASP
 			Integer densidad = grafos.get(i).DameEjes().size() * 100 / (grafos.get(i).DameNodos() * (grafos.get(i).DameNodos() - 1) / 2);
 			
 			// Corro los 2 algoritmos en busqueda de diferencias
-			Integer diferencias = GRASP.Ejecutar(grafos.get(i), mejor, null, estadisticas).Tamano() - Exacto.Ejecutar(grafos.get(i), estadisticas).Tamano();
+			Integer diferencias = GRASP.Ejecutar(grafos.get(i), mejor, estadisticas).Tamano() - Exacto.Ejecutar(grafos.get(i), estadisticas).Tamano();
 			
 			// Agrego las diferencias al grafico
 			grafico.Agregar(new Punto2D(densidad, diferencias));
@@ -283,7 +282,7 @@ public class Pruebas_GRASP
 			Integer cant_nodos = i / 5 + 1;
 			
 			// Corro los 2 algoritmos en busqueda de diferencias
-			Integer diferencias = GRASP.Ejecutar(grafos.get(i), mejor, null, estadisticas).Tamano() - Exacto.Ejecutar(grafos.get(i), estadisticas).Tamano();
+			Integer diferencias = GRASP.Ejecutar(grafos.get(i), mejor, estadisticas).Tamano() - Exacto.Ejecutar(grafos.get(i), estadisticas).Tamano();
 			
 			// Agrego las diferencias al grafico
 			grafico.Agregar(new Punto2D(cant_nodos, diferencias));
