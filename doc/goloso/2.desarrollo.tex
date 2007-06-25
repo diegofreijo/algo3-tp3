@@ -1,1 +1,15 @@
 \subsection{Desarrollo}
+Esta heuristica fue implementada de la siguiente manera:
+
+Primero se definio la funcion de seleccion. Esta selecciona al nodo que tenga mayor cantidad de vecinos en el grafo. Para realizar esto, la funcion NodoMayorGrado, itera sobre la lista de nodos, preguntando en cada paso si la lista de vecinos es mas grande que la de la iteracion anterior. Luego, devuelve el nodo elegido.
+
+La funcion de objetivo es EsRecubrimiento. Esta verifica que para cada eje, por lo menos uno de los extremos este en la solucion.
+
+Antes de iniciar el ciclo, se sacan los aislados del grafo, ya que estos no modifican la solucion final, debido a que no tienen vecinos, y esto haria que las iteraciones sean mas, influyendo en la performance del algoritmo. 
+Los aislados se sacan en la funcion SacarAislados, que recibe como parametro el grafo y la cantidad de nodos y guarda en una lista de Nodos, aquellos que si tienen vecinos.
+
+Ya en el ciclo, luego de elegir el nodo de mayor grado, este se agrega a la solucion, y se saca de la lista de nodos.
+
+Una vez cumplida la funcion objetivo, se devuelve la solucion como un objeto de la clase Recubrimiento, implementada para mejor manejo de los datos para las pruebas.
+
+Una optimizacion que se encontro investigando sobre el tema, es tambien, en la funcion de seleccion, hacer una resta entre la cantidad de vecinos del nodo y los ejes que este nodo cubriria que ya estan en la solucion. Esto reduciria la cantidad de iteraciones y mejoraria la solucion, pero se decidio no implementarlo ya que se habian realizado ya todas las pruebas y tomaria mucho tiempo realizar todos los graficos y corridas otra vez, mas que nada las que comparan con el algoritmo Exacto.

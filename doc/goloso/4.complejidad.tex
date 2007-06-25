@@ -1,1 +1,8 @@
 \subsection{An'alisis de complejidad}
+La complejidad del algoritmo goloso es bastante simple. Este algoritmo lo primero que realiza es sacar los aislados del grafo, estos son los nodos que no tienen vecinos.
+Por consiguiente, estos nodos no modifican al vertex cover ya que no recubren ningun eje.
+Esto lo realiza en $O(n)$, recorriendo toda la lista de nodos y sacando los que no se van a usar.
+Luego, lo que realiza el algoritmo es un ciclo en donde se le va agregando a la solucion el nodo que mayor cantidad de vecinos tenga. Este ciclo se repite
+hasta que la solucion ya es un recubrimiento. Este ciclo se repite, en peor caso, n veces. Dentro del ciclo, la funcion que busca al nodo con mas vecino, tiene complejidad $O(n)$ y la funcion que verifica si es recubrimiento es $O(m)$, ya que itera sobre la lista de ejes.
+Las demas operaciones son en $O(1)$. 
+La complejidad resultante es de $O(n(n+m)+n) \rightarrow O(n^2+n*m+n) \rightarrow O(n^2)$ 
