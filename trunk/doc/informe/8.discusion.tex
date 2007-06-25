@@ -1,1 +1,11 @@
 \section{Discusi'on}
+En las primeras cuatro figuras, esta graficado el tamaño de la solucion, para cada tipo de grafo, en los 3 algoritmos.
+En el grafo Rueda, tienen todos un rendimiento similar, ya que es un grafo altamente denso, y son necesarios muchos nodos para recubrirlo totalmente.
+En el grafo Aleatorio, GRASP y Busqueda Local se comportan similarmente, aunque hay casos en los que el goloso los supera. En este caso es dificil de analizar, ya que son random los casos generados, pero se puede observar que cuanto mas grande es la cantidad de nodos del grafo, mas grande es la solucion golosa, creciendo casi linealmente.
+En el grafo Completo, se comportan similar a la rueda, por la misma razon que el anterior, con una leve disminucion en el tamaño de la solucion.
+En el grafo Bipartito, sucede lo mismo, crece casi linealmente, con una leve ventaja del BL con respecto a GRASP.
+
+
+En las siguiente figuras, se grafica la cantidad de instrucciones por tipo de grafo, comparando los 3 algoritmo.
+En Rueda, se puede observar la gran diferencia que le saca GRASP a BL y a Goloso, siendo este ultimo, el que menos instrucciones realiza.
+En las siguientes familias, se cumple lo explicado en rueda, con mayor o menor margen para GRASP por encima de Goloso.

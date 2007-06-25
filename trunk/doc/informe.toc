@@ -20,21 +20,25 @@
 \contentsline {section}{\numberline {5}B'usqueda Local}{21}
 \contentsline {subsection}{\numberline {5.1}Introducci'on}{21}
 \contentsline {subsection}{\numberline {5.2}Desarrollo}{22}
+\contentsline {subsubsection}{\numberline {5.2.1}El algoritmo}{22}
+\contentsline {subsubsection}{\numberline {5.2.2}Las pruebas}{23}
 \contentsline {subsection}{\numberline {5.3}Pseudoc'odigos}{24}
 \contentsline {subsection}{\numberline {5.4}An'alisis de complejidad}{25}
-\contentsline {subsubsection}{\numberline {5.4.1}MejorVecino}{25}
-\contentsline {subsection}{\numberline {5.5}Resultados}{26}
-\contentsline {subsection}{\numberline {5.6}Discusi'on}{27}
-\contentsline {subsection}{\numberline {5.7}Conclusiones}{28}
-\contentsline {section}{\numberline {6}GRASP}{29}
-\contentsline {subsection}{\numberline {6.1}Introducci'on}{29}
-\contentsline {subsection}{\numberline {6.2}Desarrollo}{30}
-\contentsline {subsection}{\numberline {6.3}Pseudoc'odigos}{31}
-\contentsline {subsection}{\numberline {6.4}An'alisis de complejidad}{32}
-\contentsline {subsection}{\numberline {6.5}Resultados}{33}
-\contentsline {subsection}{\numberline {6.6}Discusi'on}{34}
-\contentsline {subsection}{\numberline {6.7}Conclusiones}{35}
-\contentsline {section}{\numberline {7}Resultados}{36}
-\contentsline {section}{\numberline {8}Discusi'on}{37}
-\contentsline {section}{\numberline {9}Conclusiones}{38}
-\contentsline {section}{\numberline {10}Referencias}{39}
+\contentsline {subsubsection}{\numberline {5.4.1}SolucionInicial}{25}
+\contentsline {subsubsection}{\numberline {5.4.2}MejorVecino}{25}
+\contentsline {subsection}{\numberline {5.5}BusquedaLocal}{26}
+\contentsline {subsection}{\numberline {5.6}Resultados}{27}
+\contentsline {subsection}{\numberline {5.7}Discusi'on}{30}
+\contentsline {subsection}{\numberline {5.8}Conclusiones}{31}
+\contentsline {section}{\numberline {6}GRASP}{32}
+\contentsline {subsection}{\numberline {6.1}Introducci'on}{32}
+\contentsline {subsection}{\numberline {6.2}Desarrollo}{33}
+\contentsline {subsection}{\numberline {6.3}Pseudoc'odigos}{34}
+\contentsline {subsection}{\numberline {6.4}An'alisis de complejidad}{35}
+\contentsline {subsection}{\numberline {6.5}Resultados}{36}
+\contentsline {subsection}{\numberline {6.6}Discusi'on}{37}
+\contentsline {subsection}{\numberline {6.7}Conclusiones}{38}
+\contentsline {section}{\numberline {7}Resultados}{39}
+\contentsline {section}{\numberline {8}Discusi'on}{43}
+\contentsline {section}{\numberline {9}Conclusiones}{44}
+\contentsline {section}{\numberline {10}Referencias}{45}
