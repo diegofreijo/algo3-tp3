@@ -43,7 +43,7 @@ public abstract class GRASP
 			}
 			else
 			{
-				++iteraciones_sin_cambios;	
+				++iteraciones_sin_cambios;
 			}
 		}
 		while(!CondicionesDeParada(iteraciones_sin_cambios, iteracion_actual));
