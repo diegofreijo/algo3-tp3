@@ -1,1 +1,23 @@
 \subsection{Pseudoc'odigos}
+\algoritmo{Exacto}{Algoritmo Exacto para resolver Vertex Cover}{$O(2^n)$}
+
+\begin{algorithmic}[1]
+\STATE Sacar nodos aislados de g 
+\STATE Ejecutar exactoRecursivo con nodos, solucion vacia y solucion minima igual a los nodos  
+\end{algorithmic}
+
+\algoritmo{ExactoRecursivo}{Algoritmo ExactoRecursivo}{$O(2^n)$}
+
+\begin{algorithmic}[1]
+\IF {Es recubrimiento la solucion?}
+	\IF {La solucion es menor a la minima?}
+		\STATE Devolver la solucion
+	\ELSE
+		\STATE Devolver la minima
+	\ENDIF
+\ELSIF {Quedan nodos?}
+	\STATE Devolver la menor solucion de ejecutar el ExactoRecursivo agregandole un nodo o sin agregar
+\ELSE
+	\STATE Devolver minima
+\ENDIF
+\end{algorithmic}

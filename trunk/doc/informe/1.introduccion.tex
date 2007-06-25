@@ -1,1 +1,44 @@
 \section{Introducci'on}
+El problema planteado para resolver es el llamado "Vertex Cover". Este consiste en encontrar un subconjunto de nodos tal que para todos los ejes del grafo,
+por lo menos uno de los nodos del subconjunto sea extremo de este.
+Para dar un ejemplo, en un grafo asi
+
+\imagen{img/grafoIntro.png}{6}{Grafo Ejemplo}
+
+los nodos {1,3,5,6} son un vertex cover, pero tambien lo es el {2,4,5}.
+
+Nuestro objetivo es, por medio de heuristicas (descriptas mas adelante), tratar de llegar al minimo vertex cover. Este es el minimo subconjunto que cumpla
+con la condicion.
+
+Este problema pertenece a la familia de los problemas NP-Completos en la teoria de complejidades y es uno de los 21 problemas NP-Completos de Karp. Los
+problemas NP-Completos son los mas dificiles de la familia de los NP ("non-deterministic polynomial time").
+
+Al no tener solucion en tiempo polinomico (es decir de la forma $n^k$), en un grafo medianamente chico, el tiempo de ejecucion puede llevar mucho tiempo.
+Por ejemplo, un grafo de 50 nodos, va a realizar, en el caso del algoritmo exacto mas conocido (o sea de complejidad $O(2^n)$), $2^{50}$ operaciones, es decir
+1.125.899.906.842.624 operaciones. Aproximando una cantidad de operaciones por segundo de 1.000.000, tardaria mas de 357020 siglos en dar una solucion exacta.
+Por mas que se tenga una maquina 100 veces mas rapida, igual tardaria mucho, o sea mas de 3570 siglos.	
+
+Por este motivo, se implementaron diferentes heuristicas (algoritmo que provee una combinacion de buena solucion y rapidez de ejecucion, pero sin garantizar,
+que la respuesta sea correcta).
+
+La primera de ellas fue la heuristica golosa. Un algoritmo goloso es aquel que, para resolver el problema, hace una seleccion local optima en cada iteracion
+del mismo, con el objetivo de buscar un optimo global.
+En el caso del vertex cover, la funcion de seleccion optima local del goloso es buscar aquel nodo que tenga mayor cantidad de vecinos, con lo que se espera
+que poniendo estos nodos, se llegue mas rapido a recubrir todo el grafo.
+En el caso de un grafo rueda, por ejemplo, este algoritmo cumple con ser el minimo vertex cover, pero en los algoritmos aleatorios no siempre cumple con
+ese requisito (ver mas adelante en los graficos).
+
+
+La segunda heuristica implementada fue busqueda local. Esta consiste en, a partir de una solucion inicial, moverse a traves de diferentes soluciones hasta
+que no aparezca una solucion mejor en ninguno de sus vecinos o hasta que se cumpla una condicion de parada (puede ser por tiempo o por cantidad de iteraciones
+realizadas).
+Graficando el problema como una funcion, esta heuristica busca un maximo o minimo local (dependiendo lo que se quiera realizar), que se espera que sea tambien
+el global, aunque no siempre coincide.
+
+
+La tercera heuristica usada fue GRASP (Greedy randomized adaptive search procedure). Esta heuristica consiste en iteraciones hechas a partir de  construcciones
+de una solucion inicial tomada de un algoritmo goloso random y una consiguiente secuencia de mejoras a partir de de la busqueda local.
+
+
+A continuacion se explica con mayor detalle cada uno de los algoritmos implementados, asi como tambien su pseudocodigo, complejidad y conclusiones.
+Para finalizar, se evaluaran las 3 alternativas y se comparara con el exacto para observar cual fue la que mas se acerco a la solucion optima.

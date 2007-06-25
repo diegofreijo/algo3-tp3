@@ -1,1 +1,4 @@
 \subsection{Introducci'on}
+El algoritmo exacto que resuelve Vertex Cover es de los llamados algoritmos "malos", ya que no resuelve el problema en tiempo polinomico. Esto se debe a que este problema esta dentro de la familia de los NP-Completos, para los cuales todavia no se les encontro una solucion polinomica, y ni siquiera se sabe si va a ser posible esto.
+En investigaciones realizadas (ver la carpeta bib del cd), se encontro una solucion en tiempo menor a $2^n$, aunque sigue siendo exponencial. Este algoritmo se comporta asi en grafos chicos con nodos de grados chicos. 
+Este algoritmo requiere, por ejemplo en nuestras pruebas, mucho tiempo para resolver un grafo. Para citar un caso, en un grafo de 20 nodos con una densidad del 50\% el algoritmo tardo 25 minutos en una Intel Core 2 Duo 1.86Ghz con 2GB RAM DDR2 1000mhz.

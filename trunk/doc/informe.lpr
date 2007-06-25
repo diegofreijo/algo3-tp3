@@ -10,8 +10,8 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=1
+CaretPos.X=141
+CaretPos.Y=9
 CharSet=def
 FileName=informe\1.introduccion.tex
 FoldedLines=
@@ -47,6 +47,34 @@ IsMainFile=no
 Opened=no
 ScrollPos.X=0
 ScrollPos.Y=0
+SearchListCount=0
+ShowSyntax=yes
+SpellChecking=yes
+TabOrder=-1
+UseThesaurus=yes
+WrapLine=yes
+
+[Files\11]
+ActiveFilters=
+Bookmark#0=0
+Bookmark#1=0
+Bookmark#2=0
+Bookmark#3=0
+Bookmark#4=0
+Bookmark#5=0
+Bookmark#6=0
+Bookmark#7=0
+Bookmark#8=0
+Bookmark#9=0
+CaretPos.X=29
+CaretPos.Y=13
+CharSet=def
+FileName=exacto\3.pseudocodigos.tex
+FoldedLines=
+IsMainFile=no
+Opened=no
+ScrollPos.X=0
+ScrollPos.Y=3
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -102,7 +130,11 @@ FoldedLines=
 IsMainFile=no
 Opened=no
 ScrollPos.X=0
+<<<<<<< .mine
+ScrollPos.Y=1
+=======
 ScrollPos.Y=0
+>>>>>>> .r77
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -122,8 +154,13 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
+<<<<<<< .mine
+CaretPos.X=31
+CaretPos.Y=12
+=======
 CaretPos.X=0
 CaretPos.Y=0
+>>>>>>> .r77
 CharSet=def
 FileName=informe\4.goloso.tex
 FoldedLines=
@@ -162,7 +199,7 @@ ScrollPos.Y=0
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=1
+TabOrder=0
 UseThesaurus=yes
 WrapLine=yes
 
@@ -290,8 +327,13 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
+<<<<<<< .mine
+CaretPos.X=0
+CaretPos.Y=19
+=======
 CaretPos.X=0
 CaretPos.Y=0
+>>>>>>> .r77
 CharSet=def
 FileName=informe.tex
 FoldedLines=
@@ -302,12 +344,12 @@ ScrollPos.Y=1
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=0
+TabOrder=1
 UseThesaurus=yes
 WrapLine=yes
 
 [Files]
-Count=11
+Count=12
 
 [Project]
 ActiveFilters=
