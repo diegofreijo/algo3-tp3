@@ -15,8 +15,7 @@ set term png
 	set xlabel "Nodos del grafo"
 	set ylabel "Cantidad de instrucciones"
 	set output "Exacto(InstruccionesExactoxNodo).png"
-	plot '..\..\dat\Exacto\Exacto(InstruccionesExactoxNodo).dat' tit 'Cantidad de instrucciones en la práctica'
-	
+	plot '..\..\dat\Exacto\Exacto(InstruccionesExactoxNodo).dat' tit 'Cantidad de instrucciones en la práctica', 4*((2**x)*x) tit 'Teorica [2^n*n]'	
 # Goloso:
 	# Comparacion exacto
 		set xlabel "Densidad del grafo"
