@@ -13,4 +13,10 @@ Se recibe la soluci'on inicial/anterior $s$ junto con par'ametros de cuantos nod
 Notar que ambas funciones, la que lista vecinos y la que elige alguno de ellos, est'an implementadas juntas. 'Esto es para evitar tener que listar todos los vecinos e ir calculando un vecino simplemente cuando se lo necesite.
 
 
-M'as all'a de los par'ametros que toma la heur'istica ya mencionados anteriormente, cuantos nodos se sacan y cuantos se agregan para el c'alculo de vecinos, se nos ocurrieron otros que se podr'ian llegar implementar
+M'as all'a de los par'ametros que toma la heur'istica ya mencionados anteriormente, cuantos nodos se sacan y cuantos se agregan para el c'alculo de vecinos, se nos ocurrieron otros m'as de menor importancia:
+\begin{itemize}
+\item ¿Mezclar la soluci'on antes de buscarle vecinos? Un posible problema con el que nos encontramos fue que una soluci'on esta condenada a elegir siempre los mismos vecinos, todo dependiendo del orden en el cual le fueron agregados los nodos a su lista. Por eso se podr'ia haber implementado este bit que indica si se deb'ia mezclar la lista o no para ofrecer un mayor rango de alcance. Pero 'esto pod'ia generar que a algunas soluciones sea dif'icil de llegar debido a que siempre la mezcla d'a de cierta forma. Adem'as, se implement'o 'esta mezcla y en la pr'actica no causaba mejoras sino que encima, a veces, empeoraba. Por ello se decidi'o no agregar 'este par'ametro. 
+\item 
+\item 
+
+\end{itemize}

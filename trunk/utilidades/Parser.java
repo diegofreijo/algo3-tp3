@@ -26,7 +26,7 @@ public abstract class Parser
 		
 		for(Integer i = 1; i <= instancias; ++i)
 		{
-			archivo_actual = ruta_in + fs + tipo + fs + (tipo == "aleatorio" ? subtipo + fs : "") + tipo + i.toString() + ".in";
+			archivo_actual = tipo + fs + (tipo == "aleatorio" ? subtipo + fs : "") + tipo + i.toString() + ".in";
 			grafos.add(LeerGrafo(archivo_actual));
 		}
 		
@@ -34,7 +34,7 @@ public abstract class Parser
 	}
 	
 	// Levanta un grafo del archivo de entrada
-	public static Grafo LeerGrafo(String ruta)
+	public static Grafo LeerGrafo(String archivo)
 	{
 		//Grafo ret = new Grafo();
 		int n = 0, m = 0;
@@ -43,7 +43,7 @@ public abstract class Parser
 		
 		try
 	    {
-	        BufferedReader in = new BufferedReader(new FileReader(ruta));
+	        BufferedReader in = new BufferedReader(new FileReader(ruta_in + fs + archivo));
 	    
 	        // Leo el encabezado, los datos del grafo
 	        char[] ca = LeerLinea(in).trim().toCharArray();
