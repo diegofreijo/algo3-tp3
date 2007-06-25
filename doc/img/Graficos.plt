@@ -15,25 +15,28 @@ set term png
 	
 # Goloso:
 	# Comparacion exacto
-	set xlabel "Densidad del grafo"
-	set ylabel "Diferencias con el exacto"
-	set output "Goloso(GvsE).png"
-	plot '..\..\dat\Goloso\Goloso(GvsE).dat' tit 'Diferencias'
+		set xlabel "Densidad del grafo"
+		set ylabel "Diferencias con el exacto"
+		set output "Goloso(GvsE).png"
+		plot '..\..\dat\Goloso\Goloso(GvsE).dat' tit 'Diferencias'
+	
 	# Comparacion exacto por nodos
-	set xlabel "Nodos del grafo"
-	set ylabel "Diferencias con el exacto"
-	set output "Goloso(GvsExnodos).png"
-	plot '..\..\dat\Goloso\Goloso(GvsExnodos).dat' tit 'Diferencias'
+		set xlabel "Nodos del grafo"
+		set ylabel "Diferencias con el exacto"
+		set output "Goloso(GvsExnodos).png"
+		plot '..\..\dat\Goloso\Goloso(GvsExnodos).dat' tit 'Diferencias'
+		
 	# Cantidad de instrucciones
-	set xlabel "Densidad del grafo"
-	set ylabel "Cantidad de instrucciones"
-	set output "Goloso(instrucciones).png"
-	plot '..\..\dat\Goloso\Goloso(iteracionesGoloso).dat' tit 'Cantidad de instrucciones en la práctica'
+		set xlabel "Densidad del grafo"
+		set ylabel "Cantidad de instrucciones"
+		set output "Goloso(instrucciones).png"
+		plot '..\..\dat\Goloso\Goloso(iteracionesGoloso).dat' tit 'Cantidad de instrucciones en la práctica'
+	
 	# Cantidad de instrucciones por nodos
-	set xlabel "Nodos del grafo"
-	set ylabel "Cantidad de instrucciones"
-	set output "Goloso(instruccionesXnodo).png"
-	plot '..\..\dat\Goloso\Goloso(instruccionesGolosoNodos).dat' tit 'Cantidad de instrucciones en la práctica', 8*(x**2+x) tit 'Teorica Ajustada [8(n^2+n)]', x**2+x tit 'Teorica [n^2+n]'
+		set xlabel "Nodos del grafo"
+		set ylabel "Cantidad de instrucciones"
+		set output "Goloso(instruccionesXnodo).png"
+		plot '..\..\dat\Goloso\Goloso(instruccionesGolosoNodos).dat' tit 'Cantidad de instrucciones en la práctica', 8*(x**2+x) tit 'Teorica Ajustada [8(n^2+n)]', x**2+x tit 'Teorica [n^2+n]'
 	
 # Busqueda Local:
 	# Comparacion de parametros (3D)
@@ -46,11 +49,17 @@ set term png
 		set output "BusquedaLocal(comparacion_parametros).png"
 		splot '..\..\dat\BusquedaLocal\BusquedaLocal(comparacion_parametros).dat' tit 'Puntajes'
 
-	# Cantidad de instrucciones del mejor parametro
+	# Cantidad de instrucciones en funcion de los ejes del mejor parametro
 		set xlabel "Densidad del grafo"
 		set ylabel "Cantidad de instrucciones"
-		set output "BusquedaLocal(instrucciones).png"
-		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones).dat' tit 'Cantidad de instrucciones en la práctica'
+		set output "BusquedaLocal(instrucciones_ejes).png"
+		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_ejes).dat' tit 'Cantidad de instrucciones en la práctica'
+		
+	# Cantidad de instrucciones en funcion de los nodos del mejor parametro
+		set xlabel "Cantidad de nodos"
+		set ylabel "Cantidad de instrucciones"
+		set output "BusquedaLocal(instrucciones_nodos).png"
+		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_nodos).dat' tit 'Cantidad de instrucciones en la práctica'
 
 	# Comparacion con exacto del mejor parametro
 		set xlabel "Densidad del grafo"
