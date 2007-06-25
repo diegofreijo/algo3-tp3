@@ -20,7 +20,24 @@ set term png
 	set ylabel "Diferencias con el exacto"
 	set output "Goloso(GvsExnodos).png"
 	plot '..\..\dat\Goloso\Goloso(GvsExnodos).dat' tit 'Diferencias'
+	# Comparacion exacto por nodos
+	set xlabel "Nodos del grafo"
+	set ylabel "Diferencias con el exacto"
+	set output "Goloso(GvsExnodos).png"
+	plot '..\..\dat\Goloso\Goloso(GvsExnodos).dat' tit 'Diferencias'
 	# Cantidad de instrucciones
+<<<<<<< .mine
+	set xlabel "Densidad del grafo"
+	set ylabel "Cantidad de instrucciones"
+	set output "Goloso(instrucciones).png"
+	plot '..\..\dat\Goloso\Goloso(iteracionesGoloso).dat' tit 'Cantidad de instrucciones en la práctica'
+	# Cantidad de instrucciones por nodos
+	set xlabel "Nodos del grafo"
+	set ylabel "Cantidad de instrucciones"
+	set output "Goloso(instruccionesXnodo).png"
+	plot '..\..\dat\Goloso\Goloso(instruccionesGolosoNodos).dat' tit 'Cantidad de instrucciones en la práctica', 8*(x**2+x) tit 'Teorica Ajustada [8(n^2+n)]', x**2+x tit 'Teorica [n^2+n]'
+=======
+>>>>>>> .r62
 	
 # Busqueda Local:
 	# Comparacion de parametros (3D)
