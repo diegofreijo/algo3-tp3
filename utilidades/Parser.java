@@ -34,7 +34,7 @@ public abstract class Parser
 	}
 	
 	// Levanta un grafo del archivo de entrada
-	private static Grafo LeerGrafo(String ruta)
+	public static Grafo LeerGrafo(String ruta)
 	{
 		//Grafo ret = new Grafo();
 		int n = 0, m = 0;
@@ -120,33 +120,24 @@ public abstract class Parser
 		return linea;
     }
 	
-	// Escribe el resultado de una instancia.
-	/*public static void EscribirResultados(List<ResultadoConsulta> resultados)
+	// Escribe el resultado de una 
+	public static void EscribirResultado(Recubrimiento recubrimiento, String ruta_in)
 	{
 		try
 		{
-			BufferedWriter out = new BufferedWriter(new FileWriter(ruta_resultados, true));
-			if(resultados.size() == 1)
-			{
-				out.write(resultados.get(0).toString() + "0");
-			}
-			else
-			{
-				out.write(resultados.get(0).toString());
-				for(int i = 1; i < resultados.size(); ++i)
-				{
-					out.write("1\n" + resultados.get(i).toString());
-				}
-				out.write("0\n");
-			}
+			// Me genero la ruta del archivo .out a partir de como se llamaba el .in
+			String archivo_out = ruta_out + fs + ruta_in.replace(".in", ".out"); 
+			
+			BufferedWriter out = new BufferedWriter(new FileWriter(archivo_out, false));
+			out.write(recubrimiento.nodos.size());
 	        out.close();
 		}
 		catch (IOException e)
 		{
-	    	System.out.println("Error escribiendo los resultados: ");
+	    	System.out.println("Error escribiendo un resultado: ");
 	    	e.printStackTrace();
 		}
-	}*/
+	}
 	
 	// Escribe el dat de un grafico
 	public static void EscribirGrafico(Grafico grafico)

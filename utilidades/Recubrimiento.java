@@ -3,8 +3,7 @@ package utilidades;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Recubrimiento
+public class Recubrimiento implements Comparable<Recubrimiento>
 {
 	public List<Integer> nodos;
 	public Estadisticas e;
@@ -52,5 +51,10 @@ public class Recubrimiento
 	{
 		++e.i;
 		return nodos.size();
+	}
+
+	public int compareTo(Recubrimiento r)
+	{
+		return (this.nodos.equals(r.nodos) ? 0 : -1);
 	}
 }
