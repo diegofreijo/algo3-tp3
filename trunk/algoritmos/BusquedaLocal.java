@@ -1,7 +1,6 @@
 package algoritmos;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import utilidades.Eje;
 import utilidades.Estadisticas;
@@ -13,18 +12,22 @@ public abstract class BusquedaLocal
 	private static Estadisticas e;
 	private static ParametrosBL parametros;
 	
-	public static Recubrimiento Ejecutar(Grafo g, ParametrosBL par, ParametrosGRASP p ,Estadisticas est)
+	public static Recubrimiento Ejecutar(Grafo g, ParametrosBL parametros_entrada, Recubrimiento sol_inicial, Estadisticas est)
 	{
 		e = est;
-		parametros = par;
+		parametros = parametros_entrada;
 		
-		Recubrimiento solucion = new Recubrimiento(g.DameNodos(),e);
+		Recubrimiento solucion = new Recubrimiento(g.DameNodos(), e);
 		
-		if(p == null){
+		if(sol_inicial == null)
+		{
 			solucion = ConstruirSolucionInicial(g); ++e.i;
-		} else {
-			solucion = GRASP.GolosoRandom.Ejecutar(g, p.porcentaje_goloso);
 		}
+		else
+		{
+			solucion = sol_inicial; ++e.i;
+		}
+		
 		Recubrimiento mejor_vecino;
 		
 		while((mejor_vecino = VecinoMejor(solucion, parametros.porcentaje_cuantos_saco, parametros.porcentaje_cuantos_agrego, g)) != null)
@@ -56,7 +59,6 @@ public abstract class BusquedaLocal
     }
 
 	// Precondicion(o tambien llamado "sentido comun"): cuantos_saco > cuantos_agrego
-	// IGUALDAD OBSERVACIONAL
 	private static Recubrimiento VecinoMejor(Recubrimiento solucion, int porcentaje_cuantos_saco, int porcentaje_cuantos_agrego, Grafo g)
     {
 		// Si la solucion actual es vacia, ya fue, no voy a conseguir nada mejor
@@ -106,11 +108,6 @@ public abstract class BusquedaLocal
 		 */ 
 		Recubrimiento vecino_sacando = null; ++e.i;				// Vecino al que le saque nodos
 		Recubrimiento vecino_agregando = null; ++e.i;			// Vecino al que le saque y luego agregue nodos
-		if(parametros.mezclar_nodos_busqueda_vecino)
-		{
-			e.i+=solucion.nodos.size();
-			Collections.shuffle(solucion.nodos);
-		}
 		for(int sacar = 0; sacar < solucion.nodos.size() - cuantos_saco + 1; ++sacar)
 		{
 			++e.i;

@@ -22,7 +22,7 @@ def randomSinCero(a):
 nodos = 1
 densidad = 50
 cantidad = 1
-while nodos <= 20:
+while nodos <= 50:
 	j = 0
 	while j < 5: 
 		arch = open("../../in/aleatorio/aleatorio"+str(cantidad)+".in", 'w')

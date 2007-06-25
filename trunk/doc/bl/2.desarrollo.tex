@@ -1,1 +1,16 @@
 \subsection{Desarrollo}
+Con lo primero que nos cruzamos a la hora de hacer resolver el problema del recubrimieto de ejes mediante 'esta heur'istica fue con la funci'on de vecindad. Y luego de pensarlo bien, notamos que un algoritmo de b'usqueda local es principalmente eso, definir una funci'on de vecindad. 'Esto se debe a que la funci'on objetivo del problema es muy sencilla: dadas dos soluciones (recubrimientos de ejes), la mejor ser'a aquella con menor cantidad de nodos. Pero 'esta ten'ia que ser elaborada con ciertos cuidados:
+
+\begin{itemize}
+\item Deb'ia permitir que cualquier soluci'on pueda ser alcanzada mediante cualquier otra al aplicar finitas veces la funci'on de vecindad, ya que de no ser as'i pod'iamos caer en no conseguir cierta soluci'on si part'iamos de cierta otra inicial. Y como 'esta podria haber sido la 'optima, la heur'istica no hubiese sido exitosa.
+\item No deber'ia devolver una cantidad enorme de vecinas. Y con enorme queremos referirnos a cantidades exponenciales en funci'on de la cantidad de nodos/ejes del grafo. De haber sido as'i, el aplicar la funci'on objetivo a cada una hubiese costado tiempo exponencial, con lo que la heur'istica hubiese perdido su raz'on de existencia que es poseer complejidad polinomial.
+\end{itemize}
+
+Con 'esto en mente, la soluci'on que se opt'o fue la siguiente[\footnote{Para una mayor comprensi'on del lector, dirigirse a la secci'on de pseudoc'odigos}]:
+
+Se recibe la soluci'on inicial/anterior $s$ junto con par'ametros de cuantos nodos se sacan de la soluci'on y cu'antos se agregan ($cs$ y $ca$ respectivamente). Luego se quitan los primeros $cs$ de la lista de nodos del recubrimiento de $s$ y se corrobora si es un recubrimiento. De serlo, se devuelve como mejor vecino (ya que, como la funci'on objetivo es proporcional a la cantidad de nodos del recubrimiento, al sacar una cantidad positiva de 'estos el resultado ser'a siempre mejor). Pero si 'este no es recubrimiento entonces se agregan $ca$ nodos (nuevos, no se incluyen los que se acaban de sacar) para volver a realizar la verificaci'on. Como se supone que la cantidad de nodos que saco es mayor a la que agrego, de ser un recubrimiento al agregar se est'a obteniendo mejor objetvo, por lo que se devuelve 'esta nueva soluci'on. De no serlo, se regresa a $s$ y se quitan 'esta vez $cs$ nodos pero \emph{desfazados} en la lista del recubrimiento por 1 nodo (es decir, el primero ya no se toma m'as pero s'i el 'ultimo). Si no se consigue ning'un vecino mejor despu'es de realizar 'este barrido, entonces se toma a $s$ como la mejor soluci'on alcanzada, y por ende como la soluci'on de la heur'istica.
+
+Notar que ambas funciones, la que lista vecinos y la que elige alguno de ellos, est'an implementadas juntas. 'Esto es para evitar tener que listar todos los vecinos e ir calculando un vecino simplemente cuando se lo necesite.
+
+
+M'as all'a de los par'ametros que toma la heur'istica ya mencionados anteriormente, cuantos nodos se sacan y cuantos se agregan para el c'alculo de vecinos, se nos ocurrieron otros que se podr'ian llegar implementar

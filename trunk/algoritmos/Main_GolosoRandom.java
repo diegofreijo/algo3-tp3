@@ -7,9 +7,10 @@ import utilidades.Recubrimiento;
 
 public class Main_GolosoRandom {
 
-public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 	
-		System.out.println("Leyendo grafos");
+		/*System.out.println("Leyendo grafos");
 		//List<Grafo> aleatorios = Parser.LeerGrafos("aleatorio", 50);
 		//List<Grafo> completos = Parser.LeerGrafos("completo", 50);
 		
@@ -30,7 +31,8 @@ public static void main(String[] args) {
 		//Parser.Escribir(est_greedyRandom);
 		
 		System.out.println("Fin de las pruebas");		
-
+*/
 	}
+	
 	
 }
