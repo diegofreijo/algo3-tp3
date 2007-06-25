@@ -1,4 +1,5 @@
 \subsection{Desarrollo}
+\subsubsection{El algoritmo}
 Con lo primero que nos cruzamos a la hora de hacer resolver el problema del recubrimieto de ejes mediante 'esta heur'istica fue con la funci'on de vecindad. Y luego de pensarlo bien, notamos que un algoritmo de b'usqueda local es principalmente eso, definir una funci'on de vecindad. 'Esto se debe a que la funci'on objetivo del problema es muy sencilla: dadas dos soluciones (recubrimientos de ejes), la mejor ser'a aquella con menor cantidad de nodos. Pero 'esta ten'ia que ser elaborada con ciertos cuidados:
 
 \begin{itemize}
@@ -10,13 +11,21 @@ Con 'esto en mente, la soluci'on que se opt'o fue la siguiente[\footnote{Para un
 
 Se recibe la soluci'on inicial/anterior $s$ junto con par'ametros de cuantos nodos se sacan de la soluci'on y cu'antos se agregan ($cs$ y $ca$ respectivamente). Luego se quitan los primeros $cs$ de la lista de nodos del recubrimiento de $s$ y se corrobora si es un recubrimiento. De serlo, se devuelve como mejor vecino (ya que, como la funci'on objetivo es proporcional a la cantidad de nodos del recubrimiento, al sacar una cantidad positiva de 'estos el resultado ser'a siempre mejor). Pero si 'este no es recubrimiento entonces se agregan $ca$ nodos (nuevos, no se incluyen los que se acaban de sacar) para volver a realizar la verificaci'on. Como se supone que la cantidad de nodos que saco es mayor a la que agrego, de ser un recubrimiento al agregar se est'a obteniendo mejor objetvo, por lo que se devuelve 'esta nueva soluci'on. De no serlo, se regresa a $s$ y se quitan 'esta vez $cs$ nodos pero \emph{desfazados} en la lista del recubrimiento por 1 nodo (es decir, el primero ya no se toma m'as pero s'i el 'ultimo). Si no se consigue ning'un vecino mejor despu'es de realizar 'este barrido, entonces se toma a $s$ como la mejor soluci'on alcanzada, y por ende como la soluci'on de la heur'istica.
 
+
+
+
 Notar que ambas funciones, la que lista vecinos y la que elige alguno de ellos, est'an implementadas juntas. 'Esto es para evitar tener que listar todos los vecinos e ir calculando un vecino simplemente cuando se lo necesite.
 
+Como soluci'on inicial se eligi'o una bastante sencilla, con poca \emph{inteligencia} y que devuelve un recubrimiento en la mayor'ia de as veces, grande. Consisti'o en recorrer todos los ejes y verificar si en la solucion a devolver no exist'ia ya alguno de sus nodos. De no ser as'i, se agregaba cualquiera. Notar que 'esta implementaci'on se adapta bien al funcionamiento del algoritmo siguiente ya que al generar una soluci'on con muchos nodos d'a mayor libertad para luego sacar algunos y agregar nuevos. 'Esta fue la soluci'on menos costosa que se nos ocurri'o y la dejamos justamente porque eso es lo que quer'iamos, preferimos dejarle el calculo m'as 'arduo a la b'usqueda local.
 
 M'as all'a de los par'ametros que toma la heur'istica ya mencionados anteriormente, cuantos nodos se sacan y cuantos se agregan para el c'alculo de vecinos, se nos ocurrieron otros m'as de menor importancia:
 \begin{itemize}
 \item ¿Mezclar la soluci'on antes de buscarle vecinos? Un posible problema con el que nos encontramos fue que una soluci'on esta condenada a elegir siempre los mismos vecinos, todo dependiendo del orden en el cual le fueron agregados los nodos a su lista. Por eso se podr'ia haber implementado este bit que indica si se deb'ia mezclar la lista o no para ofrecer un mayor rango de alcance. Pero 'esto pod'ia generar que a algunas soluciones sea dif'icil de llegar debido a que siempre la mezcla d'a de cierta forma. Adem'as, se implement'o 'esta mezcla y en la pr'actica no causaba mejoras sino que encima, a veces, empeoraba. Por ello se decidi'o no agregar 'este par'ametro. 
-\item 
-\item 
-
+\item ¿Utilizar soluci'on golosa? La idea de utilizar la soluci'on ad-hoc descripta m'as arriba nos pareci'o desde el principio, como ya se dijo, bastante adecuada para la mec'anica del algoritmo. Pero tambi'en se nos ocurri'o el utilizar la heur'istica golosa ya desarrollada anteriormente. Se realizaron algunas pruebas pero no fueron satisfactorias. Principalmente, se ejecutaron mayor cantidad de operaciones (lo cual comparando las complejidades te'oricas es de esperar) y los recubrimientos obtenidos no fueron mejores. Por lo tanto, se dej'o como soluci'on inicial la ya mencionada anteriormente.
 \end{itemize}
+
+
+\subsubsection{Las pruebas}
+Dado que hab'ian varias variables a evaluar en las pruebas, dise'namos un sistema de puntajes que nos permita elegir f'acilmente el mejor par de par'ametros (porcentaje de nodos que agrego y que saco) para el algoritmo as'i luego se utilizaban 'estos para las dem'as pruebas. Decidimos correr todas las posibilidades de par'ametros posibles (cuantos saco de 1 a 100 y cuantos agrego de 0 a cuantos saco) y dar un puntaje a cada par'ametro seg'un el tama'no del recubrimiento que devolvi'o. A los que sacan el m'as chico, 5 puntos. A los segundos 3 y a los terceros 1. Preferimos que sea as'i y no simplemente contando cuantas veces salio primero cada uno porque podr'ia suceder que, por ejemplo, un par salga siempre segundo cuando los dem'as pelean parejo el primer puesto, y es muy probable que en un caso as'i sea mejor el comportamiento del segundo. Adem'as quisimos que los puntajes no est'en tan cerca como asigando 3, 2 y 1 punto a los tres puesto ya que preferimos darle m'as importancia al que llega a ser primero. Por eso distanciamos en 2 puntos los premios.
+
+'Estas pruebas decidimos hacerlas sobre familias de grafos aleatorios, puesto que no quer'iamos ning'un comportamiento particular que pueda favorecer a algun par sin que nosotros pudi'esemos darnos cuenta. Adem'as, puesto que la calidad de la soluci'on es regida principalmente por la cantidad de ejes (ya que cuantos hallan definir'an el tama'no de la soluci'on) m'as que la cantidad de nodos (influyen m'as en la complejidad), decidimos que las pruebas para elegir el mejor par'ametro sea con grafos con una cantidad fija de nodos y la cantidad de ejes, variable.

@@ -148,7 +148,6 @@ public class Pruebas_BusquedaLocal
 	}
 
 	// Cuenta la cantidad de instrucciones de Busqueda Local con los mejores parametros con grafos en funcion de los ejes
-	// Cuenta la cantidad de instrucciones de Busqueda Local con los mejores parametros con grafos en funcion de los ejes
 	private static void CorrerInstruccionesEjes(ParametrosBL mejor)
 	{
 		System.out.println("Corriendo: Instrucciones ejes");

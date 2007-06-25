@@ -130,11 +130,7 @@ FoldedLines=
 IsMainFile=no
 Opened=no
 ScrollPos.X=0
-<<<<<<< .mine
-ScrollPos.Y=1
-=======
 ScrollPos.Y=0
->>>>>>> .r77
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -154,13 +150,8 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-<<<<<<< .mine
-CaretPos.X=31
-CaretPos.Y=12
-=======
 CaretPos.X=0
 CaretPos.Y=0
->>>>>>> .r77
 CharSet=def
 FileName=informe\4.goloso.tex
 FoldedLines=
@@ -193,13 +184,13 @@ CharSet=def
 FileName=informe\5.bl.tex
 FoldedLines=
 IsMainFile=no
-Opened=yes
+Opened=no
 ScrollPos.X=0
 ScrollPos.Y=0
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=0
+TabOrder=-1
 UseThesaurus=yes
 WrapLine=yes
 
@@ -327,13 +318,8 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-<<<<<<< .mine
-CaretPos.X=0
-CaretPos.Y=19
-=======
-CaretPos.X=0
-CaretPos.Y=0
->>>>>>> .r77
+CaretPos.X=34
+CaretPos.Y=10
 CharSet=def
 FileName=informe.tex
 FoldedLines=
@@ -344,7 +330,7 @@ ScrollPos.Y=1
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=1
+TabOrder=0
 UseThesaurus=yes
 WrapLine=yes
 
@@ -405,8 +391,8 @@ Zoom=9
 [Project\DVI]
 FileName=1
 FirstPage=0
-Magnifier=2
-Page=16
+Magnifier=1
+Page=33
 PaperHeight=297
 PaperWidth=210
 Zoom=6

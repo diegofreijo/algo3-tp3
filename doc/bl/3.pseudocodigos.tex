@@ -1,1 +1,45 @@
 \subsection{Pseudoc'odigos}
+
+\algoritmo{BusquedaLocal}{Algoritmo de B'usqueda Local para resolver Vertex Cover}{$O(n^3m)$}
+\begin{algorithmic}[1]
+\STATE $s \leftarrow$ Generar soluci'on inicial
+\WHILE{Halla mejor vecino de $s$}
+	\STATE $s \leftarrow$ Mejor vecino
+\ENDWHILE
+\RETURN $s$
+\end{algorithmic}
+
+\vspace{2em}
+
+\algoritmo{SolucionInicial}{Construye una soluci'on incial naive}{$O(mn)$}
+\begin{algorithmic}[1]
+\STATE $sol \leftarrow \phi$
+\FOR{Cada eje $e$ del grafo}
+	\IF{ No hay ning'un extremo de $e$ en $sol$}
+		\STATE Agregar el primer extremo a $sol$
+	\ENDIF
+\ENDFOR
+\RETURN $sol$
+\end{algorithmic}
+
+\vspace{2em}
+
+\algoritmo{MejorVecino}{Devuelve un mejor vecino a la soluci'on dada o indica que no existe mejor de ser as'i}{$O(n^2m)$}
+\begin{algorithmic}[1]
+\STATE $s$ es la solucion actual
+\STATE $t \leftarrow$ logitud de $s$
+\STATE $cs \leftarrow$ cuantos nodos saco
+\STATE $ca \leftarrow$ cuantos nodos agrego
+\FOR{cada sublista contigua de longitud $cs$ en $s$}
+	\IF{ Sacando esta sublista de $s$ sigue siendo recubrimiento}
+		\RETURN $s$ - sublista
+	\ELSE
+		\FOR{Cada sublista contigua de longitud $ca$ en la lista de nodos que no estaban en la solucion}
+			\IF{ Agregando $ca$ nodos a $s$ - sublista sigue siendo un recubrimiento}
+				\RETURN $s$ - sublista + nuevos nodos
+			\ENDIF
+		\ENDFOR
+	\ENDIF
+\ENDFOR
+\RETURN No hay mejor vecino
+\end{algorithmic}
