@@ -1,1 +1,14 @@
 \subsection{Desarrollo}
+\subsubsection{GRASP}
+El desarrollo de GRASP no tuvo demasiados inconvenientes ya que fue muy parecido al de la b'usqueda local. Los par'ametros que se agregaron fueron el porcentaje que utiliza el el GolosoGreedy y la cantidad m'axima de iteraciones a ejecutar y la cantidad de iteraciones que deben pasar sin mejoras para detenerse. 
+
+Los par'ametros de la b'usqueda local ya fueron calculados anteriormente (el mejor hab'ia sido (0,1)) por lo que decidimos seguir consider'andolo el mejor par de par'ametros para la b'usqueda local. Por supuesto, son todas suposiciones evaluadas luego de analizar algunos casos peque'nos, pero de haber sido posible hubi'esemos realizado pruebas de todos los valores contra todos hasta encontrar a los mejores (claro que nos har'ia falta un cluster para poder terminarlo en el tiempo de entrega del presente trabajo). 
+
+Para seleccionar el mejor porcentaje se realizaron pruebas similares a las de la b'usqueda local para hallar el porcentaje de cuantos nodos se sacan y cuantos se agregan. El m'as chico de entre los mejores fue 50, asique 'este fue el elegido.
+
+La cantidad de iteraciones sin cambios la dedujimos en funci'on de varias corridas del algoritmo ya que vimos que, por lo general, cuando esta pocas veces sin cambios es porque nunca m'as encuentra una soluci'on mejor. Por eso tomamos un valor peque'no de 5. Es obvio que depende mucho 'este tipo de par'ametro si es que el algoritmo ser'a corrido en una instalaci'on que est'a prendida 24 hs al dia 365 dias al a'no y se usa para obtener la mejor respuesta o en una aplicaci'on de tiempo real donde la respuesta deber'a ser devuelta en milisegundos, sin importar que tan bien est'e pero que por lo menos tenga una aproximaci'on.
+
+Al 'ultimo par'ametro no le dimos importancia porque, como se dijo en el p'arrafo anterior, importar'ia mucho cuando la respuesta se necesita al instante. All'i 'este par'ametro podr'ia ser usado como un contador de \emph{time out}; es decir que marque cuando el usuario/cliente podr'ia comenzar a notar la falta de fluidez en el sistema. Como nos interesaba que termine cuando ya no encontraba mejoras, le dimos un valor exagerado (20.000.000) as'i no interfer'ia.
+
+\subsubsection{GolosoRandom}
+El desarrollo de este algoritmo es muy parecido al explicado ya en el goloso standard. La diferencia radica en la funcion que elige el nodo a ingresar. En 'esta, se obtiene el nodo de mayor grado, luego de ordenar la lista de nodos por cantidad de vecinos. Una vez hecho esto, se calcula el grado minimo que se permite. 'Esto surge de multiplicar el grado minimo permitido por el porcentaje ingresado por parametro. Una vez hecho esto, se genera una lista, con todos los nodos que cumplen ese grado m'inimo y por 'ultimo se elige un nodo random de esa lista.

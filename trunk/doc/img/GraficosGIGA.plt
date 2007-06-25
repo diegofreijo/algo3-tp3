@@ -18,7 +18,7 @@ set term png
 		set ylabel "Cantidad de instrucciones"
 		set yrange [0:450000]
 		set output "BusquedaLocal(instrucciones_ejes).png"
-		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_ejes).dat' tit 'Práctica', 64000*x tit 'Teórica[40^3 * m]'
+		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_ejes).dat' tit 'Práctica', 64000*x/(40*39/2)  tit 'Teórica [40^3 * m / (40*39/2)]', 240*64000*x/(40*39/2)  tit 'Teórica ajustada [240 * Teórica]'
 		
 	# Cantidad de instrucciones en funcion de los nodos del mejor parametro
 		set xlabel "Cantidad de nodos"

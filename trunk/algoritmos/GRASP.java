@@ -11,7 +11,6 @@ import utilidades.Recubrimiento;
 public abstract class GRASP
 {
 	private static Estadisticas e;
-	private static int iteraciones_sin_cambios = 0;
 	private static ParametrosGRASP parametros_grasp;
 
 	public static Recubrimiento Ejecutar(Grafo g, ParametrosGRASP parametros_entrada, Estadisticas est)
@@ -25,35 +24,35 @@ public abstract class GRASP
 		parametros_bl.porcentaje_cuantos_saco = parametros_grasp.porcentaje_cuantos_saco;
 		
 		// Variables para uso del algoritmo
-		Recubrimiento solucion = null;
-		Recubrimiento sol_anterior = null;
+		Recubrimiento mejor_solucion = null;
+		Recubrimiento solucion_actual = null;
+		
 		int iteracion_actual = 0;
+		int iteraciones_sin_cambios = 0;
 		
 		do
 		{
 			++iteracion_actual;
-			sol_anterior = solucion;
-			solucion = SolucionGolosaAzarosa(g);
-			solucion = BusquedaLocal.Ejecutar(g, parametros_bl, solucion, e);
+			solucion_actual = SolucionGolosaAzarosa(g);
+			solucion_actual = BusquedaLocal.Ejecutar(g, parametros_bl, solucion_actual, e);
+			
+			if(mejor_solucion == null || mejor_solucion.nodos.size() > solucion_actual.nodos.size())
+			{
+				iteraciones_sin_cambios = 0;
+				mejor_solucion = solucion_actual;
+			}
+			else
+			{
+				++iteraciones_sin_cambios;	
+			}
 		}
-		while (!CondicionesDeParada(sol_anterior, solucion, iteracion_actual));
+		while(!CondicionesDeParada(iteraciones_sin_cambios, iteracion_actual));
 
-		return solucion;
+		return solucion_actual;
 	}
 
-	private static boolean CondicionesDeParada(Recubrimiento sol_anterior, Recubrimiento solucion, int iteracion_actual)
-	{
-		if(sol_anterior != null && sol_anterior.compareTo(solucion) == 0)
-		{
-			++iteraciones_sin_cambios;
-		}
-		else
-		{
-			iteraciones_sin_cambios = 0;
-		}
-		
-		//System.out.print(iteraciones_sin_cambios + " ");
-		
+	private static boolean CondicionesDeParada(int iteraciones_sin_cambios, int iteracion_actual)
+	{	
 		if(iteraciones_sin_cambios < parametros_grasp.iteraciones_sin_cambio &&
 				iteracion_actual < parametros_grasp.iteraciones_max)
 		{

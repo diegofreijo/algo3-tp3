@@ -1,1 +1,37 @@
 \subsection{Pseudoc'odigos}
+
+\algoritmo{GRASP}{Algoritmo GRASP para resolver Vertex Cover}{$O()$}
+\begin{algorithmic}[1]
+\WHILE No se cumplan las condiciones de parada
+	\STATE Generar solucion actual golosa azarosa y aplicarle busqueda local
+	\IF La solucion actual es mejor que la mejor solucion
+		Mejor solucion $\leftarrow$ solucion actual 
+	\ENDIF
+\ENDWHILE
+\RETURN Mejor solucion
+\end{algorithmic}
+
+\vspace{2em}
+
+\algoritmo{GolosoRandom}{Devuelve un random de una lista de candidatos mediante la funcion de seleccion del goloso}{$O(n^{2})$}
+\begin{algorithm}
+\STATE Sacar Aislados del grafo
+\STATE Solucion \leftarrow vacia
+\IF Solucion no es recubrimiento
+	\STATE Agregar el nodo devuelto por NodoAgregar
+	\STATE Sacar el nodo de la lista de nodos
+	\STATE Volver al if
+\ELSE
+	\STATE Devolver solucion
+\ENDIF
+\end{algorithm}
+	
+\vspace{2em}
+	
+\algoritmo{NodoAgregar}{Devuelve un nodo para agregar a la solucion GolosaRandom}{$O(N)}
+\begin{algorithm}
+\STATE Obtengo el nodo de mayor grado
+\STATE Calculo el minimo grado permitido segun el porcentaje ingresado por parametro
+\STATE Armo una lista con los que cumplen con ese minimo
+\STATE Devuelvo un Random de esa lista
+\end{algorithm}
