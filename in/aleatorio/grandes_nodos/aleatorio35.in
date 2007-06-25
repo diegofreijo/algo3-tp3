@@ -1,0 +1,12 @@
+c Grafo Aleatorio Densidad = 10/21
+p edge 7 10
+e 2 7
+e 1 7
+e 3 7
+e 5 4
+e 7 4
+e 2 5
+e 4 2
+e 6 4
+e 5 7
+e 6 3
