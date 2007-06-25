@@ -14,15 +14,18 @@ string = 'Elija el algoritmo a correr: '
 a = raw_input(string)
 algo = int(a)
 
-string = 'Ingrese el nombre del archivo a probar: '
-caso = raw_input(string)
-
 if algo < 1:
     print "Debe ingresar un numero entre 1 y 4"
     error = true
 elif algo > 4:
     print "Debe ingresar un numero entre 1 y 4"
     error = true
+
+string = 'Ingrese el nombre del archivo a probar: '
+caso = raw_input(string)
+
+nombreCaso = caso.partition(".")
+nombreCaso = caso[0]
 
 if(error == "false"):
     if algo == 1:
@@ -32,16 +35,14 @@ if(error == "false"):
         proc.wait()
         tiempoFinal = time.time()
         print "El algoritmo tardo(en ms):" + str(tiempoFinal - tiempoInicial)
-        dat = open("dat/Tp3(exacto).dat","r")
+        dat = open("dat/Exacto/Exacto(exacto).dat","r")
         instrucciones = dat.readline()
         instrucciones = instrucciones.partition(" ")
         instrucciones = instrucciones[2]
         print "La cantidad de instrucciones basicas fueron:" + instrucciones
-        out = open("out/Tp3(exacto).out","r")
+        out = open("out/"+nombreCaso+".out","r")
         resultado = out.readline()
-        resultado = resultado.partition(" ")
-        resultado = resultado[2]
-        print "La cantidad de nodos necesarios para realizar el recubrimiento fue:" + instrucciones
+        print "La cantidad de nodos necesarios para realizar el recubrimiento fue:" + resultado
     if algo == 2:
         print "Corriendo Goloso"
         tiempoInicial = time.time()
@@ -49,7 +50,7 @@ if(error == "false"):
         proc.wait()
         tiempoFinal = time.time()
         print "El algoritmo tardo(en ms):" + str(tiempoFinal - tiempoInicial)
-        dat = open("dat/Tp3(goloso).dat","r")
+        dat = open("dat/Goloso/Goloso(goloso).dat","r")
         instrucciones = dat.readline()
         instrucciones = instrucciones.partition(" ")
         instrucciones = instrucciones[2]
