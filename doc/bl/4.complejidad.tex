@@ -1,6 +1,6 @@
 \subsection{An'alisis de complejidad}
 \subsubsection{SolucionInicial}
-'Este algoritmo recorre todos los ejes ($m$ veces) y para cada uno verifica si existe alguno de sus extremos en la posible soluci'on (como puede llegar a ser todos los nodos, $n$). Por lo tanto la complejidad es $O(nm)$ 
+'Este algoritmo recorre todos los ejes ($m$ veces) y para cada uno verifica si existe alguno de sus extremos en la posible soluci'on (como puede llegar a ser todos los nodos, $n$). Por lo tanto la complejidad es $O(nm)$. 
 
 \subsubsection{MejorVecino}
 La primer acci'on realizada por el algoritmo que no tiene complejidad constante es la selecci'on de los nodos a agregar. 'Esta es del orden de $n$ (cantidad de nodos del grafo) en el peor caso ya que debe ir comparando para cada uno de los nodos si est'a o no en la soluci'on.
@@ -19,7 +19,8 @@ $$O(n + (t-cs)(cs+m(t-cs)+(n-t-ca)(ca+m(t-cs-ca))))$$
 
 Como la expresi'on no brinda demasiada informaci'on como est'a presentada, se podr'ian acotar algunos valores. Notar, por ejemplo, que la funci'on es creciente en $t$ (si se analiza, el t'ermino donde aparece negativo no influye contra todos los demas donde est'a positivo. Como $t$ es la longitud de la soluci'on actual, 'este puede ser a lo sumo $n$. Por lo tanto la expresi'on quedar'ia
 
-$$O(n + (n-cs)(cs+m(n-cs)+(n-n-ca)(ca+m(n-cs-ca)))) = O((n-cs)(cs + m(n-cs) - ca(ca+m(n-cs-ca))))$$
+$$O(n + (n-cs)(cs+m(n-cs)+(n-n-ca)(ca+m(n-cs-ca)))) =$$
+$$O((n-cs)(cs + m(n-cs) - ca(ca+m(n-cs-ca))))$$
 
 Se puede ver que $cs$ minimiza la expresi'on, pero no puede ser menor que 1 porque sino el algoritmo capaz que no termine nunca. Pero como el 1 es una constante, se puede obviar
 
