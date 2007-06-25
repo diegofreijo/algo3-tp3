@@ -1,1 +1,37 @@
 \subsection{An'alisis de complejidad}
+\subsubsection{SolucionInicial}
+'Este algoritmo recorre todos los ejes ($m$ veces) y para cada uno verifica si existe alguno de sus extremos en la posible soluci'on (como puede llegar a ser todos los nodos, $n$). Por lo tanto la complejidad es $O(nm)$ 
+
+\subsubsection{MejorVecino}
+La primer acci'on realizada por el algoritmo que no tiene complejidad constante es la selecci'on de los nodos a agregar. 'Esta es del orden de $n$ (cantidad de nodos del grafo) en el peor caso ya que debe ir comparando para cada uno de los nodos si est'a o no en la soluci'on.
+
+Luego viene el bucle exterior, el cual va recorriendo las posibles sublistas a sacar de $s$. Por lo que podemos ver, el primer elemento de 'esta sublista puede ir desde 1 hasta $t-cs$, ya que de estar en algun momento en una posici'on mayor, el 'ultimo elemento de la sublista no tendr'ia posici'on. Por lo tanto se ejecuta $t-cs$ veces.
+
+Dentro se quitan los nodos, lo cual es del orden de $cs$ y luego se pregunta si es o no recubrimiento. Dado que 'este m'etodo recorre todos los ejes y para cada uno de ellos recorre todos los nodos para ver si est'a o no alguno de sus extremos en el posible recubrimiento, la complejidad es del orden de $m(t-cs)$ (ya que $t-cs$ es la longitud del posible recubrimiento).
+
+En el peor caso la respuesta anterior es negativa asique debo seguir calculando. A continuaci'on est'a el otro bucle, el que agrega nodos. An'alogamente al bucle anterior, aqu'i tambi'en se calculan sublistas pero 'esta vez sobre la lista de nodos que no est'an en la soluci'on inicial. Dado que 'esta es de longitud $n-t$ y por el mismo argumento que para el primer bucle, se repite $(n-t)-ca$ veces.
+
+Por 'ultimo, dentro de 'ese bucle debo agregar todos los nodos ($ca$) y luego consultar si es un recubrimiento (dado que la nueva posible soluci'on tendr'a longitud $t-cs+ca$, la complejidad ser'a del orden de $m(t-cs-ca)$).
+
+Juntando toda la informaci'on aislada mostrada anteriormente se obtiene que la complejidad del algoritmo es
+
+$$O(n + (t-cs)(cs+m(t-cs)+(n-t-ca)(ca+m(t-cs-ca))))$$
+
+Como la expresi'on no brinda demasiada informaci'on como est'a presentada, se podr'ian acotar algunos valores. Notar, por ejemplo, que la funci'on es creciente en $t$ (si se analiza, el t'ermino donde aparece negativo no influye contra todos los demas donde est'a positivo. Como $t$ es la longitud de la soluci'on actual, 'este puede ser a lo sumo $n$. Por lo tanto la expresi'on quedar'ia
+
+$$O(n + (n-cs)(cs+m(n-cs)+(n-n-ca)(ca+m(n-cs-ca)))) = O((n-cs)(cs + m(n-cs) - ca(ca+m(n-cs-ca))))$$
+
+Se puede ver que $cs$ minimiza la expresi'on, pero no puede ser menor que 1 porque sino el algoritmo capaz que no termine nunca. Pero como el 1 es una constante, se puede obviar
+
+$$O(n(mn - ca(ca+m(n-ca)))) = O(n(mn - ca^2 + m(ca\ n-ca^2))))$$
+
+Ahora se ve tambi'en a $ca$ causando que la expresi'on disminuya. Si se anula quedar'ia
+
+$$O(n(mn))) = O(n^2m)$$
+
+Y 'esta expresi'on es mucho m'as 'util que la anterior. Por lo tanto la complejidad de MejorVecino es $O(n^2m)$.
+
+\subsection{BusquedaLocal}
+El algoritmo lo primero que realiza es generar la soluci'on naive, lo cual le cuesta $O(nm)$. Luego ejecuta MejorVecino hasta encontrar una mejor soluci'on. Dado que el bucle se ejecuta si hay una mejora en la soluci'on, y que 'esta no puede tener mas de $n$ nodos, el caso en donde m'as veces iterar'a ser'a cuando la soluci'on naive arroje un resultado de longitud $n$ y en cada iteraci'on se disminuya la respuesta en uno, hasta alcanzar el m'inimo en un conjunto con un s'olo nodo. En 'este caso se har'ian $n$ iteraciones, por lo que la complejidad ser'ia
+
+$$O(nm + n(n^2m)) = O(n^3m)$$

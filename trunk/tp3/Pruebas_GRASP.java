@@ -16,7 +16,7 @@ public class Pruebas_GRASP
 {
 	// Parametros de las pruebas
 	public static final int cant_grafos_chicos_ejes = 505;
-	public static final int cant_grafos_grandes_ejes = 50;
+	public static final int cant_grafos_grandes_ejes = 100;
 	public static final int cant_grafos_chicos_nodos = 100;
 	public static final int cant_grafos_grandes_nodos = 250;
 	
@@ -68,7 +68,7 @@ public class Pruebas_GRASP
 			System.out.print((i+1) + " ");
 			resultados_actuales = new TreeMap<Integer, Set<ParametrosGRASP>>();
 			
-			for(int porcentaje_goloso = 0; porcentaje_goloso <= 50; ++porcentaje_goloso)
+			for(int porcentaje_goloso = 0; porcentaje_goloso <= 100; ++porcentaje_goloso)
 			{
 				// Los parametros van a comenzar teniendo los parametros de Busqueda Local como el mejor de los que encontro en las pruebas anteriores
 				parametros_actuales = new ParametrosGRASP();
@@ -100,7 +100,7 @@ public class Pruebas_GRASP
 		while(it.hasNext())
 		{
 			ParametrosGRASP pactual = (ParametrosGRASP)it.next();
-			Punto p = new Punto3D(pactual.porcentaje_cuantos_agrego, pactual.porcentaje_cuantos_saco, puntajes.get(pactual));
+			Punto p = new Punto2D(pactual.porcentaje_goloso, puntajes.get(pactual));
 			grafico.Agregar(p);
 		}
 		Parser.EscribirGrafico(grafico);
@@ -109,6 +109,7 @@ public class Pruebas_GRASP
 		// Selecciono los mejores y genero los resultados
 		System.out.println("Escribiendo mejores parametros...");
 		List<Integer> mejores = FiltrarMejoresPuntajes(cant_mejores_puntajes_a_filtrar);
+		Collections.sort(mejores);
 		String resultados = "Mejores puntajes:\n";
 		for(int i = mejores.size() - 1; i >= 0 ; --i)
 		{

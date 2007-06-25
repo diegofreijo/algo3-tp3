@@ -10,24 +10,24 @@ set term png
 		set xlabel "% cuantos agrego"
 		set ylabel "% cuantos saco"
 		set zlabel "Puntaje"
-		#set xrange [0:100]
-		#set yrange [0:100]
-		#set zrange [50:500]
 		set output "BusquedaLocal(comparacion_parametros).png"
 		splot '..\..\dat\BusquedaLocal\BusquedaLocal(comparacion_parametros).dat' tit 'Puntajes'
 
 	# Cantidad de instrucciones en funcion de los ejes del mejor parametro
 		set xlabel "Densidad del grafo"
 		set ylabel "Cantidad de instrucciones"
+		set yrange [0:450000]
 		set output "BusquedaLocal(instrucciones_ejes).png"
-		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_ejes).dat' tit 'Cantidad de instrucciones en la práctica'
+		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_ejes).dat' tit 'Práctica', 64000*x tit 'Teórica[40^3 * m]'
 		
 	# Cantidad de instrucciones en funcion de los nodos del mejor parametro
 		set xlabel "Cantidad de nodos"
 		set ylabel "Cantidad de instrucciones"
+		set yrange [0:600000]
 		set output "BusquedaLocal(instrucciones_nodos).png"
-		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_nodos).dat' tit 'Cantidad de instrucciones en la práctica'
-
+		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_nodos).dat' tit 'Práctica', x*x*x*600 tit 'Teórica[n^3 * 600]'
+		reset
+		
 	# Comparacion con exacto del mejor parametro en funcion de los ejes
 		set xlabel "Densidad del grafo"
 		set ylabel "Diferencias con el exacto"
