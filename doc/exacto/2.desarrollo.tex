@@ -1,1 +1,8 @@
 \subsection{Desarrollo}
+Para realizar esta implementacion se partio con una idea, aunque se termino implementando otra. La idea inicial era hacer un algoritmo que realice, primero, un conjunto con todos los subconjuntos posibles de nodos y a partir de ahi ir analizando si es recubrimiento y tomar el menor de todos. Esto realiza siempre todas las comparaciones y no tiene poda, lo que haria que el tiempo de ejecucion sea muy costoso.
+Para mejorar esto, se decidio implementar un algoritmo recursivo, que, si bien en un peor caso puede semejarse al algoritmo anteriormente mencionado, en el caso promedio se porta mejor en cuestion de tiempo.
+
+El algoritmo lo que hace basicamente es, primero una verificacion. Esta consiste en ver si la solucion de entrada es recubrimiento. Si lo es, devuelve esa solucion. Si no lo es, ejecuta recursivamente el algoritmo agregando el siguiente nodo, y lo ejecuta nuevamente sin agregar el nodo, devolviendo el menor de los dos resultados.
+No tendria sentido volver a realizar la ejecucion si ya es recubrimiento, ya que de esa manera daria una solucion tambien valida, pero con un nodo mas, o identica a la realizada. Ahi se podan muchos casos y reduce el tiempo de ejecucion considerablemente. 
+
+Como tambien se realiza en las heuristicas siguientes, antes de ejecutar el algoritmo recursivo por primera vez, se le pasa una lista de nodos donde fueron excluidos los aislados, optimizacion que tambien reduce la cantidad de iteraciones realizadas.
