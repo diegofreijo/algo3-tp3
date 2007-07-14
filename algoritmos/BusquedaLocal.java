@@ -28,14 +28,18 @@ public abstract class BusquedaLocal
 			solucion = sol_inicial; ++e.i;
 		}
 		
+		//System.out.println("Solucion inicial: " + solucion);
+		
 		Recubrimiento mejor_vecino;
 		
 		while((mejor_vecino = VecinoMejor(solucion, parametros.porcentaje_cuantos_saco, parametros.porcentaje_cuantos_agrego, g)) != null)
 		{
+			//System.out.println("\nMejor vecino: " + mejor_vecino + "\n");
 			++e.i;
 			solucion = mejor_vecino; ++e.i;
 		}
 		
+		//System.out.println("Solucion final: " + solucion);
 		++e.i;
 		return solucion;
 	}
@@ -81,10 +85,14 @@ public abstract class BusquedaLocal
 		}
 	
 		// Calculo el porcentaje de los que saco y pongo
-		int cuantos_saco = porcentaje_cuantos_saco * solucion.nodos.size() / 100 + 1; ++e.i;
-		int cuantos_agrego = porcentaje_cuantos_agrego * solucion.nodos.size() / 100 + 1; ++e.i;
+		int cuantos_saco = porcentaje_cuantos_saco * solucion.nodos.size() / 100; ++e.i;
+		int cuantos_agrego = porcentaje_cuantos_agrego * solucion.nodos.size() / 100; ++e.i;
 		// Verifico no tratar de sacar mas de los que tiene la solucion o agregar mas de los que tengo para agregar
 		e.i+=3;
+		if(cuantos_saco == 0)
+		{
+			cuantos_saco = 1;
+		}
 		if(cuantos_agrego > demas_nodos.size())
 		{
 			cuantos_agrego = demas_nodos.size();
@@ -105,47 +113,102 @@ public abstract class BusquedaLocal
 		 *  Los genero sacando @cuantos_saco nodos y verificando si es un recubrimiento. 
 		 *  	Si lo es, kapanga, lo devuelvo.
 		 *  	Si no, agrego @cuantos_agrego y verifico si es recubrimiento. Si lo es, kapanga.
+		 *  
+		 *  Para sacar, voy iterando por cada uno y saco a ese junto con los demas distanciados por el @offset actual.
+		 *  Idem para ir agregando luego a cada combinacion de los que saco.  
 		 */ 
 		Recubrimiento vecino_sacando = null; ++e.i;				// Vecino al que le saque nodos
 		Recubrimiento vecino_agregando = null; ++e.i;			// Vecino al que le saque y luego agregue nodos
+		
+		//System.out.println("Cuantos saco: " + cuantos_saco);
+		//System.out.println("Cuantos agrego: " + cuantos_agrego);
+		// Para cada nodo de la solucion actual...
 		for(int sacar = 0; sacar < solucion.nodos.size() - cuantos_saco + 1; ++sacar)
 		{
-			++e.i;
-			vecino_sacando = new Recubrimiento(solucion); ++e.i;
+			//System.out.println("Sacar:" + sacar);
+			//System.out.println("========");
 			
-			// Voy sacando uno por uno los que me toca sacar
-			List<Integer> a_sacar = new ArrayList<Integer>(cuantos_saco); e.i+=cuantos_saco;
-			for(int i = sacar; i < sacar + cuantos_saco; ++i)
+			// Calculo el offset maximo de los que saco
+			// Sera el maximo que cumpla
+			//							(cuantos_saco - 1) * offset_maximo + cuantos_saco <= solucion.tamano - sacar
+			int offset_maximo_saco;
+			if(cuantos_saco > 1)
 			{
-				a_sacar.add(vecino_sacando.nodos.get(i)); ++e.i;	
+				offset_maximo_saco = (int)((solucion.nodos.size() - sacar - cuantos_saco) / (cuantos_saco - 1));
 			}
-			vecino_sacando.nodos.removeAll(a_sacar); e.i+=a_sacar.size()*vecino_sacando.nodos.size();
-			
-			// Si lo que me quedo es recubrimiento, gane. Por optmizacion, asumo que SIEMPRE este
-			// vecino tendra mejor objetivo (menor cantidad de nodos)
-			++e.i;
-			if(vecino_sacando.EsRecubrimiento(g))
+			else
 			{
-				return vecino_sacando;
+				offset_maximo_saco = 0;
 			}
+			//System.out.println("Offset maximo saco: " + offset_maximo_saco);
 			
-			// Voy agregando nuevos nodos
-			for(int poner = 0; poner < demas_nodos.size() - cuantos_agrego + 1; ++poner)
+			// Para cada offset de los que saco...
+			for(int offset_actual_saco = 0; offset_actual_saco <= offset_maximo_saco; ++offset_actual_saco)
 			{
 				++e.i;
-				vecino_agregando = new Recubrimiento(vecino_sacando); ++e.i;
+				vecino_sacando = new Recubrimiento(solucion); ++e.i;
 				
-				// Voy agregando los nuevos nodos
-				for(int i = poner; i < poner + cuantos_agrego; ++i)
+				// Voy sacando uno por uno los que me toca sacar
+				List<Integer> a_sacar = new ArrayList<Integer>(cuantos_saco); e.i+=cuantos_saco;
+				for(int i = sacar; i < cuantos_saco * (offset_actual_saco + 1) + sacar; i += offset_actual_saco + 1)
 				{
-					vecino_agregando.nodos.add(demas_nodos.get(i)); ++e.i;
+					a_sacar.add(vecino_sacando.nodos.get(i)); ++e.i;
+				}
+				vecino_sacando.nodos.removeAll(a_sacar); e.i+=a_sacar.size()*vecino_sacando.nodos.size();
+				
+				// Si lo que me quedo es recubrimiento, gane. Por optmizacion, asumo que SIEMPRE este
+				// vecino tendra mejor objetivo (menor cantidad de nodos)
+				++e.i;
+				if(vecino_sacando.EsRecubrimiento(g))
+				{
+					return vecino_sacando;
+				}
+				//System.out.println("Vecino sacando: " + vecino_sacando);
+				
+				// Si no tengo nodo que agregar, ni pruebo
+				if(cuantos_agrego == 0)
+				{
+					continue;
 				}
 				
-				// Si es un recubrimiento, gane
-				++e.i;
-				if(vecino_agregando.EsRecubrimiento(g))
+				// Para cada nodo de los que no estan en la solucion...
+				for(int poner = 0; poner < demas_nodos.size() - cuantos_agrego + 1; ++poner)
 				{
-					return vecino_agregando;
+					//System.out.println("  Poner:" + poner);
+					//System.out.println("  ========");
+					
+					// Calculo el offset maximo de los que agrego
+					int offset_maximo_agrego;
+					if(cuantos_agrego > 1)
+					{
+						offset_maximo_agrego = (int)((demas_nodos.size() - poner - cuantos_agrego) / (cuantos_agrego - 1));
+					}
+					else
+					{
+						offset_maximo_agrego = 0;
+					}
+					//System.out.println("  Offset maximo agrego: " + offset_maximo_agrego);
+					
+					// Para cada offset de los que agrego...
+					for(int offset_actual_agrego = 0; offset_actual_agrego <= offset_maximo_agrego; ++offset_actual_agrego)
+					{
+						++e.i;
+						vecino_agregando = new Recubrimiento(vecino_sacando); ++e.i;
+						
+						// Voy agregando los nuevos nodos
+						for(int i = poner; i < cuantos_agrego * (offset_actual_agrego + 1) + poner; i += offset_actual_agrego + 1)
+						{
+							vecino_agregando.nodos.add(demas_nodos.get(i)); ++e.i;
+						}
+						
+						// Si es un recubrimiento, gane
+						++e.i;
+						if(vecino_agregando.EsRecubrimiento(g))
+						{
+							return vecino_agregando;
+						}
+						//System.out.println("  Vecino agregando: " + vecino_agregando);
+					}
 				}
 			}
 		}
