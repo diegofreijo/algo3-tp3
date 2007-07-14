@@ -1,11 +1,11 @@
 \subsection{An'alisis de complejidad}
-La complejidad del exacto es la siguiente. Al comienzo del algoritmo, chequea que la solucion que le entra si es recubrimiento. Esto es $O(n)$. Luego, realiza $2^n$ recursiones, devolviendo cada vez el menor recubrimiento logrado.
+La complejidad del exacto es la siguiente. Al comienzo del algoritmo, chequea que la solucion que le entra si es recubrimiento. Esto es $O(m)$. Luego, realiza $2^n$ recursiones, devolviendo cada vez el menor recubrimiento logrado.
 Este se consigue realizando dos veces la recursion, una vez con un nodo mas y otro sin ese nodo, sacando el mismo de la lista de nodos.
 Tomando un árbol de decisión, cada nodo es un nivel del árbol, y sus dos hijos son la llamada recursiva a la función agregando este nodo y la llamada recursiva sin agregar el nodo. Por lo tanto, tenemos un árbol binario completo de $n$ niveles, teniendo $2^{n}$ nodos, donde cada nodo es una llamada a la función ExactoRecursivo. 
 Con n tamaño del problema, la fórmula para la complejidad recursiva queda de la siguiente manera:
 
 $T(n) = 2 * T(n-1) + c = 4 * T(n-2) + 3 * c = ... = 2^{n-1} * T(1) + (2^{n-1}-1) * c = O(2^{n} + 2^{n} *c )$
 
-$c$ es el costo que tiene cada llamada recursiva. Este costo se puede acotar por n ya que las llamadas son a lo sumo $O(d)$, siendo $d$ el grado de un nodo. Esto se puede acotar por n, ya que el grado de un nodo no puede ser mayor a la cantidad de nodos del grafo.
+$c$ es el costo que tiene cada llamada recursiva, el cual es $m$. Las llamadas son a lo sumo $O(d)$, siendo $d$ el grado de un nodo. Esto se puede acotar por n, ya que el grado de un nodo no puede ser mayor a la cantidad de nodos del grafo.
 
-En conclusión, la complejidad de la función es $O(2^{n} + n * 2^{n})$ = $O(n * 2^{n})$, donde n es la cantidad de nodos del gráfico original.
+En conclusión, la complejidad de la función es $O(2^{n} + m * 2^{n})$ = $O(m * 2^{n})$, donde n es la cantidad de nodos del gráfico original.

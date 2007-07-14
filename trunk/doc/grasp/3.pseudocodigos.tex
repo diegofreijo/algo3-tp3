@@ -17,10 +17,10 @@
 \begin{algorithmic}[1]
 \STATE Sacar Aislados del grafo
 \STATE Solucion $\leftarrow \phi$
-\IF{ Solucion no es recubrimiento}
+\WHILE{Solucion no es recubrimiento}
 	\STATE Agregar el nodo devuelto por NodoAgregar
 	\STATE Sacar el nodo de la lista de nodos
-	\STATE Volver al if
+\ENDWHILE
 \ELSE
 	\STATE Devolver solucion
 \ENDIF

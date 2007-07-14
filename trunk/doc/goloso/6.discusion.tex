@@ -1,6 +1,9 @@
 \subsection{Discusi'on}
 
-En la figura 1, estan graficadas las diferencias entre el algoritmo exacto y el goloso. Se observa un patron que, mientras mayor es la densidad del grafo, menor es la diferencia entre ambos. Esta prueba se corrio para 500 grafos de 20 nodos con densidades del 1\% al 100\%. Tambien se observa que la media esta entre 2 y 4 diferencias, y mientras mas se acerca al 100\%, las diferencias son menores.
+En la figura 1, estan graficadas las diferencias entre el algoritmo exacto y el goloso. Se observa un patron que, mientras mayor es la densidad del grafo, menor es la diferencia entre ambos. Esto se debe, por ejemplo en el grafo $K_n$, el goloso va agarrando al nodo de mayor grado, como es completo, todos tienen el mismo grado, o sea que va agarrando de a uno. Al llegar al ultimo, ya le queda recubierto, porque los k ejes de ese ultimo nodo estaban conectados con los otros n-1 nodos. Esto es lo mismo que sucede con el exacto, por eso la diferencia es minima.
+
+
+Esta prueba se corrio para 500 grafos de 20 nodos con densidades del 1\% al 100\%. Tambien se observa que la media esta entre 2 y 4 diferencias, y mientras mas se acerca al 100\%, las diferencias son menores.
 
 
 En la figura 2, estan graficadas las diferencias, nuevamente, entre el exacto y el goloso, pero en funcion de la cantidad de nodos del grafo. Se grafico fijando la densidad en 50\% y aumentando los nodos de 1 a 20. En este se observa, que mientras mas chica es la cantidad de nodos, mejores resultados obtiene el goloso. Las diferencias van entre 1 y 4 nodos entre los resultados.
@@ -12,4 +15,4 @@ Entre las dos primeras figuras, se puede tomar que, con pocos nodos y una densid
 En la figura 3, estan graficadas las instrucciones realizadas por el algoritmo en funcion de la densidad del grafo. Se observa que los resultados se esparsen cuando la densidad aumenta. La complejidad en este caso, fijando el valor de n en 20, seria $20^2+20*m+m$. Se ve que cumple con la cota de complejidad en peor caso.
 
 
-En la figura 4 esta graficada la cantidad de instrucciones realizadas por el algoritmo en funcion a la cantidad de nodos del grafo. La complejidad teorica calculada es de $n^2+n$, y ajustandola, multiplicandole una constante de 8, se ve que la cota es buena y cumple la complejidad practica.
+En la figura 4 esta graficada la cantidad de instrucciones realizadas por el algoritmo en funcion a la cantidad de nodos del grafo. La complejidad teorica calculada es de $n^3$, se ve que la cota es buena y cumple la complejidad practica.

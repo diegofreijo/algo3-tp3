@@ -13,6 +13,16 @@ con la condicion.
 Este problema pertenece a la familia de los problemas NP-Completos en la teoria de complejidades y es uno de los 21 problemas NP-Completos de Karp. Los
 problemas NP-Completos son los mas dificiles de la familia de los NP ("non-deterministic polynomial time").
 
+Algunos ejemplos en donde se ve la aplicacion de esta resolucion de problema, serian:
+
+\begin{itemize}
+\item Se desean poner camaras de seguridad en el coqueto barrio Parque, tal que sea la minima cantidad de camaras y que estas vigilen todas las cuadras.
+Para esto se contrata a un grupo de computadores, que modelan el problema poniendo a las esquinas como nodos y a las cuadras como ejes entre esos nodos.
+Al aplicarle la solucion, se les podra dar una respuesta satisfactoria a los vecinos, y asi garantizar su seguridad, tanto de sus casas como de sus bolsillos.
+\item Un sistema de audio moderno, tiene, para no escatimar, muchos parlantes. Cada persona, por su poco oido, necesita que el sonido llegue desde uno solo de ellos, no es necesario mas. Se necesita llevarse algunos parlantes para otra sala. Al aplicarle la solucion, se utilizan a las personas como nodos y al sonido de cada parlante como eje. Se quitan aquellos parlantes tal que todas sus ondas de sonido lleguen a personas que ya estan escuchando por otro.
+
+\end{itemize}}
+
 Al no tener solucion en tiempo polinomico (es decir de la forma $n^k$), en un grafo medianamente chico, el tiempo de ejecucion puede llevar mucho tiempo.
 Por ejemplo, un grafo de 50 nodos, va a realizar, en el caso del algoritmo exacto mas conocido (o sea de complejidad $O(2^n)$), $2^{50}$ operaciones, es decir
 1.125.899.906.842.624 operaciones. Aproximando una cantidad de operaciones por segundo de 1.000.000, tardaria mas de 357020 siglos en dar una solucion exacta.
