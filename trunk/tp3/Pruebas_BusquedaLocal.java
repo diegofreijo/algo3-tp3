@@ -65,7 +65,7 @@ public class Pruebas_BusquedaLocal
 		{
 			System.out.print((i+1) + " ");
 			resultados_actuales = new TreeMap<Integer, Set<ParametrosBL>>();
-			for(int porcentaje_cuantos_saco = 1; porcentaje_cuantos_saco <= 100; ++porcentaje_cuantos_saco)
+			for(int porcentaje_cuantos_saco = 1; porcentaje_cuantos_saco <= 20; ++porcentaje_cuantos_saco)
 			{
 				for(int porcentaje_cuantos_agrego = 0; porcentaje_cuantos_agrego < porcentaje_cuantos_saco; ++porcentaje_cuantos_agrego)
 				{
