@@ -31,7 +31,10 @@ public class Pruebas_BusquedaLocal
 		Cronometro cronometro = new Cronometro();
 		
 		// Ejecuto prueba por prueba. Cada una genera un grafico.
-		ParametrosBL mejor = CorrerComparacionesEntreParametros();
+		ParametrosBL mejor = new ParametrosBL(); //CorrerComparacionesEntreParametros();
+		mejor.porcentaje_cuantos_agrego = 4;
+		mejor.porcentaje_cuantos_saco = 7;
+		
 		CorrerInstruccionesEjes(mejor);
 		CorrerInstruccionesNodos(mejor);
 		CorrerComparacionEjes(mejor);
@@ -65,7 +68,7 @@ public class Pruebas_BusquedaLocal
 		{
 			System.out.print((i+1) + " ");
 			resultados_actuales = new TreeMap<Integer, Set<ParametrosBL>>();
-			for(int porcentaje_cuantos_saco = 1; porcentaje_cuantos_saco <= 20; ++porcentaje_cuantos_saco)
+			for(int porcentaje_cuantos_saco = 1; porcentaje_cuantos_saco <= 100; ++porcentaje_cuantos_saco)
 			{
 				for(int porcentaje_cuantos_agrego = 0; porcentaje_cuantos_agrego < porcentaje_cuantos_saco; ++porcentaje_cuantos_agrego)
 				{

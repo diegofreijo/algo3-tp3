@@ -88,7 +88,7 @@ public abstract class BusquedaLocal
 		int cuantos_saco = porcentaje_cuantos_saco * solucion.nodos.size() / 100; ++e.i;
 		int cuantos_agrego = porcentaje_cuantos_agrego * solucion.nodos.size() / 100; ++e.i;
 		// Verifico no tratar de sacar mas de los que tiene la solucion o agregar mas de los que tengo para agregar
-		e.i+=3;
+		e.i+=4;
 		if(cuantos_saco == 0)
 		{
 			cuantos_saco = 1;
@@ -125,13 +125,14 @@ public abstract class BusquedaLocal
 		// Para cada nodo de la solucion actual...
 		for(int sacar = 0; sacar < solucion.nodos.size() - cuantos_saco + 1; ++sacar)
 		{
+			++e.i;
 			//System.out.println("Sacar:" + sacar);
 			//System.out.println("========");
 			
 			// Calculo el offset maximo de los que saco
 			// Sera el maximo que cumpla
 			//							(cuantos_saco - 1) * offset_maximo + cuantos_saco <= solucion.tamano - sacar
-			int offset_maximo_saco;
+			int offset_maximo_saco; e.i+=5;
 			if(cuantos_saco > 1)
 			{
 				offset_maximo_saco = (int)((solucion.nodos.size() - sacar - cuantos_saco) / (cuantos_saco - 1));
@@ -152,7 +153,7 @@ public abstract class BusquedaLocal
 				List<Integer> a_sacar = new ArrayList<Integer>(cuantos_saco); e.i+=cuantos_saco;
 				for(int i = sacar; i < cuantos_saco * (offset_actual_saco + 1) + sacar; i += offset_actual_saco + 1)
 				{
-					a_sacar.add(vecino_sacando.nodos.get(i)); ++e.i;
+					a_sacar.add(vecino_sacando.nodos.get(i)); e.i+=2;
 				}
 				vecino_sacando.nodos.removeAll(a_sacar); e.i+=a_sacar.size()*vecino_sacando.nodos.size();
 				
@@ -166,6 +167,7 @@ public abstract class BusquedaLocal
 				//System.out.println("Vecino sacando: " + vecino_sacando);
 				
 				// Si no tengo nodo que agregar, ni pruebo
+				++e.i;
 				if(cuantos_agrego == 0)
 				{
 					continue;
@@ -174,11 +176,12 @@ public abstract class BusquedaLocal
 				// Para cada nodo de los que no estan en la solucion...
 				for(int poner = 0; poner < demas_nodos.size() - cuantos_agrego + 1; ++poner)
 				{
+					++e.i;
 					//System.out.println("  Poner:" + poner);
 					//System.out.println("  ========");
 					
 					// Calculo el offset maximo de los que agrego
-					int offset_maximo_agrego;
+					int offset_maximo_agrego; e.i+=5;
 					if(cuantos_agrego > 1)
 					{
 						offset_maximo_agrego = (int)((demas_nodos.size() - poner - cuantos_agrego) / (cuantos_agrego - 1));
@@ -198,7 +201,7 @@ public abstract class BusquedaLocal
 						// Voy agregando los nuevos nodos
 						for(int i = poner; i < cuantos_agrego * (offset_actual_agrego + 1) + poner; i += offset_actual_agrego + 1)
 						{
-							vecino_agregando.nodos.add(demas_nodos.get(i)); ++e.i;
+							vecino_agregando.nodos.add(demas_nodos.get(i)); e.i+=2;
 						}
 						
 						// Si es un recubrimiento, gane
