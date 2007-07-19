@@ -11,11 +11,11 @@
 
 \vspace{2em}
 
-\algoritmo{SolucionInicial}{Construye una soluci'on incial naive}{$O(mn)$}
+\algoritmo{SolucionInicial}{Construye una soluci'on incial $naive$}{$O(mn)$}
 \begin{algorithmic}[1]
 \STATE $sol \leftarrow \phi$
 \FOR{Cada eje $e$ del grafo}
-	\IF{ No hay ning'un extremo de $e$ en $sol$}
+	\IF{No hay ning'un extremo de $e$ en $sol$}
 		\STATE Agregar el primer extremo a $sol$
 	\ENDIF
 \ENDFOR
@@ -30,16 +30,20 @@
 \STATE $t \leftarrow$ logitud de $s$
 \STATE $cs \leftarrow$ cuantos nodos saco
 \STATE $ca \leftarrow$ cuantos nodos agrego
-\FOR{cada sublista contigua de longitud $cs$ en $s$}
-	\IF{ Sacando esta sublista de $s$ sigue siendo recubrimiento}
-		\RETURN $s$ - sublista
-	\ELSE
-		\FOR{Cada sublista contigua de longitud $ca$ en la lista de nodos que no estaban en la solucion}
-			\IF{ Agregando $ca$ nodos a $s$ - sublista sigue siendo un recubrimiento}
-				\RETURN $s$ - sublista + nuevos nodos
-			\ENDIF
-		\ENDFOR
-	\ENDIF
+\FOR{cada nodo de $s$}
+	\FOR{cada offset posible que genere una sublista de longitud $cs$ de $s$}
+		\IF{sacando esta sublista de $s$ sigue siendo recubrimiento}
+			\RETURN $s$ - sublista
+		\ELSE
+			\FOR{cada nodo en la lista de nodos que no estaban en la solucion}
+				\FOR{cada offset posible que genere una sublista de longitud $ca$ de nodos que no estaban en la solucion}
+					\IF{agregando $ca$ nodos a $s$ - sublista sigue siendo un recubrimiento}
+						\RETURN $s$ - sublista + nuevos nodos
+					\ENDIF
+				\ENDFOR
+			\ENDFOR
+		\ENDIF
+	\ENDFOR
 \ENDFOR
 \RETURN No hay mejor vecino
 \end{algorithmic}
