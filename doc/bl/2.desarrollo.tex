@@ -9,10 +9,19 @@ Con lo primero que nos cruzamos a la hora de hacer resolver el problema del recu
 
 Con 'esto en mente, la soluci'on que se opt'o fue la siguiente[\footnote{Para una mayor comprensi'on del lector, dirigirse a la secci'on de pseudoc'odigos}]:
 
-Se recibe la soluci'on inicial/anterior $s$ junto con par'ametros de cuantos nodos se sacan de la soluci'on y cu'antos se agregan ($cs$ y $ca$ respectivamente). Luego se quitan los primeros $cs$ de la lista de nodos del recubrimiento de $s$ y se corrobora si es un recubrimiento. De serlo, se devuelve como mejor vecino (ya que, como la funci'on objetivo es proporcional a la cantidad de nodos del recubrimiento, al sacar una cantidad positiva de 'estos el resultado ser'a siempre mejor). Pero si 'este no es recubrimiento entonces se agregan $ca$ nodos (nuevos, no se incluyen los que se acaban de sacar) para volver a realizar la verificaci'on. Como se supone que la cantidad de nodos que saco es mayor a la que agrego, de ser un recubrimiento al agregar se est'a obteniendo mejor objetvo, por lo que se devuelve 'esta nueva soluci'on. De no serlo, se regresa a $s$ y se quitan 'esta vez $cs$ nodos pero \emph{desfazados} en la lista del recubrimiento por 1 nodo (es decir, el primero ya no se toma m'as pero s'i el 'ultimo). Si no se consigue ning'un vecino mejor despu'es de realizar 'este barrido, entonces se toma a $s$ como la mejor soluci'on alcanzada, y por ende como la soluci'on de la heur'istica.
+Se recibe la soluci'on inicial/anterior $s$ junto con par'ametros de cuantos nodos se sacan de la soluci'on y cu'antos se agregan ($cs$ y $ca$ respectivamente). Primero se prosigue a quitar nodos del recubrimiento actual. Para ello se itera nodo por nodo y, para cada uno, se prosigue de la siguiente forma (supongo que el actual es el $i$-'esimo de la lista): 
 
+\begin{itemize}
+\item La primer soluci'on vecina ser'a la de tomar los nodos restantes consecutivos a 'este nodo (es decir, los de las posiciones $i,i+1,i+2,\dots$). 
+\item La segunda soluci'on vecina ser'a aquella que incluya al nodo actual, a aquel en 2 posiciones siguientes, 4 posiciones, 6 posiciones, etc. Es decir, se tomar'an los 'indices $i, i+2, i+4,\dots$. Notar que se saltea 1 nodo en la elecci'on, por eso llamamos que aqu'i se eligi'o con un $offset = 1$. 
+\item La tercer soluci'on ser'a $i, i+3, i+6, \dots$, es decir con un $offset = 2$.
+\end{itemize}
 
+El procedimiento se contin'ua hasta el $offset$ m'as grande posible. Cada posible soluci'on hallada de 'esta forma  es quitada y verificada si es un recubrimiento v'alido. De serlo, se toma como mejor vecino y se devuelve. De no ser asi, se prosigue a insertarle nuevos nodos.
 
+La inserci'on sigue el mismo proceso de selecci'on pero 'esta vez para los nodos restantes que no estaban en el recubrimiento pasado. Se los agrega y se verifica que el resultado sea efectivamente un recubrimiento. De serlo, y como $cs < ca$, entonces se toma como mejor recubrimiento al actual y se devuelve.
+
+Si no se consigue ning'un vecino mejor despu'es de verificar todas las vecindades, se toma a $s$ como la mejor soluci'on alcanzada, y por ende como la soluci'on de la heur'istica.
 
 Notar que ambas funciones, la que lista vecinos y la que elige alguno de ellos, est'an implementadas juntas. 'Esto es para evitar tener que listar todos los vecinos e ir calculando un vecino simplemente cuando se lo necesite.
 
@@ -21,7 +30,7 @@ Como soluci'on inicial se eligi'o una bastante sencilla, con poca \emph{intelige
 M'as all'a de los par'ametros que toma la heur'istica ya mencionados anteriormente, cuantos nodos se sacan y cuantos se agregan para el c'alculo de vecinos, se nos ocurrieron otros m'as de menor importancia:
 \begin{itemize}
 \item ¿Mezclar la soluci'on antes de buscarle vecinos? Un posible problema con el que nos encontramos fue que una soluci'on esta condenada a elegir siempre los mismos vecinos, todo dependiendo del orden en el cual le fueron agregados los nodos a su lista. Por eso se podr'ia haber implementado este bit que indica si se deb'ia mezclar la lista o no para ofrecer un mayor rango de alcance. Pero 'esto pod'ia generar que a algunas soluciones sea dif'icil de llegar debido a que siempre la mezcla d'a de cierta forma. Adem'as, se implement'o 'esta mezcla y en la pr'actica no causaba mejoras sino que encima, a veces, empeoraba. Por ello se decidi'o no agregar 'este par'ametro. 
-\item ¿Utilizar soluci'on golosa? La idea de utilizar la soluci'on ad-hoc descripta m'as arriba nos pareci'o desde el principio, como ya se dijo, bastante adecuada para la mec'anica del algoritmo. Pero tambi'en se nos ocurri'o el utilizar la heur'istica golosa ya desarrollada anteriormente. Se realizaron algunas pruebas pero no fueron satisfactorias. Principalmente, se ejecutaron mayor cantidad de operaciones (lo cual comparando las complejidades te'oricas es de esperar) y los recubrimientos obtenidos no fueron mejores. Por lo tanto, se dej'o como soluci'on inicial la ya mencionada anteriormente.
+\item ¿Utilizar soluci'on golosa? La idea de utilizar la soluci'on ad-hoc descripta m'as arriba nos pareci'o desde el principio, como ya se dijo, bastante adecuada para la mec'anica del algoritmo. Pero tambi'en se nos ocurri'o el utilizar la heur'istica golosa ya desarrollada anteriormente. Se realizaron algunas pruebas pero no fueron satisfactorias. Principalmente, se ejecutaron mayor cantidad de operaciones (lo cual comparando las complejidades te'oricas es de esperar) y los recubrimientos obtenidos no fueron mejores. Por lo tanto, se dej'o como soluci'on inicial la ya mencionada anteriormente\footnote{Para mas informaci'on, dirigirse a la secci'on de resultados.}.
 \end{itemize}
 
 

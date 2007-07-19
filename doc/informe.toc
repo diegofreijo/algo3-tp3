@@ -15,37 +15,37 @@
 \contentsline {subsection}{\numberline {4.3}Pseudoc'odigos}{15}
 \contentsline {subsection}{\numberline {4.4}An'alisis de complejidad}{16}
 \contentsline {subsection}{\numberline {4.5}Resultados}{17}
-\contentsline {subsection}{\numberline {4.6}Discusi'on}{19}
-\contentsline {subsection}{\numberline {4.7}Conclusiones}{20}
-\contentsline {section}{\numberline {5}B'usqueda Local}{21}
-\contentsline {subsection}{\numberline {5.1}Introducci'on}{21}
-\contentsline {subsection}{\numberline {5.2}Desarrollo}{22}
-\contentsline {subsubsection}{\numberline {5.2.1}El algoritmo}{22}
-\contentsline {subsubsection}{\numberline {5.2.2}Las pruebas}{23}
-\contentsline {subsection}{\numberline {5.3}Pseudoc'odigos}{25}
-\contentsline {subsection}{\numberline {5.4}An'alisis de complejidad}{26}
-\contentsline {subsubsection}{\numberline {5.4.1}SolucionInicial}{26}
-\contentsline {subsubsection}{\numberline {5.4.2}MejorVecino}{26}
-\contentsline {subsection}{\numberline {5.5}BusquedaLocal}{27}
-\contentsline {subsection}{\numberline {5.6}Resultados}{28}
-\contentsline {subsection}{\numberline {5.7}Discusi'on}{31}
-\contentsline {subsection}{\numberline {5.8}Conclusiones}{33}
-\contentsline {section}{\numberline {6}GRASP}{34}
-\contentsline {subsection}{\numberline {6.1}Introducci'on}{34}
-\contentsline {subsection}{\numberline {6.2}Desarrollo}{35}
-\contentsline {subsubsection}{\numberline {6.2.1}GRASP}{35}
-\contentsline {subsubsection}{\numberline {6.2.2}GolosoRandom}{35}
-\contentsline {subsection}{\numberline {6.3}Pseudoc'odigos}{36}
-\contentsline {subsection}{\numberline {6.4}An'alisis de complejidad}{37}
-\contentsline {subsubsection}{\numberline {6.4.1}GolosoGreedy}{37}
-\contentsline {subsubsection}{\numberline {6.4.2}GRASP}{37}
-\contentsline {subsection}{\numberline {6.5}Resultados}{38}
-\contentsline {subsection}{\numberline {6.6}Discusi'on}{41}
-\contentsline {subsection}{\numberline {6.7}Conclusiones}{42}
-\contentsline {section}{\numberline {7}Resultados}{43}
-\contentsline {section}{\numberline {8}Discusi'on}{47}
-\contentsline {section}{\numberline {9}Conclusiones}{48}
-\contentsline {section}{\numberline {10}Ap'endice A: uso de la interfaz de usuario}{49}
-\contentsline {section}{\numberline {11}Ap'endice B: mejores par'ametros de la B'usqueda Local y GRASP}{50}
-\contentsline {subsection}{\numberline {11.1}B'usqueda Local}{50}
-\contentsline {subsection}{\numberline {11.2}GRASP}{50}
+\contentsline {subsection}{\numberline {4.6}Discusi'on}{18}
+\contentsline {subsection}{\numberline {4.7}Conclusiones}{19}
+\contentsline {section}{\numberline {5}B'usqueda Local}{20}
+\contentsline {subsection}{\numberline {5.1}Introducci'on}{20}
+\contentsline {subsection}{\numberline {5.2}Desarrollo}{21}
+\contentsline {subsubsection}{\numberline {5.2.1}El algoritmo}{21}
+\contentsline {subsubsection}{\numberline {5.2.2}Las pruebas}{22}
+\contentsline {subsection}{\numberline {5.3}Pseudoc'odigos}{24}
+\contentsline {subsection}{\numberline {5.4}An'alisis de complejidad}{25}
+\contentsline {subsubsection}{\numberline {5.4.1}SolucionInicial}{25}
+\contentsline {subsubsection}{\numberline {5.4.2}MejorVecino}{25}
+\contentsline {subsection}{\numberline {5.5}BusquedaLocal}{26}
+\contentsline {subsection}{\numberline {5.6}Resultados}{27}
+\contentsline {subsection}{\numberline {5.7}Discusi'on}{28}
+\contentsline {subsection}{\numberline {5.8}Conclusiones}{30}
+\contentsline {section}{\numberline {6}GRASP}{31}
+\contentsline {subsection}{\numberline {6.1}Introducci'on}{31}
+\contentsline {subsection}{\numberline {6.2}Desarrollo}{32}
+\contentsline {subsubsection}{\numberline {6.2.1}GRASP}{32}
+\contentsline {subsubsection}{\numberline {6.2.2}GolosoRandom}{32}
+\contentsline {subsection}{\numberline {6.3}Pseudoc'odigos}{33}
+\contentsline {subsection}{\numberline {6.4}An'alisis de complejidad}{34}
+\contentsline {subsubsection}{\numberline {6.4.1}GolosoGreedy}{34}
+\contentsline {subsubsection}{\numberline {6.4.2}GRASP}{34}
+\contentsline {subsection}{\numberline {6.5}Resultados}{35}
+\contentsline {subsection}{\numberline {6.6}Discusi'on}{36}
+\contentsline {subsection}{\numberline {6.7}Conclusiones}{37}
+\contentsline {section}{\numberline {7}Resultados}{38}
+\contentsline {section}{\numberline {8}Discusi'on}{39}
+\contentsline {section}{\numberline {9}Conclusiones}{40}
+\contentsline {section}{\numberline {10}Ap'endice A: uso de la interfaz de usuario}{41}
+\contentsline {section}{\numberline {11}Ap'endice B: mejores par'ametros de la B'usqueda Local y GRASP}{42}
+\contentsline {subsection}{\numberline {11.1}B'usqueda Local}{42}
+\contentsline {subsection}{\numberline {11.2}GRASP}{42}

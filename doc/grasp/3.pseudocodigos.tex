@@ -2,9 +2,9 @@
 
 \algoritmo{GRASP}{Algoritmo GRASP para resolver Vertex Cover}{$O(im*n^3m)$}
 \begin{algorithmic}[1]
-\WHILE{ No se cumplan las condiciones de parada}
+\WHILE{No se cumplan las condiciones de parada}
 	\STATE Generar solucion actual golosa azarosa y aplicarle busqueda local
-	\IF{ La solucion actual es mejor que la mejor solucion}
+	\IF{La solucion actual es mejor que la mejor solucion}
 		\STATE Mejor solucion $\leftarrow$ solucion actual 
 	\ENDIF
 \ENDWHILE
@@ -21,9 +21,7 @@
 	\STATE Agregar el nodo devuelto por NodoAgregar
 	\STATE Sacar el nodo de la lista de nodos
 \ENDWHILE
-\ELSE
-	\STATE Devolver solucion
-\ENDIF
+\STATE Devolver solucion
 \end{algorithmic}
 	
 \vspace{2em}
