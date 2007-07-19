@@ -72,8 +72,8 @@ public class Pruebas_GRASP
 			{
 				// Los parametros van a comenzar teniendo los parametros de Busqueda Local como el mejor de los que encontro en las pruebas anteriores
 				parametros_actuales = new ParametrosGRASP();
-				parametros_actuales.porcentaje_cuantos_agrego = 0;
-				parametros_actuales.porcentaje_cuantos_saco = 1;
+				parametros_actuales.porcentaje_cuantos_agrego = 4;
+				parametros_actuales.porcentaje_cuantos_saco = 7;
 				parametros_actuales.iteraciones_max = 200000000;
 				parametros_actuales.iteraciones_sin_cambio = 5;
 				parametros_actuales.porcentaje_goloso = porcentaje_goloso;

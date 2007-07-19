@@ -31,10 +31,7 @@ public class Pruebas_BusquedaLocal
 		Cronometro cronometro = new Cronometro();
 		
 		// Ejecuto prueba por prueba. Cada una genera un grafico.
-		ParametrosBL mejor = new ParametrosBL(); //CorrerComparacionesEntreParametros();
-		mejor.porcentaje_cuantos_agrego = 4;
-		mejor.porcentaje_cuantos_saco = 7;
-		
+		ParametrosBL mejor = CorrerComparacionesEntreParametros();		
 		CorrerInstruccionesEjes(mejor);
 		CorrerInstruccionesNodos(mejor);
 		CorrerComparacionEjes(mejor);
