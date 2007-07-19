@@ -18,27 +18,27 @@ set term png
 		set ylabel "Cantidad de instrucciones"
 		set yrange [0:450000]
 		set output "BusquedaLocal(instrucciones_ejes).png"
-		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_ejes).dat' tit 'Práctica', 64000*x/(40*39/2)  tit 'Teórica [40^3 * m / (40*39/2)]', 240*64000*x/(40*39/2)  tit 'Teórica ajustada [240 * Teórica]'
+		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_ejes).dat' tit 'Práctica (Naive)', '..\..\dat\BusquedaLocal\BusquedaLocal(goloso_instrucciones_ejes).dat' tit 'Práctica (Goloso)', 64000*x/(40*39/2)  tit 'Teórica [40^3 * m / (40*39/2)]', 240*64000*x/(40*39/2)  tit 'Teórica ajustada [240 * Teórica]'
 		
 	# Cantidad de instrucciones en funcion de los nodos del mejor parametro
 		set xlabel "Cantidad de nodos"
 		set ylabel "Cantidad de instrucciones"
 		set yrange [0:600000]
 		set output "BusquedaLocal(instrucciones_nodos).png"
-		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_nodos).dat' tit 'Práctica', x*x*x*600 tit 'Teórica[n^3 * 600]'
+		plot '..\..\dat\BusquedaLocal\BusquedaLocal(instrucciones_nodos).dat' tit 'Práctica (Naive)', '..\..\dat\BusquedaLocal\BusquedaLocal(goloso_instrucciones_nodos).dat' tit 'Práctica (Goloso)', x*x*x*600 tit 'Teórica[n^3 * 600]'
 		reset
 		
 	# Comparacion con exacto del mejor parametro en funcion de los ejes
 		set xlabel "Densidad del grafo"
 		set ylabel "Diferencias con el exacto"
 		set output "BusquedaLocal(comparacion_exacto_ejes).png"
-		plot '..\..\dat\BusquedaLocal\BusquedaLocal(comparacion_exacto_ejes).dat' tit 'Diferencias'
+		plot '..\..\dat\BusquedaLocal\BusquedaLocal(comparacion_exacto_ejes).dat' tit 'Diferencias (Naive)', '..\..\dat\BusquedaLocal\BusquedaLocal(goloso_comparacion_exacto_ejes).dat' tit 'Diferencias (Goloso)'
 		
 	# Comparacion con exacto del mejor parametro en funcion de los nodos
 		set xlabel "Cantidad de nodos"
 		set ylabel "Cantidad de instrucciones"
 		set output "BusquedaLocal(comparacion_exacto_nodos).png"
-		plot '..\..\dat\BusquedaLocal\BusquedaLocal(comparacion_exacto_nodos).dat' tit 'Diferencias'
+		plot '..\..\dat\BusquedaLocal\BusquedaLocal(comparacion_exacto_nodos).dat' tit 'Diferencias (Naive)', '..\..\dat\BusquedaLocal\BusquedaLocal(goloso_comparacion_exacto_nodos).dat' tit 'Diferencias (Goloso)'
 
 # GRASP:
 	
