@@ -1,18 +1,21 @@
 import sys
 #Grafo Rueda: parametros 1)cant nodos 2) cant instancias
 
-nodos = sys.argv[1]
-nodos = int(nodos)
+maxnodos = sys.argv[1]
+maxnodos = int(maxnodos)
 
-instancias = sys.argv[2]
-instancias = int(instancias)
+nodos=0
 
+<<<<<<< .mine
+while nodos < maxnodos:
+=======
 j=1
 
 while j < nodos:
+>>>>>>> .r106
     i=1
     a = []
-    arch=open("../../in/Rueda/Rueda"+str(j+1)+".in", 'w')
+    arch=open("../../in/rueda/Rueda"+str(nodos+1)+".in", 'w')
     while i < j-1:
         eje = "e" + " " + str(i) + " " + str(i+1) + '\n'
         a.append(eje)
@@ -30,4 +33,4 @@ while j < nodos:
     arch.write('\n')
     arch.writelines(a)
     arch.close()
-    j=j+1
+    nodos=nodos+1

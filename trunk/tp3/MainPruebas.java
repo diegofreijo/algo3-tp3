@@ -19,10 +19,10 @@ public class MainPruebas
 {
 	public static void main(String[] args)
 	{		
-		String Tipo = "aleatorio";
+		String Tipo = "rueda";
 		
 		System.out.println("Leyendo grafos...");
-		List<Grafo> grafos = Parser.LeerGrafos(Tipo, "grandes_nodos", 100);
+		List<Grafo> grafos = Parser.LeerGrafos(Tipo, "grandes_nodos", 50);
 
 		Grafico instruccionesGoloso = new Grafico(Tipo,"instruccionesGoloso"+Tipo);
 		Grafico tamañoSolGoloso = new Grafico(Tipo,"tamañoGoloso"+Tipo);
@@ -44,9 +44,12 @@ public class MainPruebas
 		Punto2D p3;
 		Punto2D p4;
 		Punto2D p5;
-		
+		int i = 0;
 		for(Grafo g : grafos)
-		{			
+		{
+			++i;
+			System.out.println(i);
+			
 			est_goloso.i = 0;
 			recubrimiento = Goloso.Ejecutar(g,est_goloso);
 			p = new Punto2D(g.DameNodos(),recubrimiento.nodos.size());
