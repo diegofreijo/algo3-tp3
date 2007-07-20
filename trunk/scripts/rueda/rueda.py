@@ -7,23 +7,23 @@ nodos = int(nodos)
 instancias = sys.argv[2]
 instancias = int(instancias)
 
-j=0
+j=1
 
-while j < instancias:
+while j < nodos:
     i=1
     a = []
     arch=open("../../in/Rueda/Rueda"+str(j+1)+".in", 'w')
-    while i < nodos-1:
+    while i < j-1:
         eje = "e" + " " + str(i) + " " + str(i+1) + '\n'
         a.append(eje)
         i = i+1
     i=1
-    while i <= nodos-1:
-        eje = "e" + " " + str(i) + " " + str(nodos) + '\n'
+    while i <= j-1:
+        eje = "e" + " " + str(i) + " " + str(j) + '\n'
         a.append(eje)
         i = i+1
     c = "c " + "Grafo Rueda"
-    s = "p edge " + str(nodos) + " " + str(len(a))
+    s = "p edge " + str(j) + " " + str(len(a))
     arch.write(c)
     arch.write('\n')
     arch.write(s)
