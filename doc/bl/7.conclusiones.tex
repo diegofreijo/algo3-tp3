@@ -1,11 +1,16 @@
 \subsection{Conclusiones}
 Para finalizar el an'alisis de la heur'istica, hay dos puntos que son los que m'as nos sorprendieron:
 \begin{itemize}
-\item Lo peque'nos que son los mejores par'ametros
+\item La mejora en las soluciones que pueden causar las vecindades
 
-Como se dijo antes, cre'imos que 'estos iban a ser m'as elevados, no muy grandes pero tampoco tan peque'nos. Consideramos que se podr'a deber a la forma en la cual elegimos los vecinos: existe mayor libertad para elegir vecinos mientras m'as chicos sean los cambios. Capaz que 'esto favoreci'o a que el algoritmo pudiese encontrar vecinos que, de haber hecho cambios m'as grandes, no hubiese podido. Adem'as la soluci'on naive, al ser de tama'no elevado, ayuda a 'este fen'omeno porque brinda mayores posibilidades para quitar nodos. Nos hubiese gustado correr el algoritmo con mayores valores pero el poder de c'omputo que ten'iamos daba para lo que se hizo y nada mas...
+En comparaci'on a otra implementaci'on realizada con anterioridad de la funci'on de vecindad que recorr'ia menos vecinos, los mejores par'ametros pasaron de (0,1) a (4,7). Y los puntajes fueron mejores. Creemos que, aunque la complejidad del algoritmo aument'o a ra'iz de 'esta nueva implementaci'on, no deja de ser polinomial y arroja mejores resultados.
 
 \item Las pocas diferencias con el algoritmo exacto
 
 Es verdad que 'este es un punto que depende netamente del contexto de uso que se le dar'a al algoritmo y a la soluci'on que produzca, pero que ande en errores de la d'ecima parte del total nos parece un punto importante a favor de la heur'istica. Es posible que s'olo se d'e 'este fen'omeno en grafos peque'nos pero, repitiendo, de haber podido hubi'esemos hecho muchas pruebas m'as.
+
+\item La superioridad de la soluci'on inicial \emph{naive}
+
+En un principio cre'imos que agregar una soluci'on con mayor inteligencia podr'ia llevarnos a mejores resultados, pero no fue as'i. El utilizar la soluci'on inicial golosa lo 'unico que caus'o fue que la cantidad de instrucciones aumente considerablemente y las mejoras no son convincentes. Notar adem'as\footnote{Ver ap'endice de puntajes.} la cercan'ia de los mejores par'ametros obtenidos en ambos casos. Pero el mejor puntaje del goloso es muy inferior al mejor del \emph{naive}. Por eso creemos que la soluci'on \emph{naive} funciona mejor para nuestro algoritmo. 
+
 \end{itemize}
