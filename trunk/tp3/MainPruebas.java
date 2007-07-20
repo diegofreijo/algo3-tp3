@@ -15,16 +15,13 @@ import utilidades.Parser;
 import utilidades.Punto2D;
 import utilidades.Recubrimiento;
 
-public class MainPruebas {
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+public class MainPruebas
+{
+	public static void main(String[] args)
+	{		
+		String Tipo = "Aleatorio";
 		
-		String Tipo = "Rueda";
-		
-		System.out.println("Leyendo grafos bipartitos...");
+		System.out.println("Leyendo grafos...");
 		List<Grafo> grafos = Parser.LeerGrafos("bipartito", "", 100);
 
 		Grafico instruccionesGoloso = new Grafico(Tipo,"instruccionesGoloso"+Tipo);
@@ -48,8 +45,8 @@ public class MainPruebas {
 		Punto2D p4;
 		Punto2D p5;
 		
-		for(Grafo g : grafos){
-			
+		for(Grafo g : grafos)
+		{			
 			est_goloso.i = 0;
 			recubrimiento = Goloso.Ejecutar(g,est_goloso);
 			p = new Punto2D(g.DameNodos(),recubrimiento.nodos.size());
@@ -59,8 +56,8 @@ public class MainPruebas {
 			
 			est_bl.i = 0;
 			ParametrosBL parametros = new ParametrosBL();
-			parametros.porcentaje_cuantos_agrego = 0;
-			parametros.porcentaje_cuantos_saco = 1;
+			parametros.porcentaje_cuantos_agrego = 4;
+			parametros.porcentaje_cuantos_saco = 7;
 			recubrimiento = BusquedaLocal.Ejecutar(g,parametros,null,est_bl);
 			p2 = new Punto2D(g.DameNodos(),recubrimiento.nodos.size());
 			tamañoSolBL.Agregar(p2);
@@ -69,11 +66,11 @@ public class MainPruebas {
 			
 			est_grasp.i = 0;
 			ParametrosGRASP parametrosG = new ParametrosGRASP();
-			parametrosG.porcentaje_cuantos_agrego = 0;
-			parametrosG.porcentaje_cuantos_saco = 1;
+			parametrosG.porcentaje_cuantos_agrego = 4;
+			parametrosG.porcentaje_cuantos_saco = 7;
 			parametrosG.iteraciones_max = 200000000;
 			parametrosG.iteraciones_sin_cambio = 5;
-			parametrosG.porcentaje_goloso = 50;
+			parametrosG.porcentaje_goloso = 55;
 			recubrimiento = GRASP.Ejecutar(g,parametrosG,est_grasp);
 			p4 = new Punto2D(g.DameNodos(),recubrimiento.nodos.size());
 			tamañoSolGRASP.Agregar(p4);
@@ -89,7 +86,6 @@ public class MainPruebas {
 		Parser.EscribirGrafico(instruccionesGRASP);
 		
 		System.out.println("Fin de las pruebas");
-		
 	}
 
 }
