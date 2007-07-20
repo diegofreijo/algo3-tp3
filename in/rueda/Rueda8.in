@@ -1,2 +1,13 @@
 c Grafo Rueda
-p edge 1 0
+p edge 7 11
+e 1 2
+e 2 3
+e 3 4
+e 4 5
+e 5 6
+e 1 7
+e 2 7
+e 3 7
+e 4 7
+e 5 7
+e 6 7
