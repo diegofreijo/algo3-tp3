@@ -7,13 +7,13 @@ La primer acci'on realizada por el algoritmo que no tiene complejidad constante 
 
 Luego viene el bucle exterior, que va recorriendo cada nodo de la soluci'on. Por lo que se ejecuta $t$ veces, lo cual equivale a O($n$) ya que $n$ es el m'aximo valor posible para $t$.
 
-El segundo bucle se ejecuta tantas veces como $offsets$ posibles hallan. 'Esta cantidad esta dominada por la ecuaci'on
+El segundo bucle se ejecuta tantas veces como \emph{offsets} posibles hallan. 'Esta cantidad esta dominada por la ecuaci'on
 
-$$(cs - 1) * offset + cs \leq t - i$$
+$$(cs - 1) * o + cs \leq t - i$$
 
-considerando que $i$ es la posici'on del nodo actual. Por lo tanto el m'aximo offset ser'a
+considerando que $o$ es el offset e $i$ es la posici'on del nodo actual. Por lo tanto el offset m'aximo $om$ ser'a
 
-$$offset_maximo = (t - i - cs) / (cs - 1)$$
+$$om = (t - i - cs) / (cs - 1)$$
 
 redondeado para abajo. Notar que 'este valor ser'a mayor cuando se est'e al comienzo de la lista ($i=0$),  y cuando la cantidad de nodos que saco tambi'en sea m'inima ($cs=2$, porque de ser 1 no existir'ia el offset ya que se toma solo a $i$) y cuando el tama'no de la soluci'on de entrada sea m'axima ($t=n$). Por lo que se ejecutar'a O($n$) veces.
 
