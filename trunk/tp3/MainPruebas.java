@@ -19,10 +19,10 @@ public class MainPruebas
 {
 	public static void main(String[] args)
 	{		
-		String Tipo = "Aleatorio";
+		String Tipo = "aleatorio";
 		
 		System.out.println("Leyendo grafos...");
-		List<Grafo> grafos = Parser.LeerGrafos("bipartito", "", 100);
+		List<Grafo> grafos = Parser.LeerGrafos(Tipo, "grandes_nodos", 100);
 
 		Grafico instruccionesGoloso = new Grafico(Tipo,"instruccionesGoloso"+Tipo);
 		Grafico tamañoSolGoloso = new Grafico(Tipo,"tamañoGoloso"+Tipo);
