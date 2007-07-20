@@ -88,7 +88,7 @@ set term png
 		set xlabel "Cantidad de nodos"
 		set ylabel "Tamaño de la solucion"
 		set output "Comparacion(tamañoBipartito).png"
-		plot '..\..\dat\Bipartito\Bipartito(tamañoBLBipartito).dat' tit 'BL','..\..\dat\Bipartito\Bipartito(tamañoGolosoBipartito.dat' tit 'Goloso', '..\..\dat\Bipartito\Bipartito(tamañoGRASPBipartito).dat' tit 'Grasp'
+		plot '..\..\dat\Bipartito\Bipartito(tamañoBLBipartito).dat' tit 'BL','..\..\dat\Bipartito\Bipartito(tamañoGolosoBipartito).dat' tit 'Goloso', '..\..\dat\Bipartito\Bipartito(tamañoGRASPBipartito).dat' tit 'Grasp'
 		
 		# Rueda (en funcion de la cantidad de nodos)
 		set xlabel "Cantidad de nodos"
@@ -99,7 +99,7 @@ set term png
 		set xlabel "Cantidad de nodos"
 		set ylabel "Tamaño de la solucion"
 		set output "Comparacion(tamañoRueda).png"
-		plot '..\..\dat\Rueda\Rueda(tamañoBLRueda).dat' tit 'BL','..\..\dat\Rueda\Rueda(tamañoGolosoRueda.dat' tit 'Goloso', '..\..\dat\Rueda\Rueda(tamañoGRASPRueda).dat' tit 'Grasp'
+		plot '..\..\dat\Rueda\Rueda(tamañoBLRueda).dat' tit 'BL','..\..\dat\Rueda\Rueda(tamañoGolosoRueda).dat' tit 'Goloso', '..\..\dat\Rueda\Rueda(tamañoGRASPRueda).dat' tit 'Grasp'
 		
 		
 		# Completo (en funcion de la cantidad de nodos)
@@ -111,7 +111,7 @@ set term png
 		set xlabel "Cantidad de nodos"
 		set ylabel "Tamaño de la solucion"
 		set output "Comparacion(tamañoCompleto).png"
-		plot '..\..\dat\Completo\Completo(tamañoBLCompleto).dat' tit 'BL','..\..\dat\Completo\Completo(tamañoGolosoCompleto.dat' tit 'Goloso', '..\..\dat\Completo\Completo(tamañoGRASPCompleto).dat' tit 'Grasp'
-
+		plot '..\..\dat\Completo\Completo(tamañoBLCompleto).dat' tit 'BL','..\..\dat\Completo\Completo(tamañoGolosoCompleto).dat' tit 'Goloso', '..\..\dat\Completo\Completo(tamañoGRASPCompleto).dat' tit 'Grasp'
+		
 set output
 set terminal win
