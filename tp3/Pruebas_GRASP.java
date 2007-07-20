@@ -16,7 +16,7 @@ public class Pruebas_GRASP
 {
 	// Parametros de las pruebas
 	public static final int cant_grafos_chicos_ejes = 505;
-	public static final int cant_grafos_grandes_ejes = 100;
+	public static final int cant_grafos_grandes_ejes = 505;
 	public static final int cant_grafos_chicos_nodos = 100;
 	public static final int cant_grafos_grandes_nodos = 250;
 	
@@ -31,12 +31,19 @@ public class Pruebas_GRASP
 		Cronometro cronometro = new Cronometro();
 		
 		// Ejecuto prueba por prueba. Cada una genera un grafico.
-		ParametrosGRASP mejor = CorrerComparacionesEntreParametros();
+		ParametrosGRASP mejor = new ParametrosGRASP(); //CorrerComparacionesEntreParametros();
+		mejor = new ParametrosGRASP();
+		mejor.porcentaje_cuantos_agrego = 4;
+		mejor.porcentaje_cuantos_saco = 7;
+		mejor.iteraciones_max = 200000000;
+		mejor.iteraciones_sin_cambio = 5;
+		mejor.porcentaje_goloso = 55;
+		
 		CorrerInstruccionesEjes(mejor);
-		CorrerInstruccionesNodos(mejor);
+		/*CorrerInstruccionesNodos(mejor);
 		CorrerComparacionEjes(mejor);
 		CorrerComparacionNodos(mejor);
-		
+		*/
 		System.out.println("\nTiempo de ejecucion - TODAS las pruebas: " + cronometro.VerSegundos() + " seg");
 		System.out.println("-------------------------------------\n");
 		

@@ -46,13 +46,13 @@ set term png
 		set xlabel "Densidad"
 		set ylabel "Cantidad de instrucciones"
 		set output "GRASP(instrucciones_ejes).png"
-		plot '..\..\dat\GRASP\GRASP(instrucciones_ejes).dat' tit 'Cantidad de instrucciones', 64000*x/(40*39/2)  tit 'Teórica [40^3 * m / (40*39/2)]', 240*64000*x/(40*39/2)  tit 'Teórica ajustada [240 * Teórica]'
+		plot '..\..\dat\GRASP\GRASP(instrucciones_ejes).dat' tit 'Cantidad de instrucciones', 64000*40*40*x/(40*39/2)  tit 'Teórica [40^5 * m / (40*39/2)]', 240*64000*x/(40*39/2)  tit 'Teórica ajustada [240 * Teórica]'
 		
 	# Cantidad de instrucciones del mejor parametro por nodos
 		set xlabel "Cantidad de nodos"
 		set ylabel "Cantidad de instrucciones"
 		set output "GRASP(instrucciones_nodos).png"
-		plot '..\..\dat\GRASP\GRASP(instrucciones_nodos).dat' tit 'Cantidad de instrucciones', x*x*x*600 tit 'Teórica[n^3 * 600]'
+		plot '..\..\dat\GRASP\GRASP(instrucciones_nodos).dat' tit 'Cantidad de instrucciones', x*x*x*x*x*600 tit 'Teórica[n^5 * 600]'
 		
 	# Comparacion con exacto nodos
 		set xlabel "Cantidad de nodos"
